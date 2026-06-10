@@ -6,7 +6,7 @@ export const FonteDados = new DataSource({
     host: 'localhost',
     port: 3306,
     username:'root',
-    password:' ',
+    password: '',
     database:'portal_estagio',
     synchronize:false,
     logging:true,
