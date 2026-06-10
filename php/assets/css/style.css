@@ -18,3 +18,135 @@
     --letras-sections: #111827;
     --fundo-icone: #F3F4F6;
 }
+
+body {
+    background-color: var(--corpo);
+}
+
+/* ===Header=== */
+
+#header nav {
+    background-color: var(--branco) !important;
+    padding: 20px 0;
+    border-bottom: 1px solid var(--fundo-icone);
+}
+
+.header-nav a {
+    color: var(--preto);
+    font-weight: bold; /*Define o peso(negrito) da fonte */
+    font-size: 1.05rem;
+}
+
+.header-nav a:hover {
+    color: var(--destacar);
+    transition: 0.3s;
+}
+
+#header a.btn-portal {
+    background-color: var(--button);
+    border: none;
+    border-radius: 6px;
+}
+
+#header a.btn-portal:hover {
+    background-color: var(--destacar);
+    transition: 0.3s;
+}
+
+/*Banner Home*/
+
+.section-home {
+    padding: 60px 0;
+}
+
+.home-title {
+    font-size: 2.8rem;
+    line-height: 1.2; /* define a altura da linha de texto */
+    color: var(--letras-sections);
+}
+
+.home-title-destaque {
+    color: var(--destacar);
+    display: block;
+}
+
+.home-subtitle {
+    font-size: 1rem;
+    color: var(--texto-pequeno);
+    line-height: 1.6;
+}
+
+.btn-home-primary {
+    background-color: var(--button);
+    color: var(--branco);
+    border: none;
+    border-radius: 8px;
+    font-weight: 600;
+}
+
+.btn-home-primary:hover {
+    background-color: var(--destacar);
+    color: var(--branco);
+    transition: 0.3s;
+}
+
+.btn-home-outline {
+    background-color: transparent;
+    color: var(--destacar);
+    border: 2px solid var(--destacar);
+    border-radius: 8px;
+    font-weight: 600;
+}
+
+.btn-home-outline:hover {
+    background-color: var(--destacar);
+    color: var(--branco);
+    transition: 0.3s;
+}
+
+/*Cards Home*/
+
+.card-home {
+    background-color: #F3FDFE;
+    border-radius: 1rem;
+    padding: 1.6rem;
+    border: 3px solid var(--texto-pequeno);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: ease-in-out 0.4s;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.card-home h5 {
+    font-size: 1.5rem;
+    color: var(--letras-sections);
+    margin-bottom: 0.8rem;
+    margin-top: 0.6rem;
+}
+
+.card-home i {
+    font-size: 2.5rem;
+}
+
+.card-home:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+
+/*Footer*/
+
+#footer {
+    background-color: var(--branco);
+    padding: 20px 0;
+    border-top: 1px solid var(--fundo-icone);
+    text-align: center;
+}
+
+#footer p {
+    color: var(--preto);
+    font-weight: bold;
+    font-size: 1rem;
+}

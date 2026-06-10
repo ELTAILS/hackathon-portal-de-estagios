@@ -1,0 +1,9 @@
+@media (max-width: 768px) {
+    .home-title {
+        font-size: 2rem;
+    }
+
+    .section-home {
+        padding: 40px 0;
+    }
+}
