@@ -1,0 +1,21 @@
+import { Entity, PrimaryGeneratedColumn, Column} from "typeorm";
+
+@Entity('empresas')
+    export class Empresa{
+        
+        @PrimaryGeneratedColumn()
+        id!: number
+
+        @Column({length:150})
+        nome!:string
+
+        @Column({unique: true, length: 20})
+        cnpj!: string
+
+        @Column({unique: true, length:150})
+        email!:string
+
+        @Column({default:'pendente'})
+        status!:string
+
+    }
