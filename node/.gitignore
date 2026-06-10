@@ -1,6 +1,2 @@
 #Node Modules
 node_modules/
-
-#Compilação do TypeScript
-
-dist/
