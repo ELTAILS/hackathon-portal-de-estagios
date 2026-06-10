@@ -16,4 +16,7 @@ switch($url){
     case '/':
         $renderView->home();
         break;
+    default:
+        $renderView->erro();
+        break;
 }

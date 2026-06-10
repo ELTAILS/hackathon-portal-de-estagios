@@ -14,4 +14,9 @@ final class RenderViews
         $this->render('home', 'Pagina inicial');
     }
 
+    public function erro(): void
+    {
+        $this->render('erro', 'Ops.. Pagina não encontrada');
+    }
+
 }
