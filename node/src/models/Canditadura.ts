@@ -18,6 +18,6 @@ export class Candidatura{
     @JoinColumn({name: 'vaga_id'})
     vaga!: Vaga
 
-    @CreateDateColumn()
+    @CreateDateColumn({name: 'data_candidatura'})
     data_Candidatura!: Date
 }

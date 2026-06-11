@@ -20,7 +20,7 @@ export class Vaga{
     status!: boolean
 
     @ManyToOne(() => Empresa)
-    @JoinColumn({name: 'empre_id'})
+    @JoinColumn({name: 'empresa_id'})
     empresa!: Empresa
 
     @CreateDateColumn({name: 'criada_em'})
