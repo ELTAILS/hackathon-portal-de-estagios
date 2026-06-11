@@ -1,8 +1,9 @@
+    </main>
     <footer id="footer">
         <div class="container">
             <div class="row align-items-center">
                 <div class="col-auto">
-                    <a href="#">
+                    <a href="<?= BASE_URL ?>">
                         <img style="width: 150px;" src="<?= BASE_URL ?>assets/imgs/logo.png" alt="Logo">
                     </a>
                 </div>

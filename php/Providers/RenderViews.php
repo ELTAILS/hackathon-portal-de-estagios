@@ -20,4 +20,9 @@ final class RenderViews
         $this->render('erro', 'Ops.. Pagina não encontrada');
     }
 
+    public function vagas(): void
+    {
+        $this->render('vagas', 'Vagas de estágio');
+    }
+
 }

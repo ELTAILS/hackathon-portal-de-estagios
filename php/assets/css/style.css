@@ -21,6 +21,9 @@
 
 body {
     background-color: var(--corpo);
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
 }
 
 /* ===Header=== */
@@ -149,4 +152,30 @@ body {
     color: var(--preto);
     font-weight: bold;
     font-size: 1rem;
+}
+
+/*Vagas*/
+
+.table-vagas thead tr th{
+    color: var(--destacar);
+    font-weight: bold;
+}
+
+.aberta {
+    color: var(--sucesso) !important;
+    font-weight: bold;
+}
+
+.fechada {
+    color: var(--erro) !important;
+    font-weight: bold;
+}
+
+.table-vagas tbody tr {
+    padding: 2rem 0;
+    transition: ease-in-out 0.4s;
+}
+
+.table-vagas tbody tr:hover {
+    transform: translateY(-5px);
 }

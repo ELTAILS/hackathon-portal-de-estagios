@@ -18,7 +18,7 @@
 <header id="header">
     <nav class="navbar navbar-expand-lg">
         <div class="container">
-            <a class="navbar-brand d-flex align-items-center gap-2" href="#">
+            <a class="navbar-brand d-flex align-items-center gap-2" href="<?= BASE_URL ?>">
                 <img style="width: 175px;" src="<?= BASE_URL ?>assets/imgs/logo.png" alt="Portal de Estágios UniAlfa">
             </a>
 
@@ -31,7 +31,7 @@
             <div class="collapse navbar-collapse header-nav" id="navbarScroll">
                 <ul class="navbar-nav mx-auto my-2 my-lg-0">
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Vagas</a>
+                        <a class="nav-link" href="<?= BASE_URL ?>vagas">Vagas</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="#">Empresas</a>
@@ -40,15 +40,13 @@
                         <a class="nav-link" href="#">Áreas</a>
                     </li>
                 </ul>
-                <ul class="navbar-nav my-2 my-lg-0 align-items-center gap-2">
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">Entrar</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="btn btn-portal text-white px-4" href="#">Cadastrar</a>
-                    </li>
-                </ul>
+                <div class="navbar-nav my-2 my-lg-0 align-items-center gap-2">
+                    <a class="btn btn-portal text-white px-4 w-100" href="#">Entrar</a>
+                </div>
             </div>
         </div>
     </nav>
 </header>
+
+<!--Faz preencher todo a tela-->
+<main style="flex:1;">
