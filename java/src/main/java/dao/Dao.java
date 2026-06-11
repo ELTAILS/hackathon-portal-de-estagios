@@ -3,7 +3,7 @@ package dao;
 import java.sql.Connection;
 import java.sql.DriverManager;
 
-public class Dao {
+public class    Dao {
 
     private Connection connection;
 
