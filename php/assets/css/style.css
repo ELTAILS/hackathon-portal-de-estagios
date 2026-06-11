@@ -191,6 +191,32 @@ body {
     color: var(--branco);
 }
 
+/*Empresa*/
+
+#empresa {
+    background-color: var(--corpo);
+}
+
+.empresa-card {
+    border: 1px solid var(--fundo-icone);
+    border-radius: 1rem;
+    background-color: var(--branco);
+    transition: ease-in-out 0.4s;
+}
+
+.empresa-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(17, 24, 39, 0.12);
+}
+
+.empresa-card .badge {
+    font-size: 0.85rem;
+}
+
+.empresa-card li {
+    margin-bottom: 0.35rem;
+}
+
 /*Footer*/
 
 #footer {

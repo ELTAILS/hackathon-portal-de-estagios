@@ -34,7 +34,7 @@
                         <a class="nav-link" href="<?= BASE_URL ?>vagas">Vagas</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Empresas</a>
+                        <a class="nav-link" href="<?= BASE_URL ?>empresa">Empresas</a>
                     </li>
                 </ul>
                 <div class="navbar-nav my-2 my-lg-0 align-items-center gap-2">

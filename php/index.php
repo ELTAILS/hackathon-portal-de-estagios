@@ -22,6 +22,9 @@ switch($url){
     case 'login':
         $renderView->login();
         break;
+    case 'empresa':
+        $renderView->empresa();
+        break;
     default:
         $renderView->erro();
         break;
