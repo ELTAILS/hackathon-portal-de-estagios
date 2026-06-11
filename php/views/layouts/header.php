@@ -36,9 +36,6 @@
                     <li class="nav-item">
                         <a class="nav-link" href="#">Empresas</a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">Áreas</a>
-                    </li>
                 </ul>
                 <div class="navbar-nav my-2 my-lg-0 align-items-center gap-2">
                     <a class="btn btn-portal text-white px-4 w-100" href="<?= BASE_URL?>login">Entrar</a>

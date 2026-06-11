@@ -139,6 +139,58 @@ body {
 }
 
 
+/*Erro 404*/
+
+#erro {
+    min-height: 70vh;
+    background-color: var(--corpo);
+}
+
+.erro-card {
+    background-color: var(--branco);
+    border: 1px solid var(--fundo-icone);
+    border-radius: 1.25rem;
+    box-shadow: 0 10px 30px rgba(17, 24, 39, 0.08);
+    padding: 2rem;
+}
+
+.erro-code {
+    color: var(--destacar);
+    font-size: clamp(4rem, 18vw, 7rem);
+    font-weight: 800;
+    line-height: 1; 
+    letter-spacing: 0.08em; /*define o espaçamento horizontal entre as letras (caracteres) de um texto*/
+}
+
+.erro-title {
+    color: var(--letras-sections);
+    font-size: clamp(1.3rem/*mínimo*/, 4vw/*máximo*/, 1.8rem/*padrão*/);
+    margin-top: 0.5rem;
+    font-weight: 700;
+}
+
+.erro-text {
+    color: var(--texto-pequeno);
+    font-size: 1rem;
+    line-height: 1.6;
+    margin-top: 0.75rem;
+}
+
+.btn-voltar {
+    background-color: var(--button);
+    color: var(--branco);
+    border: none;
+    border-radius: 8px;
+    padding: 0.75rem 1.25rem;
+    font-weight: 600;
+    transition: ease-in-out 0.4s;
+}
+
+.btn-voltar:hover {
+    background-color: var(--destacar);
+    color: var(--branco);
+}
+
 /*Footer*/
 
 #footer {
