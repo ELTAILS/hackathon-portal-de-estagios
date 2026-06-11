@@ -19,5 +19,5 @@ export class Candidatura{
     vaga!: Vaga
 
     @CreateDateColumn()
-    dataCandidatura!: Date
+    data_Candidatura!: Date
 }

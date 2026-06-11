@@ -17,14 +17,12 @@ export class Vaga{
     area!: string
     
     @Column({type: 'enum', enum: ['aberta', 'encerrada'], default:'aberta'})
-
-    @Column({default: true})
     status!: boolean
 
     @ManyToOne(() => Empresa)
     @JoinColumn({name: 'empre_id'})
     empresa!: Empresa
 
-    @CreateDateColumn()
+    @CreateDateColumn({name: 'criada_em'})
     criadoEm!: Date
 }

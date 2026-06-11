@@ -18,5 +18,5 @@ export class Notificacao{
     lida!: boolean
 
     @CreateDateColumn()
-    criadaEm!: Date
+    criada_em!: Date
 }

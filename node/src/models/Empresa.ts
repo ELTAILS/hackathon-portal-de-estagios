@@ -15,7 +15,7 @@ import { Entity, PrimaryGeneratedColumn, Column} from "typeorm";
         @Column({unique: true, length:150})
         email!:string
 
-        @Column({default:'pendente'})
+        @Column({type:'enum', enum:['pendente', 'aprovada', 'bloqueada'], default:'pendente'})
         status!:string
 
     }
