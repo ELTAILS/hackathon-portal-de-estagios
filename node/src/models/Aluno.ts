@@ -1,4 +1,4 @@
-import { Entity, PrimaryGeneratedColumn, Column, CreateDateColumn } from "typeorm";
+import { Entity, PrimaryGeneratedColumn, Column} from "typeorm";
 
 @Entity('alunos')
 export class Aluno {
@@ -14,15 +14,13 @@ export class Aluno {
     @Column({ unique: true, length: 150 })
     email!: string
 
-    @Column({ length: 250 })
+    @Column({ length: 100 })
     curso!: string
 
-    @Column({ default: true })
+    @Column({ default: false })
     apto!: boolean
 
     @Column({ default: true })
     ativo!: boolean
 
-    @CreateDateColumn()
-    criadoEm!: Date
 }
