@@ -17,6 +17,6 @@ export const FonteDados = new DataSource({
     synchronize:false,
     logging:true,
     entities:[Aluno, Empresa, Vaga, Candidatura, Notificacao],
-    migrations:[''],
+    migrations:['src/migrations/**/*.ts'],
 
 })
