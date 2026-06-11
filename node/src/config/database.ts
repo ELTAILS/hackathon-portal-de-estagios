@@ -1,5 +1,11 @@
 import {DataSource} from "typeorm";
 import 'reflect-metadata';
+import { Aluno } from "../models/Aluno";
+import { Empresa } from "../models/Empresa";
+import { Vaga } from "../models/Vaga";
+import { Candidatura } from "../models/Canditadura";
+import { Notificacao } from "../models/Notificacoes";
+
 
 export const FonteDados = new DataSource({
     type: 'mysql',
@@ -10,7 +16,7 @@ export const FonteDados = new DataSource({
     database:'portal_estagio',
     synchronize:false,
     logging:true,
-    entities:[''],
+    entities:[Aluno, Empresa, Vaga, Candidatura, Notificacao],
     migrations:[''],
 
 })
