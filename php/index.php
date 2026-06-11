@@ -19,6 +19,9 @@ switch($url){
     case 'vagas':
         $renderView->vagas();
         break;
+    case 'login':
+        $renderView->login();
+        break;
     default:
         $renderView->erro();
         break;

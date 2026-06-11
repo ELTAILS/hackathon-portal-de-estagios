@@ -38,22 +38,22 @@ body {
     color: var(--preto);
     font-weight: bold; /*Define o peso(negrito) da fonte */
     font-size: 1.05rem;
+    transition: ease-in-out 0.4s;
 }
 
 .header-nav a:hover {
     color: var(--destacar);
-    transition: 0.3s;
 }
 
 #header a.btn-portal {
     background-color: var(--button);
     border: none;
     border-radius: 6px;
+    transition: ease-in-out 0.4s;
 }
 
 #header a.btn-portal:hover {
     background-color: var(--destacar);
-    transition: 0.3s;
 }
 
 /*Banner Home*/
@@ -85,12 +85,12 @@ body {
     border: none;
     border-radius: 8px;
     font-weight: 600;
+    transition: ease-in-out 0.4s;
 }
 
 .btn-home-primary:hover {
     background-color: var(--destacar);
     color: var(--branco);
-    transition: 0.3s;
 }
 
 .btn-home-outline {
@@ -99,12 +99,12 @@ body {
     border: 2px solid var(--destacar);
     border-radius: 8px;
     font-weight: 600;
+    transition: ease-in-out 0.4s;
 }
 
 .btn-home-outline:hover {
     background-color: var(--destacar);
     color: var(--branco);
-    transition: 0.3s;
 }
 
 /*Cards Home*/
@@ -178,4 +178,37 @@ body {
 
 .table-vagas tbody tr:hover {
     transform: translateY(-5px);
+}
+
+/* Login */
+
+.login-card {
+    width: 100%;
+    max-width: 420px;
+    border: 2px solid var(--destacar);
+    border-radius: 1rem;
+}
+
+.btn-login {
+    background-color: #1a1a2e;
+    color: var(--branco);
+    border: none;
+    border-radius: 8px;
+    font-weight: 600;
+    padding: 0.6rem;
+    transition: ease-in-out 0.4s;
+}
+
+.btn-login:hover {
+    background-color: var(--destacar);
+    color: var(--branco);
+}
+
+form label {
+    margin-bottom: 0.5rem;
+    margin-top: 0.5rem;
+}
+
+form div input {
+    background-color:#F3FDFE !important;
 }

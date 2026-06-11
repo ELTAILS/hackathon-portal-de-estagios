@@ -25,4 +25,9 @@ final class RenderViews
         $this->render('vagas', 'Vagas de estágio');
     }
 
+    public function login(): void
+    {
+        $this->render('login', 'Faça o seu login');
+    }
+
 }

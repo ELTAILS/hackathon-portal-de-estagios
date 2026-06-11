@@ -41,7 +41,7 @@
                     </li>
                 </ul>
                 <div class="navbar-nav my-2 my-lg-0 align-items-center gap-2">
-                    <a class="btn btn-portal text-white px-4 w-100" href="#">Entrar</a>
+                    <a class="btn btn-portal text-white px-4 w-100" href="<?= BASE_URL?>login">Entrar</a>
                 </div>
             </div>
         </div>
