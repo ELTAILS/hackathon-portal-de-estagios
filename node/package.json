@@ -6,7 +6,7 @@
     "dev": "nodemon",
     "build": "tsc",
     "start": "node src/server.ts",
-    "migration:generate": "typeorm-ts-node-commonjs migration:generate src/migrations/CriarTabelas -d src/config/database.ts",
+    "migration:generate": "typeorm-ts-node-commonjs migration:generate src/migrations/Portal_Estagio -d src/config/database.ts",
     "migration:run": "typeorm-ts-node-commonjs migration:run -d src/config/database.ts",
     "migration:revert": "typeorm-ts-node-commonjs migration:revert -d src/config/database.ts"
   },
