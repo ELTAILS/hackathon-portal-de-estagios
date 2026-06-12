@@ -5,7 +5,6 @@ export const criarAlunoSchema = z.object({
     ra: z.string().min(3, "RA invalido").max(20, "RA deve ter no maximo 20 caracteres"),
     email: z.string().email("Email invalido"),
     curso: z.string().min(2, "Curso obrigatorio"),
-    apto: z.boolean().optional().default(false),
     ativo: z.boolean().optional().default(true),
 });
 

@@ -1,6 +1,7 @@
 import { Entity, PrimaryGeneratedColumn, Column, CreateDateColumn, ManyToOne, JoinColumn } from "typeorm";
 import { Empresa } from "./Empresa";
 
+export type StatusVaga = 'aberta' | 'encerrada';
 @Entity('vagas')
 export class Vaga{
     
@@ -17,7 +18,7 @@ export class Vaga{
     area!: string
     
     @Column({type: 'enum', enum: ['aberta', 'encerrada'], default:'aberta'})
-    status!: boolean
+    status!: StatusVaga
 
     @ManyToOne(() => Empresa)
     @JoinColumn({name: 'empresa_id'})
