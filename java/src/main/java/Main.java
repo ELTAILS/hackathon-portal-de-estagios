@@ -5,7 +5,8 @@ public class Main {
         Dao conexao = new Dao();
         try{
             conexao.getConnection();
-            System.out.printf("Banco conectado");
+            System.out.println("Banco conectado");
+            System.out.println("teste");
         } catch (Exception e) {
             System.out.printf("Banco não conectado" + e.getMessage());
         }
