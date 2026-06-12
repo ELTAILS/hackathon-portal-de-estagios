@@ -5,6 +5,9 @@ export class Aluno {
     @PrimaryGeneratedColumn()
     id!: number
 
+    @Column({ length: 250 })
+    senha!: string
+
     @Column({ length: 150 })
     nome!: string
 

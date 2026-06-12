@@ -9,6 +9,9 @@ import { Entity, PrimaryGeneratedColumn, Column} from "typeorm";
         @Column({length:150})
         nome!:string
 
+        @Column({ length: 250 })
+        senha!: string
+
         @Column({unique: true, length: 20})
         cnpj!: string
 
