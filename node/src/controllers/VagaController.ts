@@ -1,6 +1,5 @@
 import {Request, Response} from "express";
 import { VagaService } from "../services/VagaService";
-import { number } from "zod";
 
 const vagaService = new VagaService();
 

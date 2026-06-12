@@ -1,5 +1,7 @@
 import { Entity, PrimaryGeneratedColumn, Column} from "typeorm";
 
+export type StatusEmpresa = 'pendente' | 'aprovada' | 'bloqueada';
+
 @Entity('empresas')
     export class Empresa{
         
@@ -19,6 +21,6 @@ import { Entity, PrimaryGeneratedColumn, Column} from "typeorm";
         email!:string
 
         @Column({type:'enum', enum:['pendente', 'aprovada', 'bloqueada'], default:'pendente'})
-        status!:string
+        status!:StatusEmpresa
 
     }
