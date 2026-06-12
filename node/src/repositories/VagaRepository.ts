@@ -24,6 +24,11 @@ export const VagaRepository = FonteDados.getRepository(Vaga).extend({
         return this.save(vaga);
     },
 
+    async removerVaga(id:number): Promise<boolean>{
+        const resultado = await this.delete(id);
+        return resultado.affected !== 0;
+    },
+
     async listarAbertas():Promise <Vaga[]>{
         return this.find({where: {status: 'aberta'}, relations: ['empresa']});
     }
