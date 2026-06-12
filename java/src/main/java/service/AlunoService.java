@@ -22,12 +22,10 @@ public class AlunoService {
     }
 
     public void incluir(Aluno aluno) {
-
-        var arquivo = new File(System.getProperty("user.dir"), "\\produtos.txt");
-        Arquivo.writerFile(aluno.toString(), arquivo.toString());
-        Arquivo.readerFile(arquivo.toString()).forEach(System.out::println);
-
         try {
+            var arquivo = new File(System.getProperty("user.dir"), "\\produtos.txt");
+            Arquivo.writerFile(aluno.toString(), arquivo.toString());
+            Arquivo.readerFile(arquivo.toString()).forEach(System.out::println);
             var dao = new AlunoDao();
             if (aluno.getId() == 0) {
                 dao.inserir(aluno);
@@ -47,5 +45,6 @@ public class AlunoService {
             System.out.println(e.getMessage());
         }
     }
+
 
 }
