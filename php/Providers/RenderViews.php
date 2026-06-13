@@ -50,5 +50,10 @@ final class RenderViews
     {
         $this->render('minhasCanditaturas', 'Minhas canditaturas');
     }
+    
+    public function painelEmpresa(): void
+    {
+        $this->render('painelEmpresa', 'Bem vindo ao painel de empresas');
+    }
 
 }

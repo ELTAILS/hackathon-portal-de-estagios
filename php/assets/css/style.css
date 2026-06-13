@@ -291,6 +291,223 @@ form div input {
     background-color:#F3FDFE !important;
 }
 
+/*Painel Empresa*/
+
+#painelEmpresa {
+    gap: 1.5rem;
+    padding: 2rem 1rem 3rem;
+    align-items: flex-start;
+}
+
+#painelEmpresa #sidebar {
+    width: 100%;
+    max-width: 320px;
+    background: var(--branco);
+    border: 1px solid var(--fundo-icone);
+    border-radius: 1rem;
+    padding: 1.25rem;
+    box-shadow: 0 8px 18px rgba(17, 24, 39, 0.08);
+}
+
+#painelEmpresa #sidebar p {
+    color: var(--letras-sections);
+    font-weight: 700;
+    font-size: 1.1rem;
+}
+
+#painelEmpresa #sidebar .btn-home-primary {
+    border-radius: 10px;
+    font-size: 0.92rem;
+    min-width: 120px;
+    text-align: center;
+}
+
+#painelEmpresa .container {
+    background: transparent;
+}
+
+#painelEmpresa .row .col p {
+    background: var(--branco);
+    border: 1px solid var(--fundo-icone);
+    border-radius: 0.9rem;
+    padding: 0.9rem;
+    font-weight: 600;
+    color: var(--letras-sections);
+    box-shadow: 0 4px 10px rgba(17, 24, 39, 0.05);
+}
+
+#painelEmpresa h1.h1 {
+    color: var(--letras-sections);
+    font-size: 2rem;
+    font-weight: 700;
+}
+
+#painelEmpresa h4 {
+    color: var(--texto-pequeno);
+}
+
+#painelEmpresa .table-responsive {
+    background: var(--branco);
+    border: 1px solid var(--fundo-icone);
+    border-radius: 1rem;
+    overflow: hidden;
+    box-shadow: 0 8px 18px rgba(17, 24, 39, 0.08);
+}
+
+#painelEmpresa .table thead th {
+    background-color: var(--fundo-icone);
+    color: var(--letras-sections);
+    font-weight: 700;
+}
+
+#painelEmpresa .table tbody td,
+#painelEmpresa .table tbody th {
+    color: var(--texto-pequeno);
+    vertical-align: middle;
+}
+
+#painelEmpresa .table tbody tr:hover {
+    background-color: #F3F4F6;
+}
+
+#painelEmpresa .table .aberta a {
+    color: var(--button);
+    transition: ease-in-out 0.3s;
+}
+
+#painelEmpresa .table .aberta a:hover {
+    color: var(--destacar);
+}
+
+.dashboard-panel {
+    display: flex;
+    gap: 1.5rem;
+    padding: 2rem 1rem 3rem;
+    align-items: flex-start;
+}
+
+.dashboard-sidebar {
+    width: 100%;
+    max-width: 320px;
+    background: var(--branco);
+    border: 1px solid var(--fundo-icone);
+    border-radius: 1rem;
+    padding: 1.25rem;
+    box-shadow: 0 10px 24px rgba(17, 24, 39, 0.08);
+}
+
+.dashboard-sidebar .eyebrow {
+    text-transform: uppercase;
+    letter-spacing: 0.18em;
+    font-size: 0.72rem;
+    color: var(--destacar);
+    font-weight: 700;
+}
+
+.dashboard-sidebar h2 {
+    color: var(--letras-sections);
+    font-weight: 700;
+}
+
+.dashboard-main {
+    flex: 1;
+}
+
+.dashboard-topbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 1rem;
+    margin-bottom: 1rem;
+}
+
+.dashboard-topbar .eyebrow {
+    text-transform: uppercase;
+    letter-spacing: 0.18em;
+    font-size: 0.72rem;
+    color: var(--destacar);
+    font-weight: 700;
+}
+
+.dashboard-cards .dashboard-card {
+    background: var(--branco);
+    border: 1px solid var(--fundo-icone);
+    border-radius: 1rem;
+    padding: 1rem;
+    box-shadow: 0 8px 18px rgba(17, 24, 39, 0.06);
+}
+
+.dashboard-cards .dashboard-card p {
+    color: var(--texto-pequeno);
+    margin-bottom: 0.25rem;
+}
+
+.dashboard-cards .dashboard-card strong {
+    color: var(--letras-sections);
+    font-size: 1.5rem;
+}
+
+.dashboard-table {
+    background: var(--branco);
+    border: 1px solid var(--fundo-icone);
+    border-radius: 1rem;
+    overflow: hidden;
+    box-shadow: 0 10px 24px rgba(17, 24, 39, 0.08);
+}
+
+.dashboard-table thead th {
+    background-color: var(--fundo-icone);
+    color: var(--letras-sections);
+    font-weight: 700;
+}
+
+.dashboard-table tbody td,
+.dashboard-table tbody th {
+    color: var(--texto-pequeno);
+    vertical-align: middle;
+}
+
+.dashboard-table tbody tr:hover {
+    background-color: #F3F4F6;
+}
+
+@media (max-width: 991px) {
+    .dashboard-panel {
+        flex-direction: column;
+    }
+
+    .dashboard-sidebar {
+        max-width: 100%;
+    }
+}
+
+@media (max-width: 575px) {
+    .dashboard-panel {
+        padding: 1rem 0.75rem 2rem;
+    }
+
+    .dashboard-topbar {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .dashboard-cards .dashboard-card strong {
+        font-size: 1.2rem;
+    }
+    #painelEmpresa {
+        padding: 1rem 0.75rem 2rem;
+    }
+
+    #painelEmpresa .row .col {
+        width: 100%;
+        margin-bottom: 0.75rem;
+    }
+
+    #painelEmpresa h1.h1 {
+        font-size: 1.6rem;
+    }
+}
+
 /*painel Aluno*/
 
 .job-card {
