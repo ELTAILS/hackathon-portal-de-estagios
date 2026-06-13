@@ -1,7 +1,7 @@
 import { Empresa } from "../models/Empresa";
 import { EmpresaRepository } from "../repositories/EmpresaRepository";
 
-export class AlunoService {
+export class EmpresaService {
     async listarTodas(): Promise<Empresa[]>{
             return await EmpresaRepository.buscarTodos();
         }
