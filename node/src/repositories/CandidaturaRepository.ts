@@ -5,7 +5,7 @@ export const CandidaturaRepository = FonteDados.getRepository(Candidatura).exten
 
     async buscarTodas(): Promise<Candidatura[]> {
         return this.find({
-            order: { data_Candidatura: "DESC" },
+            order: { data_candidatura: "DESC" },
         });
     },
     async buscarPorId(id: number): Promise<Candidatura | null> {
@@ -15,14 +15,14 @@ export const CandidaturaRepository = FonteDados.getRepository(Candidatura).exten
     async buscarPorAluno(aluno_id: number): Promise<Candidatura[]> {
         return this.find({
             where: { aluno: { id: aluno_id } },
-            order: { data_Candidatura: "DESC" },
+            order: { data_candidatura: "DESC" },
         });
     },
 
     async buscarPorVaga(vaga_id: number): Promise<Candidatura[]> {
         return this.find({
             where: { vaga: { id: vaga_id } },
-            order: { data_Candidatura: "DESC" },
+            order: { data_candidatura: "DESC" },
         });
     },
 
@@ -32,8 +32,21 @@ export const CandidaturaRepository = FonteDados.getRepository(Candidatura).exten
                 aluno: { id: aluno_id },
                 vaga: { id: vaga_id },
             },
+
         });
     },
+    async criarCandidatura(dados: Partial<Candidatura>): Promise<Candidatura>{
+        const nova = this.create(dados);
+        return this.save(nova);
+     },
+
+     async atualizarStatus(id: number, status:StatusCandidatura): Promise<Candidatura | null>{
+        const candidatura = await this.findOneBy({id});
+        if(!candidatura) return null;
+
+        candidatura.status = status;
+        return this.save(candidatura);
+     }
 }
 
 
