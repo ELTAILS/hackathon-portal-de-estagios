@@ -23,24 +23,37 @@
         </div>
 
         <div class="dashboard-form-card">
-            <form method="POST" class="dashboard-form">
+            <form method="POST" class="dashboard-form" action="<?= BASE_URL ?>novaVaga">
                 <div class="mb-3">
                     <label for="titulo" class="form-label">Título da vaga</label>
-                    <input type="text" class="form-control" id="titulo" placeholder="Ex: Estágio em Desenvolvimento Web">
+                    <input type="text" class="form-control" id="titulo" name="titulo" maxlength="150" placeholder="Ex: Estágio em Desenvolvimento Web" required>
                 </div>
 
                 <div class="mb-3">
                     <label for="descricao" class="form-label">Descrição da vaga</label>
-                    <textarea class="form-control" id="descricao" rows="5" placeholder="Descreva as responsabilidades, requisitos e benefícios da vaga."></textarea>
+                    <textarea class="form-control" id="descricao" name="descricao" rows="5" placeholder="Descreva as responsabilidades, requisitos e benefícios da vaga." required></textarea>
                 </div>
 
                 <div class="mb-3">
                     <label for="area" class="form-label">Área de atuação</label>
-                    <select class="form-select" id="area">
-                        <option selected>Selecione a área</option>
-                        <option value="tecnologia">Tecnologia</option>
-                        <option value="marketing">Marketing</option>
-                        <option value="recursos-humanos">Recursos Humanos</option>
+                    <select class="form-select" id="area" name="area" required>
+                        <option value="" selected disabled>Selecione a área</option>
+                        <option value="Administração">Administração</option>
+                        <option value="Ciências Contábeis">Ciências Contábeis</option>
+                        <option value="Direito">Direito</option>
+                        <option value="Marketing">Marketing</option>
+                        <option value="Pedagogia">Pedagogia</option>
+                        <option value="Processos Gerenciais">Processos Gerenciais</option>
+                        <option value="Psicologia">Psicologia</option>
+                        <option value="Sistemas para Internet">Sistemas para Internet</option>
+                    </select>
+                </div>
+
+                <div class="mb-3">
+                    <label for="status" class="form-label">Situação da vaga</label>
+                    <select class="form-select" id="status" name="status" required>
+                        <option value="aberta" selected>Aberta</option>
+                        <option value="encerrada">Encerrada</option>
                     </select>
                 </div>
 
