@@ -31,9 +31,14 @@ final class RenderViews
         $this->render('login', 'Faça o seu login');
     }
 
-        public function empresa(): void
-        {
-            $this->render('empresa', 'Sobre as nossas empresas de parceria');
-        }
+    public function empresaLogin(): void
+    {
+        $this->render('empresaLogin', 'Login de empresa');
+    }
+
+    public function empresa(): void
+    {
+        $this->render('empresa', 'Sobre as nossas empresas de parceria');
+    }
 
 }

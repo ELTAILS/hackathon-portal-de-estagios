@@ -14,7 +14,7 @@
                     <i class="fa-solid fa-envelope"></i>
                 </span>
 
-                <input type="email" class="form-control" placeholder="Seu melhor email" aria-label="Username" aria-describedby="addon-wrapping">
+                <input type="email" class="form-control" placeholder="Seu melhor email" aria-label="Email" aria-describedby="addon-wrapping" required>
             </div>
 
             <!--Senha-->
@@ -25,13 +25,12 @@
                     <i class="fa-solid fa-key"></i>
                 </span>
 
-                <input type="password" class="form-control" placeholder="Sua senha mas secreta" aria-label="Username" aria-describedby="addon-wrapping">
+                <input type="password" class="form-control" placeholder="Sua senha mas secreta" aria-label="Senha" aria-describedby="addon-wrapping" required>
             </div>
 
             <div class="d-grid">
-                <a href="#" class="text-black mt-3 mb-4">
-                    Esqueceu sua senha
-                </a>
+                <a href="<?= BASE_URL ?>empresaLogin" class="text-black mt-3 mb-2">Sou empresa</a>
+                <a href="#" class="text-black mb-4">Esqueceu sua senha</a>
                 <button class="btn btn-login" type="submit">
                     Login
                 </button>
