@@ -471,41 +471,44 @@ form div input {
     background-color: #F3F4F6;
 }
 
-@media (max-width: 991px) {
-    .dashboard-panel {
-        flex-direction: column;
-    }
-
-    .dashboard-sidebar {
-        max-width: 100%;
-    }
+.dashboard-form-card {
+    background: var(--branco);
+    border: 1px solid var(--fundo-icone);
+    border-radius: 1rem;
+    padding: 1.25rem;
+    box-shadow: 0 10px 24px rgba(17, 24, 39, 0.08);
 }
 
-@media (max-width: 575px) {
-    .dashboard-panel {
-        padding: 1rem 0.75rem 2rem;
-    }
+.dashboard-form {
+    display: flex;
+    flex-direction: column;
+    gap: 0.35rem;
+}
 
-    .dashboard-topbar {
-        flex-direction: column;
-        align-items: flex-start;
-    }
+.dashboard-form label {
+    font-weight: 600;
+    color: var(--letras-sections);
+}
 
-    .dashboard-cards .dashboard-card strong {
-        font-size: 1.2rem;
-    }
-    #painelEmpresa {
-        padding: 1rem 0.75rem 2rem;
-    }
+.dashboard-form .form-control,
+.dashboard-form .form-select,
+.dashboard-form textarea {
+    background-color: #F3FDFE;
+    border: 1px solid var(--fundo-icone);
+    border-radius: 0.75rem;
+    padding: 0.75rem 0.9rem;
+}
 
-    #painelEmpresa .row .col {
-        width: 100%;
-        margin-bottom: 0.75rem;
-    }
+.dashboard-form .form-control:focus,
+.dashboard-form .form-select:focus,
+.dashboard-form textarea:focus {
+    border-color: var(--destacar);
+    box-shadow: 0 0 0 0.2rem rgba(79, 70, 229, 0.15);
+}
 
-    #painelEmpresa h1.h1 {
-        font-size: 1.6rem;
-    }
+.dashboard-form .btn-home-primary {
+    width: fit-content;
+    margin-top: 0.5rem;
 }
 
 /*painel Aluno*/
