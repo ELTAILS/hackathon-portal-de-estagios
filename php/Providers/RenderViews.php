@@ -46,4 +46,9 @@ final class RenderViews
         $this->render('painelAluno', 'Bem vindo aluno ao seu painel de estagios');
     }
 
+    public function minhasCanditaturas(): void 
+    {
+        $this->render('minhasCanditaturas', 'Minhas canditaturas');
+    }
+
 }

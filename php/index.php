@@ -31,6 +31,9 @@ switch($url){
     case 'painelAluno':
         $renderView->painelAluno();
         break;
+    case 'minhasCanditaturas':
+        $renderView->minhasCanditaturas();
+        break;
     default:
         $renderView->erro();
         break;
