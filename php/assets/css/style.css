@@ -350,7 +350,9 @@ form div input {
     background: var(--branco);
     border: 1px solid var(--fundo-icone);
     border-radius: 1rem;
-    overflow: hidden;
+    overflow-x: auto;
+    overflow-y: hidden;
+    -webkit-overflow-scrolling: touch;
     box-shadow: 0 8px 18px rgba(17, 24, 39, 0.08);
 }
 
@@ -411,6 +413,7 @@ form div input {
 
 .dashboard-main {
     flex: 1;
+    min-width: 0;
 }
 
 .dashboard-topbar {
@@ -451,7 +454,9 @@ form div input {
     background: var(--branco);
     border: 1px solid var(--fundo-icone);
     border-radius: 1rem;
-    overflow: hidden;
+    overflow-x: auto;
+    overflow-y: hidden;
+    -webkit-overflow-scrolling: touch;
     box-shadow: 0 10px 24px rgba(17, 24, 39, 0.08);
 }
 
