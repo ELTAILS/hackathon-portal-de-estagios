@@ -28,6 +28,9 @@ switch($url){
     case 'empresa':
         $renderView->empresa();
         break;
+    case 'painelAluno':
+        $renderView->painelAluno();
+        break;
     default:
         $renderView->erro();
         break;

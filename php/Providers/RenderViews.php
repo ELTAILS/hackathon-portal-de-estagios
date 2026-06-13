@@ -41,4 +41,9 @@ final class RenderViews
         $this->render('empresa', 'Sobre as nossas empresas de parceria');
     }
 
+    public function painelAluno(): void
+    {
+        $this->render('painelAluno', 'Bem vindo aluno ao seu painel de estagios');
+    }
+
 }

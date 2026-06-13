@@ -290,3 +290,99 @@ form label {
 form div input {
     background-color:#F3FDFE !important;
 }
+
+/*painel Aluno*/
+
+.job-card {
+    border: 1px solid #dee2e6;
+    border-radius: 12px;
+    padding: 1.25rem 1.5rem;
+    background: #fff;
+    transition: ease-in-out 0.4s;
+}
+
+.company-logo {
+    width: 52px;
+    height: 52px;
+    border-radius: 8px;
+    background: #3B5BDB;
+    color: #fff;
+    font-size: 22px;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.company-name {
+    font-size: 12px;
+    color: #6c757d;
+    text-align: center;
+    margin-top: 6px;
+}
+
+.job-title {
+    font-size: 16px;
+    font-weight: 600;
+    margin: 0 0 6px;
+}
+
+.meta-item {
+    font-size: 13px;
+    color: #6c757d;
+}
+
+.job-desc {
+    font-size: 14px;
+    color: #6c757d;
+    margin: 10px 0 12px;
+    line-height: 1.5;
+}
+
+.badge-tag {
+    background: #f8f9fa;
+    border: 1px solid #dee2e6;
+    border-radius: 8px;
+    font-size: 12px;
+    color: #495057;
+    padding: 4px 10px;
+}
+
+.published {
+    font-size: 12px;
+    color: #6c757d;
+}
+
+.btn-candidatar {
+    background: #3B5BDB;
+    color: #fff;
+    border: none;
+    border-radius: 8px;
+    padding: 8px 20px;
+    font-size: 14px;
+    font-weight: 500;
+    width: 100%;
+}
+
+.btn-candidatar:hover {
+    background: #2f4ac2;
+    color: #fff;
+}
+
+.btn-detalhes {
+    background: none;
+    border: none;
+    color: #3B5BDB;
+    font-size: 13px;
+    font-weight: 500;
+    width: 100%;
+    margin-top: 6px;
+}
+
+.btn-detalhes:hover {
+    text-decoration: underline;
+}
+
+.job-card:hover {
+    transform: translateY(-5px);
+}
