@@ -1,8 +1,9 @@
 package java.gui;
 
+import gui.PainelBase;
+
 import java.model.Vaga;
 import java.service.VagaService;
-import gui.PainelBase;
 
 import javax.swing.*;
 import java.awt.*;
