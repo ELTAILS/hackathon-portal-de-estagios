@@ -56,4 +56,19 @@ final class RenderViews
         $this->render('painelEmpresa', 'Bem vindo ao painel de empresas');
     }
 
+    public function novaVaga(): void
+    {
+        $this->render('novaVaga', 'Crie uma nova vaga de estágio');
+    }
+
+    public function candidatos(): void
+    {
+        $this->render('candidatos', 'Lista de candidatos para suas vagas');
+    }
+
+    public function editarVaga(): void
+    {
+        $this->render('editarVaga', 'Edite as informações da vaga de estágio');
+    }
+
 }

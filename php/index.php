@@ -4,9 +4,6 @@ define('BASE_URL', 'http://localhost/hackathon-portal-de-estagios/php/');
 
 // Require e providers do projeto
 require_once __DIR__ . '/Providers/RenderViews.php';
-require_once __DIR__ . '/Providers/JsonDecoder.php';
-
-$jsonDecore = new JsonDecoder;
 $renderView = new RenderViews;
 
 $url = trim($_GET['url'] ?? '/');
@@ -36,6 +33,15 @@ switch($url){
         break;
     case 'painelEmpresa':
         $renderView->painelEmpresa();
+        break;
+    case 'novaVaga':
+        $renderView->novaVaga();
+        break;
+    case 'candidatos':
+        $renderView->candidatos();
+        break;
+    case 'editarVaga':
+        $renderView->editarVaga();
         break;
     default:
         $renderView->erro();
