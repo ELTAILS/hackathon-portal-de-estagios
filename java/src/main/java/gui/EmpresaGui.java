@@ -1,6 +1,4 @@
-package java.gui;
-
-import gui.PainelBase;
+package gui;
 
 import java.model.Empresa;
 import java.service.EmpresaService;

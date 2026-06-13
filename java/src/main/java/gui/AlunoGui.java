@@ -1,6 +1,4 @@
-package java.gui;
-
-import gui.PainelBase;
+package gui;
 
 import java.model.Aluno;
 import java.service.AlunoService;

@@ -1,4 +1,4 @@
- package gui;
+package gui;
 
 import java.model.UsuarioAdmin;
 import java.service.UsuarioAdminService;
