@@ -41,7 +41,7 @@ export const CandidaturaRepository = FonteDados.getRepository(Candidatura).exten
      },
 
      async atualizarStatus(id: number, status:StatusCandidatura): Promise<Candidatura | null>{
-        const candidatura = await this.findOneBy({id});
+        const candidatura = await this.findOne({where: {id}, relations: ['aluno']});
         if(!candidatura) return null;
 
         candidatura.status = status;
