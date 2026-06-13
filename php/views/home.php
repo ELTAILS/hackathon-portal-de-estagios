@@ -11,8 +11,8 @@
                     por meio de oportunidades de estágio.
                 </p>
                 <div class="d-flex gap-3 mt-4">
-                    <a href="#" class="btn btn-home-primary px-4 py-2">Buscar Vagas</a>
-                    <a href="#" class="btn btn-home-outline px-4 py-2">Sou Empresa</a>
+                    <a href="<?= BASE_URL ?>vagas" class="btn btn-home-primary px-4 py-2">Buscar Vagas</a>
+                    <a href="<?= BASE_URL ?>empresa" class="btn btn-home-outline px-4 py-2">Sou Empresa</a>
                 </div>
             </div>
             <div class="col-lg-6 d-none d-lg-block">

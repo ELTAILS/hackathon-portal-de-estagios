@@ -11,7 +11,7 @@
                     <p class="mb-0">&copy; <?= date('Y') ?> Portal de Estágios UniAlfa. Todos os direitos reservados.</p>
                 </div>
                 <div class="col-auto">
-                    <a href="#" class="btn btn-home-primary px-4 py-2">Ver Vagas</a>
+                    <a href="<?= BASE_URL ?>vagas" class="btn btn-home-primary px-4 py-2">Ver Vagas</a>
                 </div>
             </div>
         </div>
