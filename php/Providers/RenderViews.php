@@ -28,12 +28,12 @@ final class RenderViews
 
     public function login(): void
     {
-        $this->render('login', 'Faça o seu login');
+        $this->render('aluno/login', 'Faça o seu login');
     }
 
     public function empresaLogin(): void
     {
-        $this->render('empresaLogin', 'Login de empresa');
+        $this->render('empresa/empresaLogin', 'Login de empresa');
     }
 
     public function empresa(): void
@@ -43,32 +43,32 @@ final class RenderViews
 
     public function painelAluno(): void
     {
-        $this->render('painelAluno', 'Bem vindo aluno ao seu painel de estagios');
+        $this->render('aluno/painelAluno', 'Bem vindo aluno ao seu painel de estagios');
     }
 
     public function minhasCanditaturas(): void 
     {
-        $this->render('minhasCanditaturas', 'Minhas canditaturas');
+        $this->render('aluno/minhasCanditaturas', 'Minhas canditaturas');
     }
     
     public function painelEmpresa(): void
     {
-        $this->render('painelEmpresa', 'Bem vindo ao painel de empresas');
+        $this->render('empresa/painelEmpresa', 'Bem vindo ao painel de empresas');
     }
 
     public function novaVaga(): void
     {
-        $this->render('novaVaga', 'Crie uma nova vaga de estágio');
+        $this->render('empresa/novaVaga', 'Crie uma nova vaga de estágio');
     }
 
     public function candidatos(): void
     {
-        $this->render('candidatos', 'Lista de candidatos para suas vagas');
+        $this->render('empresa/candidatos', 'Lista de candidatos para suas vagas');
     }
 
     public function editarVaga(): void
     {
-        $this->render('editarVaga', 'Edite as informações da vaga de estágio');
+        $this->render('empresa/editarVaga', 'Edite as informações da vaga de estágio');
     }
 
 }
