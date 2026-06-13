@@ -1,0 +1,31 @@
+Aqui fica 4 classes
+
+As 4 Classes Obrigatórias
+Aluno
+
+Representa o estudante que usa o portal
+Propriedades: id, nome, email, curso, período
+Responsabilidade: guardar e expor os dados do aluno que chegam da API
+
+Empresa
+
+Representa a empresa que cadastra vagas
+Propriedades: id, nome, CNPJ, setor, email
+Responsabilidade: guardar os dados da empresa autenticada
+
+Vaga
+
+Representa uma oportunidade de estágio
+Propriedades: id, título, descrição, requisitos, localidade, empresa_id
+Responsabilidade: representar cada vaga retornada pela API
+
+Candidatura
+
+Representa o vínculo entre Aluno e Vaga
+Propriedades: id, aluno_id, vaga_id, data, status
+Responsabilidade: encapsular o ato de um aluno se candidatar
+
+
+Boas Práticas POO — O que o edital cobra
+O edital menciona explicitamente 4 conceitos, e diz que a não aplicação é eliminatória:
+ConceitoComo aplicar no projetoEncapsulamentoTodas as propriedades das classes devem ser private ou protected, acessadas via getters e settersHerançaCriar uma classe base, ex: Usuario, da qual Aluno e Empresa herdam atributos comuns (id, nome, email)PolimorfismoAluno e Empresa podem sobrescrever um método comum, ex: getPerfil() retornando dados diferentes para cada tipoSeparação de responsabilidadesCada classe faz só o que é dela — a classe Vaga não faz requisição HTTP, quem faz é o JsonDecoder
