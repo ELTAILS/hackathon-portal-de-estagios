@@ -21,6 +21,7 @@ export class EmpresaController{
     }
 
     async criar(req: Request, res:Response): Promise<Response>{
+        console.log('chegou no controller', req.body)
         const novaEmpresa = await empresaService.criar(req.body);
         return res.status(201).json(novaEmpresa);
     }

@@ -16,10 +16,10 @@ export const EmpresaRepository = FonteDados.getRepository(Empresa).extend({
         },
     
     async atualizarEmpresa(id: number, dados: Partial<Empresa>):Promise<Empresa | null>{
-            const Empresa = await this.findOneBy({id});
-            if(!Empresa) return null;
-            this.merge(Empresa, dados);
-            return this.save(Empresa);
+            const empresa = await this.findOneBy({id});
+            if(!empresa) return null;
+            this.merge(empresa, dados);
+            return this.save(empresa);
         },
     
     async removerEmpresa(id:number): Promise<boolean>{
