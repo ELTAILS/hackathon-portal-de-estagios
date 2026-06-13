@@ -11,6 +11,9 @@ export class Aluno {
     @Column({ length: 150 })
     nome!: string
 
+    @Column ({length:250})
+    senha!: string
+
     @Column({ unique: true, length: 20 })
     ra!: string
 

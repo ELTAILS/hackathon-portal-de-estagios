@@ -25,5 +25,5 @@ export class Vaga{
     empresa!: Empresa
 
     @CreateDateColumn({name: 'criada_em'})
-    criadoEm!: Date
+    criado_em!: Date
 }
