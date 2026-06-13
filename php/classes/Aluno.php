@@ -1,10 +1,7 @@
 <?php 
 
-class Aluno
+class Aluno Extends Usuario
 {
-    private string $nome;
-    private string $email;
-    private string $senha;
     private string $ra;
     private string $curso;
     private bool $ativo;

@@ -2,12 +2,9 @@
 
 require_once "./php/classes/enum/StatusEnum.php";
 
-class Empresa
+class Empresa Extends Usuario
 {
-    private string $nome;
     private string $cnpj;
-    private string $email;
-    private string $senha;
     private EmpresaStatus $status;
 
     public function __construct(string $nome, string $cnpj, string $email, string $senha, EmpresaStatus $status = EmpresaStatus::PENDENTE)
