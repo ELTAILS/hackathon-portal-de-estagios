@@ -31,27 +31,6 @@
             <a href="<?= BASE_URL ?>novaVaga" class="btn btn-home-primary">+ Nova vaga</a>
         </div>
 
-        <div class="row g-3 dashboard-cards mb-4">
-            <div class="col-12 col-md-4">
-                <article class="dashboard-card">
-                    <p>Total de vagas</p>
-                    <strong>12</strong>
-                </article>
-            </div>
-            <div class="col-12 col-md-4">
-                <article class="dashboard-card">
-                    <p>Total de candidatos</p>
-                    <strong>40</strong>
-                </article>
-            </div>
-            <div class="col-12 col-md-4">
-                <article class="dashboard-card">
-                    <p>Vagas inativas</p>
-                    <strong>2</strong>
-                </article>
-            </div>
-        </div>
-
         <div class="table-responsive dashboard-table">
             <table class="table table-striped mb-0 align-middle">
                 <thead>
@@ -59,27 +38,42 @@
                         <th scope="col">Vaga</th>
                         <th scope="col">Área</th>
                         <th scope="col">Situação</th>
-                        <th scope="col">Candidatos</th>
                         <th scope="col">Ações</th>
                     </tr>
                 </thead>
                 <tbody>
-                    <?php for($i = 0; $i < 6; $i++):?>
+                    <?php if (!empty($vagas)): ?>
+                        <?php foreach ($vagas as $vaga): ?>
+                            <tr>
+                                <th scope="row"><?= htmlspecialchars($vaga->getTitulo()) ?></th>
+                                <td><?= htmlspecialchars($vaga->getArea()) ?></td>
+                                <td>
+                                    <span class="badge bg-success-subtle text-success-emphasis">
+                                        <?= $vaga->getStatus()->value ?>
+                                    </span>
+                                </td>
+                                <td>
+                                    <div class="d-flex gap-3">
+                                        <a href="<?= BASE_URL ?>editarVaga?id=<?= $vaga->getId() ?>" aria-label="Editar vaga">
+                                            <i class="fa-solid fa-pencil"></i>
+                                        </a>
+                                        <a href="<?= BASE_URL ?>excluirVaga?id=<?= $vaga->getId() ?>" 
+                                        aria-label="Excluir vaga"
+                                        onclick="return confirm('Tem certeza que deseja excluir esta vaga?')">
+                                            <i class="fa-solid fa-trash-can"></i>
+                                        </a>
+                                    </div>
+                                </td>
+                            </tr>
+                        <?php endforeach; ?>
+                    <?php else: ?>
                         <tr>
-                            <th scope="row">Estágio front-end</th>
-                            <td>Tecnologia</td>
-                            <td><span class="badge bg-success-subtle text-success-emphasis">Ativa</span></td>
-                            <td>10</td>
-                            <td class="aberta d-flex gap-3">
-                                <a href="<?= BASE_URL ?>editarVaga" aria-label="Editar vaga">
-                                    <i class="fa-solid fa-pencil"></i>
-                                </a>
-                                <a href="<?= BASE_URL ?>excluirVaga" aria-label="Excluir vaga">
-                                    <i class="fa-solid fa-trash-can"></i>
-                                </a>
+                            <td colspan="5" class="text-center py-5">
+                                <h1>Nenhuma vaga registrada</h1>
+                                <p>Tem alunos doidos pra trabalhar na sua empresa, bora chamar alguns? Crie uma vaga :)</p>
                             </td>
                         </tr>
-                    <?php endfor;?>
+                    <?php endif; ?>
                 </tbody>
             </table>
         </div>

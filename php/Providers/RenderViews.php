@@ -85,7 +85,20 @@ final class RenderViews
     
     public function painelEmpresa(): void
     {
-        $this->render('empresa/painelEmpresa', 'Bem vindo ao painel de empresas');
+        $dados = ApiClient::get('/vagas');
+        
+        $vagas = [];
+        foreach($dados as $d){
+            $vagas[] = new Vaga(
+                $d['id'],
+                $d['titulo'],
+                $d['descricao'],
+                $d['area'],
+                $status = StatusVaga::from($d['status'])
+            );
+        }
+
+        $this->render('empresa/painelEmpresa', 'Bem vindo ao painel de empresas', ['vagas' => $vagas]);
     }
 
     public function novaVaga(): void
@@ -125,6 +138,26 @@ final class RenderViews
     public function editarVaga(): void
     {
         $this->render('empresa/editarVaga', 'Edite as informações da vaga de estágio');
+    }
+
+    public function excluirVaga(): void
+    {
+        if(!($_SESSION['usuario'] instanceof Empresa)){
+            header('Location: ' . BASE_URL . 'empresaLogin');
+            exit;
+        }
+
+        $id = $_GET['id'] ?? null;
+
+        try {
+            if($id) ApiClient::delete("/vagas{$id}");
+        } catch(Exception $e){
+            throw new Exception("Erro ao excluir vaga");
+        }
+         
+        header('Location: ' . BASE_URL . 'painelEmpresa');
+        exit;
+
     }
 
 }
