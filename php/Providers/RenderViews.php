@@ -1,5 +1,8 @@
 <?php
 
+require_once __DIR__ . "/../classes/Vaga.php";
+require_once __DIR__ . "/ApiClient.php";
+
 final class RenderViews
 {
     public function render(string $view, string $titulo, array $data = []): void
@@ -23,7 +26,21 @@ final class RenderViews
 
     public function vagas(): void
     {
-        $this->render('vagas', 'Vagas de estágio');
+        $dados = ApiClient::get('/vagas');
+        
+        $vagas = [];
+        foreach($dados as $d){
+            $vagas[] = new Vaga(
+                $d['id'],
+                $d['titulo'],
+                $d['descricao'],
+                $d['area'],
+                $status = StatusVaga::from($d['status'])
+            );
+        }
+
+        $this->render('vagas', 'Vagas de estágio', ['vagas' => $vagas]);
+
     }
 
     public function login(): void

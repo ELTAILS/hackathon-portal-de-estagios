@@ -1,6 +1,7 @@
 <?php 
 
-require_once "./php/classes/enum/StatusEnum.php";
+require_once __DIR__ . "/enum/EmpresaStatus.php";
+require_once __DIR__ . "/Usuario.php";
 
 class Empresa Extends Usuario
 {

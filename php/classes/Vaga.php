@@ -1,18 +1,16 @@
 <?php
 
-use Dom\Text;
+require_once __DIR__ . "/enum/StatusVagas.php";
 
-require_once "./php/classes/enum/StatusVagas.php";
-
-class Vagas
+class Vaga
 {
     private int $empresa_id;
     private string $titulo;
-    private Text $descricao;
+    private string $descricao;
     private string $area;
     private StatusVaga $status;
 
-    public function __construct(int $empresa_id, string $titulo, Text $descricao, string $area, StatusVaga $status = StatusVaga::ABERTA)
+    public function __construct(int $empresa_id, string $titulo, string $descricao, string $area, StatusVaga $status = StatusVaga::ABERTA)
     {
         $this->empresa_id = $empresa_id;
         $this->titulo = $titulo;
@@ -41,12 +39,12 @@ class Vagas
         $this->titulo = $titulo;
     }
 
-    public function getDescricao(): Text
+    public function getDescricao(): string
     {
         return $this->descricao;
     }
 
-    public function setDescricao(Text $descricao): void
+    public function setDescricao(string $descricao): void
     {
         $this->descricao = $descricao;
     }

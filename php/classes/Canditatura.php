@@ -1,8 +1,8 @@
 <?php 
 
-require_once "./php/classes/enum/StatusCandidaturas.php";
+require_once __DIR__ . '/enum/StatusCandidaturas.php';
 
-class Canditaturas
+class Canditatura
 {
     private int $aluno_id;
     private int $vaga_id;
