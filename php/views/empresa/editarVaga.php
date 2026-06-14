@@ -1,3 +1,11 @@
+<?php 
+    if (!isset($_SESSION['usuario']) || !($_SESSION['usuario'] instanceof Empresa)) {
+        header('Location: ' . BASE_URL . 'empresaLogin');
+        exit;
+    }
+
+    $empresa = $_SESSION['usuario'];
+?>
 <section id="editar-vaga" class="dashboard-panel">
     <aside id="sidebar" class="dashboard-sidebar">
         <div class="sidebar-header">
