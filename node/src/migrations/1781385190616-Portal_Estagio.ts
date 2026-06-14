@@ -1,7 +1,7 @@
 import { MigrationInterface, QueryRunner } from "typeorm";
 
-export class PortalEstagio1781306811604 implements MigrationInterface {
-    name = 'PortalEstagio1781306811604'
+export class PortalEstagio1781385190616 implements MigrationInterface {
+    name = 'PortalEstagio1781385190616'
 
     public async up(queryRunner: QueryRunner): Promise<void> {
         await queryRunner.query(`CREATE TABLE \`alunos\` (\`id\` int NOT NULL AUTO_INCREMENT, \`nome\` varchar(150) NOT NULL, \`senha\` varchar(250) NOT NULL, \`ra\` varchar(20) NOT NULL, \`email\` varchar(150) NOT NULL, \`curso\` varchar(100) NOT NULL, \`apto\` tinyint NOT NULL DEFAULT 0, \`ativo\` tinyint NOT NULL DEFAULT 1, UNIQUE INDEX \`IDX_10966272854c55f95c9f941828\` (\`ra\`), UNIQUE INDEX \`IDX_1f9a8f3f4e5a314a2d7f828a60\` (\`email\`), PRIMARY KEY (\`id\`)) ENGINE=InnoDB`);

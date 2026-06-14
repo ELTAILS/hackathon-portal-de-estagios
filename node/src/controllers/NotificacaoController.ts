@@ -1,5 +1,5 @@
-import{Request, Response} from 'express';
-import {NotificacaoRepository} from '../repositories/NotificacaoRepository';
+import { Request, Response } from 'express';
+import { NotificacaoRepository } from '../repositories/NotificacaoRepository';
 
 export class NotificacaoController {
 
@@ -9,5 +9,13 @@ export class NotificacaoController {
         return res.status(200).json(notificacoes);
     }
 
-    async
+    async marcarComoLida(req: Request, res: Response): Promise<Response> {
+        const id = Number(req.params.id);
+        const notificacao = await NotificacaoRepository.marcarComoLida(id);
+
+        if (!notificacao) {
+            return res.status(404).json({ mensagem: "Notificação não encontrada" });
+        }
+        return res.status(200).json(notificacao);
+    }
 }
