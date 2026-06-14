@@ -7,35 +7,30 @@
                 <table class="table table-striped rounded-4 table-vagas">
                     <thead>
                         <tr>
-                            <th scope="col">Empresa</th>
-                            <th scope="col">Vaga</th>
-                            <th scope="col">Publicada</th>
-                            <th scope="col">Departamento</th>
-                            <th scope="col">Disponivel</th>
+                            <th scope="col">#</th>
+                            <th scope="col">Titulo</th>
+                            <th scope="col">Descricao</th>
+                            <th scope="col">Area</th>
+                            <th scope="col">Status</th>
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            <th scope="row">Itaú Unibanco</th>
-                            <td>Fullstack Developer</td>
-                            <td>25 de mai. de 2026</td>
-                            <td>Tecnologia</td>
-                            <td class="aberta">Aberta</td>
-                        </tr>
-                        <tr>
-                            <th scope="row">Ambev</th>
-                            <td>Analista de Dados</td>
-                            <td>15 de fev. de 2026</td>
-                            <td>Tecnologia</td>
-                            <td class="fechada">Fechada</td>
-                        </tr>
-                        <tr>
-                            <th scope="row">Gazin</th>
-                            <td>Estagio em front-end</td>
-                            <td>02 de mar. de 2026</td>
-                            <td>Tecnologia</td>
-                            <td class="fechada">Fechada</td>
-                        </tr>
+                        <?php if (isset($vagas) && !empty($vagas)): ?>
+                            <?php foreach ($vagas as $vaga): ?>
+                                <tr>
+                                    <th><?= $vaga->getEmpresaId() ?></th>
+                                    <td><?= $vaga->getTitulo() ?></td>
+                                    <td><?= $vaga->getDescricao() ?></td>
+                                    <td><?= $vaga->getArea() ?></td>
+                                    <td><?= $vaga->getStatus()->value ?></td>
+                                </tr>
+                            <?php endforeach; ?>
+                        <?php else: ?>
+                            <div class="text-center mt-5 mb-5">
+                                <h1>Nenhuma vaga disponível atualmente</h1>
+                                <p>Veja essa página novamente mais tarde.</p>
+                            </div>
+                        <?php endif; ?>
                     </tbody>
                 </table>
             </div>

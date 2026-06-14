@@ -8,7 +8,7 @@ final class RenderViews
     public function render(string $view, string $titulo, array $data = []): void
     {
         $title = $titulo;
-        $dados = extract($data); // Extrai as chaves do array $data como variáveis
+        extract($data); // Extrai as chaves do array $data como variáveis
         include_once __DIR__ . "/../views/layouts/header.php";
         include_once __DIR__ . "/../views/{$view}.php";
         include_once __DIR__ . "/../views/layouts/footer.php";
