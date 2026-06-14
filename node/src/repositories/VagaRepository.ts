@@ -3,8 +3,10 @@ import { Vaga } from "../models/Vaga";
 
 export const VagaRepository = FonteDados.getRepository(Vaga).extend({
 
-    async listarTodasComEmpresa(): Promise<Vaga[]>{
-        return this.find({relations: ['empresa']
+    async listarAbertas(): Promise<Vaga[]>{
+        return this.find({
+            where: {status: 'aberta'},
+            relations:['empresa']
         });
     },
 
@@ -29,7 +31,5 @@ export const VagaRepository = FonteDados.getRepository(Vaga).extend({
         return resultado.affected !== 0;
     },
 
-    async listarAbertas():Promise <Vaga[]>{
-        return this.find({where: {status: 'aberta'}, relations: ['empresa']});
-    }
+
 })
