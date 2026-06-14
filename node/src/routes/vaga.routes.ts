@@ -6,11 +6,11 @@ import { criarVagaSchema, atualizarVagaSchema } from "../validations/vagaValidat
 const rotas = Router();
 const vagaController = new VagaController();
 
-rotas.get('/vagas', (req, res) => vagaController.listar(req, res));
-rotas.get('/vagas/abertas', (req, res) => vagaController.listarAbertas(req, res));
-rotas.get('/vagas/:id', (req, res) => vagaController.buscar(req, res));
-rotas.post('/vagas', validarSchema(criarVagaSchema), (req, res) => vagaController.criar(req, res));
-rotas.put('/vagas/:id', validarSchema(atualizarVagaSchema), (req, res) => vagaController.atualizar(req, res));
-rotas.delete('/vagas/:id', (req, res) => vagaController.remover(req, res));
+rotas.get('/vagas', (req, res, next) => vagaController.listar(req, res, next));
+rotas.get('/vagas/abertas', (req, res, next) => vagaController.listarAbertas(req, res, next));
+rotas.get('/vagas/:id', (req, res, next) => vagaController.buscar(req, res, next));
+rotas.post('/vagas', validarSchema(criarVagaSchema), (req, res, next) => vagaController.criar(req, res, next));
+rotas.put('/vagas/:id', validarSchema(atualizarVagaSchema), (req, res, next) => vagaController.atualizar(req, res, next));
+rotas.delete('/vagas/:id', (req, res, next) => vagaController.remover(req, res, next));
 
 export default rotas;

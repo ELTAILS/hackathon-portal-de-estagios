@@ -6,11 +6,11 @@ import { criarCandidaturaSchema, atualizarStatusCandidaturaSchema } from "../val
 const rotas = Router();
 const candidaturaController = new CandidaturaController();
 
-rotas.get('/candidaturas', (req, res) => candidaturaController.listar(req, res));
-rotas.get('/candidaturas/aluno/:alunoId', (req, res) => candidaturaController.listarPorAluno(req, res));
-rotas.get('/candidaturas/vaga/:vagaId', (req, res) => candidaturaController.listarPorVaga(req, res));
-rotas.get('/candidaturas/:id', (req, res) => candidaturaController.buscar(req, res));
-rotas.post('/candidaturas', validarSchema(criarCandidaturaSchema), (req, res) => candidaturaController.criar(req, res));
-rotas.patch('/candidaturas/:id/status', validarSchema(atualizarStatusCandidaturaSchema), (req, res) => candidaturaController.atualizarStatus(req, res));
+rotas.get('/candidaturas', (req, res, next) => candidaturaController.listar(req, res, next));
+rotas.get('/candidaturas/aluno/:alunoId', (req, res, next) => candidaturaController.listarPorAluno(req, res, next));
+rotas.get('/candidaturas/vaga/:vagaId', (req, res, next) => candidaturaController.listarPorVaga(req, res, next));
+rotas.get('/candidaturas/:id', (req, res, next) => candidaturaController.buscar(req, res, next));
+rotas.post('/candidaturas', validarSchema(criarCandidaturaSchema), (req, res, next) => candidaturaController.criar(req, res, next));
+rotas.patch('/candidaturas/:id/status', validarSchema(atualizarStatusCandidaturaSchema), (req, res, next) => candidaturaController.atualizarStatus(req, res, next));
 
 export default rotas;
