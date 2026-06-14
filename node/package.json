@@ -8,7 +8,8 @@
     "start": "node src/server.ts",
     "migration:generate": "typeorm-ts-node-commonjs migration:generate src/migrations/Portal_Estagio -d src/config/database.ts",
     "migration:run": "typeorm-ts-node-commonjs migration:run -d src/config/database.ts",
-    "migration:revert": "typeorm-ts-node-commonjs migration:revert -d src/config/database.ts"
+    "migration:revert": "typeorm-ts-node-commonjs migration:revert -d src/config/database.ts",
+    "seed": "ts-node --transpile-only src/seeds/seed.ts"
   },
   "devDependencies": {
     "@types/cors": "^2.8.19",
