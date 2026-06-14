@@ -10,7 +10,7 @@ export const AlunoRepository = FonteDados.getRepository(Aluno).extend({
             return this.findOne({where: {id}});
         },
 
-    async criaAluno(dados: Partial<Aluno>): Promise<Aluno>{
+    async criarAluno(dados: Partial<Aluno>): Promise<Aluno>{
             const novoAluno = this.create(dados);
             return this.save(novoAluno);
         },

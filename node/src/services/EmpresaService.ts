@@ -1,5 +1,6 @@
 import { Empresa } from "../models/Empresa";
 import { EmpresaRepository } from "../repositories/EmpresaRepository";
+import bcrypt from 'bcrypt'
 
 export class EmpresaService {
     async listarTodas(): Promise<Empresa[]>{
@@ -11,6 +12,9 @@ export class EmpresaService {
         }
 
     async criar(dados: Partial<Empresa>) : Promise <Empresa>{
+        if(dados.senha) {
+            dados.senha = await bcrypt.hash(dados.senha, 10);
+        }
             return await EmpresaRepository.criaEmpresa(dados);
         }
     

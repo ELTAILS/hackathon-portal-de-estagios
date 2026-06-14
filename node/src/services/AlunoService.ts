@@ -1,5 +1,6 @@
 import { Aluno } from "../models/Aluno";
 import { AlunoRepository } from "../repositories/AlunoRepository";
+import bcrypt from 'bcrypt'
 
 export class AlunoService {
     async listarTodas(): Promise<Aluno[]>{
@@ -11,7 +12,10 @@ export class AlunoService {
         }
 
     async criar(dados: Partial<Aluno>) : Promise <Aluno>{
-            return await AlunoRepository.criaAluno(dados);
+           if (dados.senha) {
+            dados.senha = await bcrypt.hash(dados.senha, 10)
+              }
+              return await AlunoRepository.criarAluno(dados);
         }
     
         async atualizar (id: number, dados: Partial<Aluno>): Promise<Aluno | null>{

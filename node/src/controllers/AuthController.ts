@@ -2,6 +2,7 @@ import { Request, Response, NextFunction } from 'express'
 import { AlunoRepository } from '../repositories/AlunoRepository'
 import { AppError } from '../errors/AppError'
 import { EmpresaRepository } from '../repositories/EmpresaRepository'
+import bcrypt from 'bcrypt'
 
 export class AuthController {
     async loginAluno(req: Request, res: Response, next: NextFunction): Promise<Response | void> {
@@ -17,7 +18,8 @@ export class AuthController {
             if (!aluno) {
                 throw new AppError('RA ou senha inválidos', 401)
             }
-            if (aluno.senha !== senha) {
+            const senhaCorreta = await bcrypt.compare(senha, aluno.senha)
+            if (!senhaCorreta) {
                 throw new AppError('RA ou senha inválidos', 401)
             }
             if (!aluno.apto) {
@@ -50,7 +52,8 @@ export class AuthController {
             if (!empresa) {
                 throw new AppError('CNPJ ou senha inválidos', 401)
             }
-            if (empresa.senha !== senha) {
+            const senhaCorreta = await bcrypt.compare(senha, empresa.senha)
+            if (!senhaCorreta) {
                 throw new AppError('CNPJ ou senha inválidos', 401)
             }
             if (empresa.status === 'bloqueada') {

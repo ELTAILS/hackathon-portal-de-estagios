@@ -15,6 +15,7 @@ export const CandidaturaRepository = FonteDados.getRepository(Candidatura).exten
     async buscarPorAluno(aluno_id: number): Promise<Candidatura[]> {
         return this.find({
             where: { aluno: { id: aluno_id } },
+            relations:['aluno', 'vaga', 'vaga.empresa'],
             order: { data_candidatura: "DESC" },
         });
     },

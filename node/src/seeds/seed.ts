@@ -3,6 +3,7 @@ import { FonteDados } from '../config/database'
 import { Aluno } from '../models/Aluno'
 import { Empresa } from '../models/Empresa'
 import { Vaga } from '../models/Vaga'
+import bcrypt from 'bcrypt'
 
 const executarSeed = async () => {
     console.log('Iniciando seed...')
@@ -10,15 +11,17 @@ const executarSeed = async () => {
     await FonteDados.initialize()
     console.log('Banco conectado!')
 
+    const senhaHash = await bcrypt.hash('123456', 10)
 
     const alunoRepository = FonteDados.getRepository(Aluno)
     await alunoRepository.save([
-        { nome: 'João Silva', ra: '2024001', email: 'joao@aluno.com', senha: '123456', curso: 'Tecnologia em Sistemas para Internet', apto: true, ativo: true },
-        { nome: 'Maria Souza', ra: '2024002', email: 'maria@aluno.com', senha: '123456', curso: 'Tecnologia em Sistemas para Internet', apto: true, ativo: true },
-        { nome: 'Pedro Costa', ra: '2024003', email: 'pedro@aluno.com', senha: '123456', curso: 'Tecnologia em Sistemas para Internet', apto: false, ativo: true },
+        { nome: 'João Silva', ra: '2024001', email: 'joao@aluno.com',senha: senhaHash,  curso: 'Tecnologia em Sistemas para Internet', apto: true, ativo: true },
+        { nome: 'Maria Souza', ra: '2024002', email: 'maria@aluno.com', senha: senhaHash, curso: 'Tecnologia em Sistemas para Internet', apto: true, ativo: true },
+        { nome: 'Pedro Costa', ra: '2024003', email: 'pedro@aluno.com', senha: senhaHash, curso: 'Tecnologia em Sistemas para Internet', apto: false, ativo: true },
     ])
     console.log('Alunos criados!')
 
+    
 
     const empresaRepository = FonteDados.getRepository(Empresa)
     await empresaRepository.save([
