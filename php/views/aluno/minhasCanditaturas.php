@@ -1,3 +1,11 @@
+<?php 
+    if (!isset($_SESSION['usuario']) || !($_SESSION['usuario'] instanceof Aluno)) {
+        header('Location: ' . BASE_URL . 'login');
+        exit;
+    }
+
+    $aluno = $_SESSION['usuario'];
+?>
 <section id="minhasCanditaturas" class="py-5">
     <div class="container">
         <h1 class="h1">Minhas canditaturas</h1>

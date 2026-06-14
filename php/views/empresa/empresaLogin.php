@@ -1,17 +1,44 @@
+<?php 
+    if($_SERVER['REQUEST_METHOD'] === 'POST'){
+        $cnpj = $_POST['cnpj'] ?? '';
+        $password = $_POST['password'] ?? '';
+
+        try{
+            $resposta = ApiClient::post('/auth/empresa/login', [
+                'cnpj' => $cnpj,
+                'senha' => $password
+            ]);
+
+            if (empty($resposta)) {
+                throw new Exception('Credenciais inválidas!');
+            }
+
+            $empresa = new Empresa(
+                $resposta['id'],
+                $resposta['nome'],
+                $resposta['cnpj'],
+                $resposta['email'],
+                EmpresaStatus::from($resposta['status'])
+            );
+
+            $_SESSION['usuario'] = $empresa;
+
+            header('Location: ' . BASE_URL . 'painelEmpresa');
+            exit;
+
+        } catch (Exception $e){
+            echo "<h1 class=\"text-center text-danger mt-4\">" . $e->getMessage() . "</h1>"; 
+        }
+
+    }
+?>
+
 <section id="login" class="d-flex align-items-center justify-content-center min-vh-100">
     <div class="card login-card p-4">
         <form method="post">
 
             <div class="text-center">
                 <img src="<?= BASE_URL ?>assets/imgs/logo.png" style="width: 200px;" alt="Logo login empresa">
-            </div>
-
-            <label for="email">Email</label>
-            <div class="input-group flex-nowrap">
-                <span class="input-group-text" id="addon-email">
-                    <i class="fa-solid fa-envelope"></i>
-                </span>
-                <input type="email" class="form-control" id="email" name="email" placeholder="Seu melhor email" aria-label="Email" aria-describedby="addon-email" required>
             </div>
 
             <label for="cnpj">CNPJ</label>

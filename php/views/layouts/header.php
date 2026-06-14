@@ -37,16 +37,28 @@
                         <a class="nav-link" href="<?= BASE_URL ?>empresa">Empresas</a>
                     </li>
                 </ul>
+
+                <!--Valida se o usuario Está logado-->
                 <?php if (isset($_SESSION['usuario'])): ?>
                     <div class="d-flex align-items-center gap-3">
+                        <!--Mostra o nome do usuario-->
                         <span class="user-name"><strong><?= substr(htmlspecialchars($_SESSION['usuario']->getNome()), 0, 10) ?></strong></span>
+                        <!--Valida se o usuario tem o objeto aluno, provando que é aluno-->
+                        <?php if($_SESSION['usuario'] instanceof Aluno):?>
+                            <a href="<?= BASE_URL ?>painelAluno" class="btn btn-outline-light">Painel Aluno</a>
+                        <?php else:?> <!--Se não é aluno é empresa-->
+                            <a href="<?= BASE_URL ?>painelEmpresa" class="btn btn-outline-light">Painel Empresa</a>
+                        <?php endif;?>
+                        <!--Botão de sair-->
                         <a href="<?= BASE_URL ?>logout" class="btn btn-outline-light">Sair</a>
                     </div>
+                <!--Caso o usuario não tiver logado-->
                 <?php else: ?>
                     <div class="navbar-nav my-2 my-lg-0 align-items-center gap-2">
                         <a class="btn btn-portal text-white px-4 w-100" href="<?= BASE_URL?>login">Entrar</a>
                     </div>
                 <?php endif; ?>
+
             </div>
         </div>
     </nav>

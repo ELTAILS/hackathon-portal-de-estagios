@@ -1,6 +1,6 @@
 <?php 
-    if (!isset($_SESSION['usuario'])) {
-        header('Location: ' . BASE_URL . '/login');
+    if (!isset($_SESSION['usuario']) || !($_SESSION['usuario'] instanceof Aluno)) {
+        header('Location: ' . BASE_URL . 'login');
         exit;
     }
 

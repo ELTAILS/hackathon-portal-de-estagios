@@ -64,7 +64,9 @@ final class RenderViews
         foreach($dados as $d){
             $empresas[] = new Empresa(
                 $d['id'],
-                $d['nome']
+                $d['nome'],
+                '',
+                ''
             );
         }
 
