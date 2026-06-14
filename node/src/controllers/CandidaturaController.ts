@@ -1,5 +1,6 @@
 import { Request, Response } from "express";
 import { CandidaturaService } from "../services/CandidaturaService";
+import { AppError } from "../errors/AppError";
 
 const candidaturaService = new CandidaturaService();
 
@@ -14,7 +15,7 @@ export class CandidaturaController{
         const candidatura = await candidaturaService.buscarPorId(id);
 
         if(!candidatura){
-            return res.status(404).json({mensagem: "Candidatura não encontrada"});
+            throw new AppError("Candidatura não encontrada", 404);
         }
         return res.status(200).json(candidatura);
     }
@@ -49,7 +50,7 @@ export class CandidaturaController{
         const candidatura = await candidaturaService.atualizarStatus(id,status);
 
         if(!candidatura){
-            return res.status(404).json({mensagem: "Candidatura não encontrada"});
+            throw new AppError("Candidatura não encontrada", 404);
         }
         return res.status(200).json(candidatura);
     }

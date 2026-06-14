@@ -1,5 +1,6 @@
 import {Request, Response} from "express";
 import { AlunoService } from "../services/AlunoService";
+import { AppError } from "../errors/AppError";
 
 const alunoService = new AlunoService();
 
@@ -15,7 +16,7 @@ export class AlunoController{
         const aluno = await alunoService.buscarPorId(id);
 
         if(!aluno){
-            return res.status(404).json({mensagem: "Aluno não encontrada"});
+            throw new AppError("Aluno não encontrada");
         }
         return res.status(200).json(aluno);
     }
@@ -30,7 +31,7 @@ export class AlunoController{
         const alunoAtualizada = await alunoService.atualizar(id, req.body);
 
         if(!alunoAtualizada){
-            return res.status(404).json({mensagem: "aluno não encontrada"});
+          throw new AppError("Aluno não encontrada");
         }
         return res.status(200).json(alunoAtualizada);
     }
@@ -39,7 +40,7 @@ export class AlunoController{
         const removido = await alunoService.remover(id);
 
         if(!removido){
-            return res.status(404).json({mensagem: "aluno não encontrada"});
+            throw new AppError("Aluno não encontrada");
         }
         return res.status(204).send();
     }

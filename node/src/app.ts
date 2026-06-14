@@ -5,15 +5,20 @@ import empresaRoutes from './routes/empresa.routes';
 import alunoRoutes from './routes/aluno.routes';
 import notificacaoRoutes from './routes/notificacao.routes';
 import cors from 'cors';
+import { erroHandler } from './middlewares/erroHandler';
 
-const app = express ();
+const app = express();
 app.use(express.json());
 app.use(cors());
-    
+
 //Rotas
 app.use(vagaRoutes);
 app.use(candidaturasRoutes);
 app.use(empresaRoutes);
 app.use(alunoRoutes);
 app.use(notificacaoRoutes);
+
+// Middleware de tratamento de erros
+app .use(erroHandler);
+
 export default app;

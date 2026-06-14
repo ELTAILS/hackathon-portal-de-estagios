@@ -1,6 +1,6 @@
 import { Request, Response } from "express";
 import { VagaService } from "../services/VagaService";
-
+import {AppError} from "../errors/AppError";
 const vagaService = new VagaService();
 
 export class VagaController {
@@ -20,7 +20,7 @@ export class VagaController {
         const vaga = await vagaService.buscarPorId(id);
 
         if (!vaga) {
-            return res.status(404).json({ mensagem: "Vaga não encontrada" });
+            throw new AppError("Vaga não encontrada", 404);
         }
         return res.status(200).json(vaga);
     }
@@ -35,7 +35,7 @@ export class VagaController {
         const vagaAtualizada = await vagaService.atualizar(id, req.body);
 
         if (!vagaAtualizada) {
-            return res.status(404).json({ mensagem: "Vaga não encontrada" });
+            throw new AppError("Vaga não encontrada", 404);
         }
         return res.status(200).json(vagaAtualizada);
     }
@@ -44,7 +44,7 @@ export class VagaController {
         const removido = await vagaService.remover(id);
 
         if (!removido) {
-            return res.status(404).json({ mensagem: "Vaga não encontrada" });
+            throw new AppError("Vaga não encontrada", 404);
         }
         return res.status(204).send();
     }

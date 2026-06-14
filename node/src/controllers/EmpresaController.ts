@@ -1,5 +1,6 @@
 import {Request, Response} from "express";
 import { EmpresaService } from "../services/EmpresaService";
+import { AppError } from "../errors/AppError";
 
 const empresaService = new EmpresaService();
 
@@ -15,7 +16,7 @@ export class EmpresaController{
         const empresa = await empresaService.buscarPorId(id);
 
         if(!empresa){
-            return res.status(404).json({mensagem: "empresa não encontrada"});
+            throw new AppError("Empresa não encontrada", 404);
         }
         return res.status(200).json(empresa);
     }
@@ -31,7 +32,7 @@ export class EmpresaController{
         const empresaAtualizada = await empresaService.atualizar(id, req.body);
 
         if(!empresaAtualizada){
-            return res.status(404).json({mensagem: "empresa não encontrada"});
+            throw new AppError("Empresa não encontrada", 404);
         }
         return res.status(200).json(empresaAtualizada);
     }
@@ -40,7 +41,7 @@ export class EmpresaController{
         const removido = await empresaService.remover(id);
 
         if(!removido){
-            return res.status(404).json({mensagem: "empresa não encontrada"});
+            throw new AppError("Empresa não encontrada", 404);
         }
         return res.status(204).send();
     }
