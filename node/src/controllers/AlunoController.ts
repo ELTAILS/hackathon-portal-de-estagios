@@ -1,46 +1,68 @@
-import {Request, Response} from "express";
+import { Request, Response, NextFunction } from "express";
 import { AlunoService } from "../services/AlunoService";
+import { AppError } from "../errors/AppError";
 
 const alunoService = new AlunoService();
 
-export class AlunoController{
-    
-    async listar(req: Request, res:Response) : Promise<Response>{
-        const aluno = await alunoService.listarTodas();
-        return res.status(200).json(aluno);
-    }
-    
-    async buscar(req: Request, res: Response) : Promise<Response>{
-        const id = Number(req.params.id);
-        const aluno = await alunoService.buscarPorId(id);
+export class AlunoController {
 
-        if(!aluno){
-            return res.status(404).json({mensagem: "Aluno não encontrada"});
+    async listar(req: Request, res: Response, next: NextFunction): Promise<Response | void> {
+        try {
+            const aluno = await alunoService.listarTodas();
+            return res.status(200).json(aluno);
+        } catch (erro) {
+            next(erro);
         }
-        return res.status(200).json(aluno);
     }
 
-    async criar(req: Request, res:Response): Promise<Response>{
-        const novoAluno = await alunoService.criar(req.body);
-        return res.status(201).json(novoAluno);
-    }
+    async buscar(req: Request, res: Response, next: NextFunction): Promise<Response | void> {
+        try {
+            const id = Number(req.params.id);
+            const aluno = await alunoService.buscarPorId(id);
 
-    async atualizar(req:Request, res:Response): Promise<Response>{
-        const id = Number(req.params.id);
-        const alunoAtualizada = await alunoService.atualizar(id, req.body);
-
-        if(!alunoAtualizada){
-            return res.status(404).json({mensagem: "aluno não encontrada"});
+            if (!aluno) {
+                throw new AppError("Aluno não encontrado", 404);
+            }
+            return res.status(200).json(aluno);
+        } catch (erro) {
+            next(erro);
         }
-        return res.status(200).json(alunoAtualizada);
     }
-    async remover(req: Request, res:Response): Promise<Response>{
-        const id = Number(req.params.id);
-        const removido = await alunoService.remover(id);
 
-        if(!removido){
-            return res.status(404).json({mensagem: "aluno não encontrada"});
+    async criar(req: Request, res: Response, next: NextFunction): Promise<Response | void> {
+        try {
+            const novoAluno = await alunoService.criar(req.body);
+            return res.status(201).json(novoAluno);
+        } catch (erro) {
+            next(erro);
         }
-        return res.status(204).send();
+    }
+
+    async atualizar(req: Request, res: Response, next: NextFunction): Promise<Response | void> {
+        try {
+            const id = Number(req.params.id);
+            const alunoAtualizada = await alunoService.atualizar(id, req.body);
+
+            if (!alunoAtualizada) {
+                throw new AppError("Aluno não encontrado", 404);
+            }
+            return res.status(200).json(alunoAtualizada);
+        } catch (erro) {
+            next(erro);
+        }
+    }
+    async remover(req: Request, res: Response, next: NextFunction): Promise<Response | void> {
+        try {
+            const id = Number(req.params.id);
+            const removido = await alunoService.remover(id);
+
+            if (!removido) {
+                throw new AppError("Aluno não encontrado", 404);
+            }
+
+            return res.status(204).send();
+        } catch (erro) {
+            next(erro);
+        }
     }
 }
