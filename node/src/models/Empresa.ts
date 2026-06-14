@@ -17,6 +17,9 @@ export type StatusEmpresa = 'pendente' | 'aprovada' | 'bloqueada';
         @Column({unique: true, length:150})
         email!:string
 
+        @Column({length:255, select:false})
+        senha!:string
+
         @Column({type:'enum', enum:['pendente', 'aprovada', 'bloqueada'], default:'pendente'})
         status!:StatusEmpresa
 

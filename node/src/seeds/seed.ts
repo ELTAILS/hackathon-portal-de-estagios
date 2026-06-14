@@ -22,9 +22,9 @@ const executarSeed = async () => {
 
     const empresaRepository = FonteDados.getRepository(Empresa)
     await empresaRepository.save([
-        { nome: 'Tech Solutions', cnpj: '11111111000111', email: 'contato@tech.com', status: 'aprovada' },
-        { nome: 'Dev Company', cnpj: '22222222000122', email: 'contato@dev.com', status: 'aprovada' },
-        { nome: 'Startup XYZ', cnpj: '33333333000133', email: 'contato@startup.com', status: 'pendente' },
+        { nome: 'Tech Solutions', cnpj: '11111111000111', email: 'contato@tech.com', senha: '123456', status: 'aprovada' },
+        { nome: 'Dev Company', cnpj: '22222222000122', email: 'contato@dev.com', senha: '123456', status: 'aprovada' },
+        { nome: 'Startup XYZ', cnpj: '33333333000133', email: 'contato@startup.com', senha: '123456', status: 'pendente' },
     ])
     console.log('Empresas criadas!')
 
@@ -35,6 +35,8 @@ const executarSeed = async () => {
         { titulo: 'Estágio em Marketing Digital', descricao: 'Vaga para estagiário trabalhar com redes sociais e SEO', area: 'Marketing', status: 'aberta', empresa: { id: 2 } },
         { titulo: 'Estágio em Design', descricao: 'Vaga para estagiário trabalhar com UI/UX e Figma', area: 'Design', status: 'encerrada', empresa: { id: 1 } },
     ])
+
+
     console.log('Vagas criadas!')
 
     console.log('Seeds executadas com sucesso!')
