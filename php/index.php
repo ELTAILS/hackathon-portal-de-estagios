@@ -48,6 +48,9 @@ switch($url){
     case 'editarVaga':
         $renderView->editarVaga();
         break;
+    case 'excluirVaga':
+        $renderView->excluirVaga();
+        break;
     case 'logout':
         $_SESSION = [];
         session_destroy();
