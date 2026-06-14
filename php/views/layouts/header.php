@@ -37,9 +37,16 @@
                         <a class="nav-link" href="<?= BASE_URL ?>empresa">Empresas</a>
                     </li>
                 </ul>
-                <div class="navbar-nav my-2 my-lg-0 align-items-center gap-2">
-                    <a class="btn btn-portal text-white px-4 w-100" href="<?= BASE_URL?>login">Entrar</a>
-                </div>
+                <?php if (isset($_SESSION['usuario'])): ?>
+                    <div class="d-flex align-items-center gap-3">
+                        <span class="user-name"><strong><?= substr(htmlspecialchars($_SESSION['usuario']->getNome()), 0, 10) ?></strong></span>
+                        <a href="<?= BASE_URL ?>logout" class="btn btn-outline-light">Sair</a>
+                    </div>
+                <?php else: ?>
+                    <div class="navbar-nav my-2 my-lg-0 align-items-center gap-2">
+                        <a class="btn btn-portal text-white px-4 w-100" href="<?= BASE_URL?>login">Entrar</a>
+                    </div>
+                <?php endif; ?>
             </div>
         </div>
     </nav>

@@ -6,6 +6,11 @@ define('BASE_URL', 'http://localhost/hackathon-portal-de-estagios/php/');
 require_once __DIR__ . '/Providers/RenderViews.php';
 $renderView = new RenderViews;
 
+//Starta a sessão se ainda não tiver sido iniciada
+if (session_status() === PHP_SESSION_NONE) {
+    session_start();
+}
+
 $url = trim($_GET['url'] ?? '/');
 
 //Define qual view pegar
@@ -42,6 +47,11 @@ switch($url){
         break;
     case 'editarVaga':
         $renderView->editarVaga();
+        break;
+    case 'logout':
+        $_SESSION = [];
+        session_destroy();
+        header('Location: ' . BASE_URL);
         break;
     default:
         $renderView->erro();

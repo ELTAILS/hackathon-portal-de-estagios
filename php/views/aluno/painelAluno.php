@@ -1,3 +1,11 @@
+<?php 
+    if (!isset($_SESSION['usuario'])) {
+        header('Location: ' . BASE_URL . '/login');
+        exit;
+    }
+
+    $aluno = $_SESSION['usuario'];
+?>
 <section id="painel-aluno" class="py-5">
     <div class="container">
         <h1 class="h1">Vagas de estágios</h1>

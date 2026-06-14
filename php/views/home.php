@@ -12,13 +12,11 @@
                 </p>
                 <div class="d-flex gap-3 mt-4">
                     <a href="<?= BASE_URL ?>vagas" class="btn btn-home-primary px-4 py-2">Buscar Vagas</a>
-                    <a href="<?= BASE_URL ?>empresa" class="btn btn-home-outline px-4 py-2">Sou Empresa</a>
+                    <a href="<?= BASE_URL ?>empresaLogin" class="btn btn-home-outline px-4 py-2">Sou Empresa</a>
                 </div>
             </div>
             <div class="col-lg-6 d-none d-lg-block">
-                <img src="<?= BASE_URL ?>assets/imgs/bannerHome.png" 
-                     alt="Home Portal de Estágios UniAlfa" 
-                     class="img-fluid">
+                <img src="<?= BASE_URL ?>assets/imgs/bannerHome.png" alt="Home Portal de Estágios UniAlfa" class="img-fluid">
             </div>
         </div>
 

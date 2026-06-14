@@ -32,7 +32,6 @@
 
             <div class="d-grid">
                 <a href="<?= BASE_URL ?>login" class="text-black mt-3 mb-2">Sou aluno</a>
-                <a href="#" class="text-black mb-4">Esqueceu sua senha</a>
                 <button class="btn btn-login" type="submit">
                     Entrar como empresa
                 </button>
