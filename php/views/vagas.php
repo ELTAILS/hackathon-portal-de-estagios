@@ -18,11 +18,11 @@
                         <?php if (isset($vagas) && !empty($vagas)): ?>
                             <?php foreach ($vagas as $vaga): ?>
                                 <tr>
-                                    <th><?= $vaga->getEmpresaId() ?></th>
-                                    <td><?= $vaga->getTitulo() ?></td>
-                                    <td><?= $vaga->getDescricao() ?></td>
-                                    <td><?= $vaga->getArea() ?></td>
-                                    <td><?= $vaga->getStatus()->value ?></td>
+                                    <th><?= htmlspecialchars($vaga->getEmpresaId()) ?></th>
+                                    <td><?= htmlspecialchars($vaga->getTitulo()) ?></td>
+                                    <td><?= htmlspecialchars($vaga->getDescricao()) ?></td>
+                                    <td><?= htmlspecialchars($vaga->getArea()) ?></td>
+                                    <td><?= htmlspecialchars($vaga->getStatus()->value) ?></td>
                                 </tr>
                             <?php endforeach; ?>
                         <?php else: ?>

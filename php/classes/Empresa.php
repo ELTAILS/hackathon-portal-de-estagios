@@ -8,14 +8,12 @@ class Empresa Extends Usuario
     private string $cnpj;
     private EmpresaStatus $status;
 
-    public function __construct(string $nome, string $cnpj, string $email, string $senha, EmpresaStatus $status = EmpresaStatus::PENDENTE)
+    public function __construct(int $id, string $nome)
     {
+        $this->setId($id);
         $this->nome = $nome;
-        $this->cnpj = $cnpj;
-        $this->email = $email;
-        $this->senha = $senha;
-        $this->status = $status;
     }
+    
 
     public function getNome(): string
     {

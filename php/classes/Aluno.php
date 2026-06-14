@@ -8,8 +8,9 @@ class Aluno Extends Usuario
     private string $curso;
     private bool $ativo;
 
-    public function __construct(string $nome, string $email, string $senha, string $ra, string $curso, bool $ativo = true)
+    public function __construct(int $id, string $nome, string $email, string $senha, string $ra, string $curso, bool $ativo = true)
     {
+        $this->setId($id);
         $this->nome = $nome;
         $this->email = $email;
         $this->senha = $senha;

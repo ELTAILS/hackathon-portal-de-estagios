@@ -1,6 +1,9 @@
 <?php
 
 require_once __DIR__ . "/../classes/Vaga.php";
+require_once __DIR__ . "/../classes/Empresa.php";
+require_once __DIR__ . "/../classes/Vaga.php";
+require_once __DIR__ . "/../classes/Aluno.php";
 require_once __DIR__ . "/ApiClient.php";
 
 final class RenderViews
@@ -55,7 +58,17 @@ final class RenderViews
 
     public function empresa(): void
     {
-        $this->render('empresa', 'Sobre as nossas empresas de parceria');
+        $dados = ApiClient::get('/empresas');
+
+        $empresas = [];
+        foreach($dados as $d){
+            $empresas[] = new Empresa(
+                $d['id'],
+                $d['nome']
+            );
+        }
+
+        $this->render('empresa', 'Sobre as nossas empresas de parceria', ['empresas' => $empresas]);
     }
 
     public function painelAluno(): void
