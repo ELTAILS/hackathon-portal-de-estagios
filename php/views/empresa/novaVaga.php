@@ -4,6 +4,10 @@
         exit;
     }
 
+    if (!empty($erro)) {
+        echo '<div class="alert alert-danger" role="alert">' . $erro . '</div>';
+    }
+        
     $empresa = $_SESSION['usuario'];
 ?>
 <section id="nova-vaga" class="dashboard-panel">

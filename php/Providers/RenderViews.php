@@ -90,7 +90,31 @@ final class RenderViews
 
     public function novaVaga(): void
     {
-        $this->render('empresa/novaVaga', 'Crie uma nova vaga de estágio');
+        if (!($_SESSION['usuario'] instanceof Empresa)) {
+            header('Location: ' . BASE_URL . 'empresaLogin');
+            exit;
+        }
+
+        $erro = null;
+
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            $resposta = ApiClient::post('/vagas', [
+                'titulo'    => $_POST['titulo'],
+                'descricao' => $_POST['descricao'],
+                'area'      => $_POST['area'],
+                'status'    => $_POST['status'],
+                'empresaId' => $_SESSION['usuario']->getId(),
+            ]);
+
+            if (empty($resposta)) {
+                $erro = 'Não foi possível criar a vaga.';
+            } else {
+                header('Location: ' . BASE_URL . 'painelEmpresa');
+                exit;
+            }
+        }
+
+        $this->render('empresa/novaVaga', 'Crie uma nova vaga de estágio', ['erro' => $erro]);
     }
 
     public function candidatos(): void
