@@ -1,0 +1,56 @@
+@media (max-width: 991px) {
+    .dashboard-panel {
+        flex-direction: column;
+    }
+
+    .dashboard-sidebar {
+        max-width: 100%;
+        width: 100%;
+    }
+
+    .dashboard-main {
+        width: 100%;
+    }
+}
+
+@media (max-width: 768px) {
+    .home-title {
+        font-size: 2rem;
+    }
+
+    .section-home {
+        padding: 40px 0;
+    }
+}
+
+@media (max-width: 575px) {
+    .dashboard-panel {
+        padding: 1rem 0.75rem 2rem;
+    }
+
+    .dashboard-topbar {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .dashboard-cards .dashboard-card strong {
+        font-size: 1.2rem;
+    }
+
+    #painelEmpresa {
+        padding: 1rem 0.75rem 2rem;
+    }
+
+    #painelEmpresa .row .col {
+        width: 100%;
+        margin-bottom: 0.75rem;
+    }
+
+    #painelEmpresa h1.h1 {
+        font-size: 1.6rem;
+    }
+
+    .dashboard-sidebar .d-grid.gap-2 {
+        grid-template-columns: 1fr;
+    }
+}
