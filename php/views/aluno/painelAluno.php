@@ -45,15 +45,24 @@
                                 </div>
 
                                 <div class="d-flex flex-column align-items-md-end align-items-start">
-                                    <span class="published mb-2">Vaga disponível para candidatura</span>
-                                    <?php if ($vaga->getStatus() === StatusVaga::ABERTA): ?>
+                                    <?php $jaCandidatou = isset($candidaturasPorVaga[$vaga->getId()]); ?>
+
+                                    <span class="published mb-2">
+                                        <?= $jaCandidatou ? 'Você já se candidatou a esta vaga.' : 'Vaga disponível para candidatura' ?>
+                                    </span>
+
+                                    <?php if ($jaCandidatou): ?>
+                                        <span class="badge-tag mb-2">Candidatura já enviada</span>
+                                        <a href="<?= BASE_URL ?>minhasCandidaturas" class="btn-detalhes text-center">Ver minhas candidaturas</a>
+                                    <?php elseif ($vaga->getStatus() === StatusVaga::ABERTA): ?>
                                         <a href="<?= BASE_URL . 'candidatar?id=' . $vaga->getId(); ?>" class="btn-candidatar text-decoration-none text-center">
                                             Candidatar-se
                                         </a>
+                                        <a href="<?= BASE_URL ?>vagas" class="btn-detalhes text-center">Ver detalhes</a>
                                     <?php else: ?>
                                         <button class="btn-candidatar" type="button" disabled>Fechada</button>
+                                        <a href="<?= BASE_URL ?>vagas" class="btn-detalhes text-center">Ver detalhes</a>
                                     <?php endif; ?>
-                                    <a href="<?= BASE_URL ?>vagas" class="btn-detalhes text-center" type="button">Ver detalhes</a>
                                 </div>
                             </div>
                         </div>

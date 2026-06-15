@@ -52,10 +52,6 @@
                                         <span class="badge-tag">Status da candidatura: <?= htmlspecialchars($candidatura->getStatus()->value) ?></span>
                                     </div>
                                 </div>
-
-                                <div class="d-flex flex-column align-items-md-end align-items-start">
-                                    <a href="<?= BASE_URL ?>vagas" class="btn-detalhes text-center" type="button">Ver detalhes</a>
-                                </div>
                             </div>
                         </div>
                     </div>

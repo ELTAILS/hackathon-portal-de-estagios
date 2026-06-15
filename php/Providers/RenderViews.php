@@ -4,6 +4,7 @@ require_once __DIR__ . "/../classes/Vaga.php";
 require_once __DIR__ . "/../classes/Empresa.php";
 require_once __DIR__ . "/../classes/Vaga.php";
 require_once __DIR__ . "/../classes/Aluno.php";
+require_once __DIR__ . "/../classes/Candidatura.php";
 require_once __DIR__ . "/ApiClient.php";
 
 final class RenderViews
@@ -76,6 +77,60 @@ final class RenderViews
 
     public function painelAluno(): void
     {
+        $dados = ApiClient::get('/vagas');
+
+        $vagas = [];
+
+        foreach ($dados as $d) {
+            $vagas[] = new Vaga(
+                (int) $d['id'],
+                $d['titulo'],
+                $d['descricao'],
+                $d['area'],
+                StatusVaga::from($d['status']),
+                (int) $d['empresa']['id']
+            );
+        }
+
+        $candidaturasPorVaga = [];
+
+        if (isset($_SESSION['usuario']) && $_SESSION['usuario'] instanceof Aluno) {
+            $alunoId = (int) $_SESSION['usuario']->getId();
+            $candidaturas = ApiClient::get('/candidaturas/aluno/' . $alunoId);
+
+            foreach ($candidaturas as $candidatura) {
+                $vagaId = (int) ($candidatura['vaga_id'] ?? $candidatura['vaga']['id'] ?? 0);
+
+                if ($vagaId > 0) {
+                    $candidaturasPorVaga[$vagaId] = true;
+                }
+            }
+        }
+
+        $this->render('aluno/painelAluno', 'Bem vindo aluno ao seu painel de estagios', [
+            'vagas' => $vagas,
+            'candidaturasPorVaga' => $candidaturasPorVaga,
+        ]);
+    }
+
+    public function minhasCandidaturas(): void 
+    {
+        $dados = ApiClient::get('/candidaturas');
+
+        $alunoId = (int) $_SESSION['usuario']->getId();
+        $vagaId  = isset($_GET['id']) ? (int) $_GET['id'] : 0;
+
+        $candidaturas = [];
+
+        foreach($dados as $d){
+            $candidaturas[] = new Candidatura(
+                (int) $d['id'],
+                $status = StatusCandidaturas::from($d['status']),
+                $d['data_candidatura'],
+                $aluno_id = $alunoId,
+                $vaga_id = $vagaId
+            );
+        }
 
         $dados = ApiClient::get('/vagas');
             
@@ -91,12 +146,8 @@ final class RenderViews
                 (int) $d['empresa']['id']
             );
         }
-        $this->render('aluno/painelAluno', 'Bem vindo aluno ao seu painel de estagios', ['vagas' => $vagas]);
-    }
 
-    public function minhasCandidaturas(): void 
-    {
-        $this->render('aluno/minhasCandidaturas', 'Minhas candidaturas');
+        $this->render('aluno/minhasCandidaturas', 'Minhas candidaturas', ['vagas' => $vagas, 'candidaturas' => $candidaturas]);
     }
     
     public function painelEmpresa(): void
@@ -104,15 +155,18 @@ final class RenderViews
         //Buscar dados de candidaturas
         $dados = ApiClient::get('/candidaturas');
 
+        $alunoId = (int) $_SESSION['usuario']->getId();
+        $vagaId  = isset($_GET['id']) ? (int) $_GET['id'] : 0;
+
         $candidaturas = [];
 
         foreach($dados as $d){
             $candidaturas[] = new Candidatura(
                 (int) $d['id'],
                 $status = StatusCandidaturas::from($d['status']),
-                $d['data'],
-                (int) $d['aluno_id'],
-                (int) $d['vaga_id'] 
+                $d['data_candidatura'],
+                $aluno_id = $alunoId,
+                $vaga_id = $vagaId
             );
         }
 
