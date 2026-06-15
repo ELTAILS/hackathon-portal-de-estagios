@@ -1,5 +1,6 @@
 import { FonteDados } from "../config/database";
 import { Vaga } from "../models/Vaga";
+import { Candidatura } from "../models/Canditadura";
 
 export const VagaRepository = FonteDados.getRepository(Vaga).extend({
 
@@ -31,6 +32,7 @@ export const VagaRepository = FonteDados.getRepository(Vaga).extend({
     },
 
     async removerVaga(id:number): Promise<boolean>{
+        await FonteDados.getRepository(Candidatura).delete({ vaga: { id } });
         const resultado = await this.delete(id);
         return resultado.affected !== 0;
     },
