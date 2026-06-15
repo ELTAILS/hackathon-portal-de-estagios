@@ -193,26 +193,27 @@ final class RenderViews
             exit;
         }
 
-        $erro = '';
+        $mensagem = '';
 
-        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-            $resposta = ApiClient::post('/vagas', [
-                'titulo'    => $_POST['titulo'],
-                'descricao' => $_POST['descricao'],
-                'area'      => $_POST['area'],
-                'status'    => $_POST['status'],
-                'empresa_id' => $_SESSION['usuario']->getId(),
-            ]);
+        if($_SERVER['REQUEST_METHOD'] === 'POST'){
+            
+            $post = [
+                'titulo' => $_POST['titulo'] ?? '',
+                'descricao' => $_POST['descricao'] ?? '',
+                'area' => $_POST['area'] ?? '',
+                'status' => $_POST['status'] ?? '',
+                'empresaId' => (int) $_SESSION['usuario']->getId()
+            ];
 
-            if (empty($resposta)) {
-                $erro = 'Não foi possível criar a vaga.';
-            } else {
-                header('Location: ' . BASE_URL . 'painelEmpresa');
-                exit;
+            try {
+                ApiClient::post('/vagas', $post);
+                $mensagem = "Vaga criada com sucesso!";
+            } catch(Exception $e) {
+                throw new Exception("Erro ao criar vaga " . $e->getMessage());
             }
         }
 
-        $this->render('empresa/novaVaga', 'Crie uma nova vaga de estágio', ['erro' => $erro]);
+        $this->render('empresa/novaVaga', 'Crie uma nova vaga de estágio', ['mensagem' => $mensagem]);
     }
 
     public function candidatos(): void

@@ -21,7 +21,7 @@ export class Vaga{
     status!: StatusVaga
 
     @ManyToOne(() => Empresa)
-    @JoinColumn({name: 'empresa_id'})
+    @JoinColumn({name: 'empresaId'})
     empresa!: Empresa
 
     @CreateDateColumn({name: 'criada_em'})

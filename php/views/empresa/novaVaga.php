@@ -4,8 +4,8 @@
         exit;
     }
 
-    if (!empty($erro)) {
-        echo '<div class="alert alert-danger" role="alert">' . $erro . '</div>';
+    if (!empty($mensagem)) {
+        echo '<div class="alert alert-danger" role="alert">' . $mensagem . '</div>';
     }
         
     $empresa = $_SESSION['usuario'];

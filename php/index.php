@@ -1,4 +1,8 @@
 <?php
+/**
+ * AVISAR PARA O HIAGO QUE VAGAS EMPRESAID NÂO PODE SER NULL
+ * 
+ */
 //Define a URL do site
 define('BASE_URL', 'http://localhost/hackathon-portal-de-estagios/php/');
 
