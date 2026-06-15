@@ -10,7 +10,7 @@
     <aside id="sidebar" class="dashboard-sidebar">
         <div class="sidebar-header">
             <p class="eyebrow">Painel da empresa</p>
-            <h2 class="h4 mb-1">Nome da empresa</h2>
+            <h2 class="h4 mb-1"><?= htmlspecialchars($empresa->getNome()) ?></h2>
             <p class="text-muted small mb-0">Gerencie candidatos e vagas de forma organizada.</p>
         </div>
 
@@ -40,12 +40,29 @@
                         <th scope="col">Curso</th>
                         <th scope="col">Vaga</th>
                         <th scope="col">Ativo</th>
+                        <th scope="col">Status</th>
+                        <th scope="col">Ações</th>
                     </tr>
                 </thead>
                 <tbody>
                     <?php if (isset($candidatos) && !empty($candidatos)): ?>
                         <?php foreach ($candidatos as $candidatura): ?>
-                            <?php $aluno = $candidatura['aluno'] ?? []; ?>
+                            <?php
+                                $aluno = $candidatura['aluno'] ?? [];
+                                $statusCandidatura = $candidatura['status'] ?? 'em_analise';
+
+                                $statusLabel = match ($statusCandidatura) {
+                                    'aprovado'  => 'Aprovado',
+                                    'reprovado' => 'Reprovado',
+                                    default     => 'Em análise',
+                                };
+
+                                $statusBadgeClass = match ($statusCandidatura) {
+                                    'aprovado'  => 'bg-success-subtle text-success-emphasis',
+                                    'reprovado' => 'bg-danger-subtle text-danger-emphasis',
+                                    default     => 'bg-warning-subtle text-warning-emphasis',
+                                };
+                            ?>
                             <tr>
                                 <th scope="row"><?= htmlspecialchars($aluno['nome'] ?? '---') ?></th>
                                 <td><?= htmlspecialchars($aluno['email'] ?? '---') ?></td>
@@ -57,11 +74,34 @@
                                         <?= !empty($aluno['ativo']) ? 'Ativo' : 'Inativo' ?>
                                     </span>
                                 </td>
+                                <td>
+                                    <span class="badge <?= $statusBadgeClass ?>">
+                                        <?= $statusLabel ?>
+                                    </span>
+                                </td>
+                                <td>
+                                    <div class="d-flex gap-3">
+                                        <a href="<?= BASE_URL ?>atualizarCandidatura?id=<?= $candidatura['id'] ?? '' ?>&amp;vagaId=<?= $candidatura['vaga_id'] ?? '' ?>&amp;status=aprovado"
+                                           class="text-success"
+                                           aria-label="Aprovar candidato"
+                                           title="Aprovar candidato"
+                                           onclick="return confirm('Aprovar este candidato?')">
+                                            <i class="fa-solid fa-check"></i>
+                                        </a>
+                                        <a href="<?= BASE_URL ?>atualizarCandidatura?id=<?= $candidatura['id'] ?? '' ?>&amp;vagaId=<?= $candidatura['vaga_id'] ?? '' ?>&amp;status=reprovado"
+                                           class="text-danger"
+                                           aria-label="Reprovar candidato"
+                                           title="Reprovar candidato"
+                                           onclick="return confirm('Reprovar este candidato?')">
+                                            <i class="fa-solid fa-xmark"></i>
+                                        </a>
+                                    </div>
+                                </td>
                             </tr>
                         <?php endforeach; ?>
                     <?php else: ?>
                         <tr>
-                            <td colspan="6" class="text-center py-4">Nenhum candidato encontrado para suas vagas ainda.</td>
+                            <td colspan="8" class="text-center py-4">Nenhum candidato encontrado para suas vagas ainda.</td>
                         </tr>
                     <?php endif; ?>
                 </tbody>

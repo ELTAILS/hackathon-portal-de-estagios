@@ -49,6 +49,9 @@ switch($url){
     case 'candidatos':
         $renderView->candidatos();
         break;
+    case 'atualizarCandidatura':
+        $renderView->atualizarCandidatura();
+        break;
     case 'candidatar':
         $renderView->candidatar();
         break;

@@ -53,6 +53,11 @@ class ApiClient
         return self::request('PUT', $endpoint, $body);
     }
 
+    public static function patch(string $endpoint, array $body): array
+    {
+        return self::request('PATCH', $endpoint, $body);
+    }
+
     public static function delete(string $endpoint): array
     {
         return self::request('DELETE', $endpoint);

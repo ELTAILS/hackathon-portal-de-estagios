@@ -14,7 +14,7 @@
     <aside id="sidebar" class="dashboard-sidebar">
         <div class="sidebar-header">
             <p class="eyebrow">Painel da empresa</p>
-            <h2 class="h4 mb-1">Nome da empresa</h2>
+            <h2 class="h4 mb-1"><?= htmlspecialchars($empresa->getNome()) ?></h2>
             <p class="text-muted small mb-0">Gerencie suas vagas e atualize informações rapidamente.</p>
         </div>
 
@@ -35,41 +35,43 @@
         </div>
 
         <div class="dashboard-form-card">
-            <form method="POST" class="dashboard-form" action="<?= BASE_URL ?>novaVaga">
+            <form method="POST" class="dashboard-form" action="<?= BASE_URL ?>editarVaga?id=<?= $id ?>">
                 <div class="mb-3">
                     <label for="titulo" class="form-label">Título da vaga</label>
-                    <input type="text" class="form-control" id="titulo" name="titulo" maxlength="150" placeholder="Ex: Estágio em Desenvolvimento Web" required>
+                    <input type="text" class="form-control" id="titulo" name="titulo" maxlength="150" placeholder="Ex: Estágio em Desenvolvimento Web" value="<?= htmlspecialchars($vaga['titulo'] ?? '') ?>" required>
                 </div>
 
                 <div class="mb-3">
                     <label for="descricao" class="form-label">Descrição da vaga</label>
-                    <textarea class="form-control" id="descricao" name="descricao" rows="5" placeholder="Descreva as responsabilidades, requisitos e benefícios da vaga." required></textarea>
+                    <textarea class="form-control" id="descricao" name="descricao" rows="5" placeholder="Descreva as responsabilidades, requisitos e benefícios da vaga." required><?= htmlspecialchars($vaga['descricao'] ?? '') ?></textarea>
                 </div>
 
                 <div class="mb-3">
                     <label for="area" class="form-label">Área de atuação</label>
+                    <?php $areaAtual = $vaga['area'] ?? ''; ?>
                     <select class="form-select" id="area" name="area" required>
-                        <option value="" selected disabled>Selecione a área</option>
-                        <option value="Administração">Administração</option>
-                        <option value="Ciências Contábeis">Ciências Contábeis</option>
-                        <option value="Direito">Direito</option>
-                        <option value="Marketing">Marketing</option>
-                        <option value="Pedagogia">Pedagogia</option>
-                        <option value="Processos Gerenciais">Processos Gerenciais</option>
-                        <option value="Psicologia">Psicologia</option>
-                        <option value="Sistemas para Internet">Sistemas para Internet</option>
+                        <option value="" disabled <?= $areaAtual === '' ? 'selected' : '' ?>>Selecione a área</option>
+                        <option value="Administração" <?= $areaAtual === 'Administração' ? 'selected' : '' ?>>Administração</option>
+                        <option value="Ciências Contábeis" <?= $areaAtual === 'Ciências Contábeis' ? 'selected' : '' ?>>Ciências Contábeis</option>
+                        <option value="Direito" <?= $areaAtual === 'Direito' ? 'selected' : '' ?>>Direito</option>
+                        <option value="Marketing" <?= $areaAtual === 'Marketing' ? 'selected' : '' ?>>Marketing</option>
+                        <option value="Pedagogia" <?= $areaAtual === 'Pedagogia' ? 'selected' : '' ?>>Pedagogia</option>
+                        <option value="Processos Gerenciais" <?= $areaAtual === 'Processos Gerenciais' ? 'selected' : '' ?>>Processos Gerenciais</option>
+                        <option value="Psicologia" <?= $areaAtual === 'Psicologia' ? 'selected' : '' ?>>Psicologia</option>
+                        <option value="Sistemas para Internet" <?= $areaAtual === 'Sistemas para Internet' ? 'selected' : '' ?>>Sistemas para Internet</option>
                     </select>
                 </div>
 
                 <div class="mb-3">
                     <label for="status" class="form-label">Situação da vaga</label>
+                    <?php $statusAtual = $vaga['status'] ?? 'aberta'; ?>
                     <select class="form-select" id="status" name="status" required>
-                        <option value="aberta" selected>Aberta</option>
-                        <option value="encerrada">Encerrada</option>
+                        <option value="aberta" <?= $statusAtual === 'aberta' ? 'selected' : '' ?>>Aberta</option>
+                        <option value="encerrada" <?= $statusAtual === 'encerrada' ? 'selected' : '' ?>>Encerrada</option>
                     </select>
                 </div>
 
-                <button type="submit" class="btn btn-home-primary">Criar vaga</button>
+                <button type="submit" class="btn btn-home-primary">Salvar alterações</button>
             </form>
         </div>
 

@@ -25,7 +25,7 @@
 
             $_SESSION['usuario'] = $aluno;
 
-            header('Location: ' . BASE_URL . '/painelAluno');
+            header('Location: ' . BASE_URL . 'painelAluno');
             exit;
         } catch (Exception $e) {
             echo "<h1 class=\"text-center text-danger mt-4\">" . $e->getMessage() . "</h1>";

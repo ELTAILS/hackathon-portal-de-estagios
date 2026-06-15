@@ -2,7 +2,6 @@
 
 require_once __DIR__ . "/../classes/Vaga.php";
 require_once __DIR__ . "/../classes/Empresa.php";
-require_once __DIR__ . "/../classes/Vaga.php";
 require_once __DIR__ . "/../classes/Aluno.php";
 require_once __DIR__ . "/../classes/Candidatura.php";
 require_once __DIR__ . "/ApiClient.php";
@@ -77,7 +76,7 @@ final class RenderViews
 
     public function painelAluno(): void
     {
-        if(!($_SESSION['usuario'] instanceof Aluno)){
+        if(!isset($_SESSION['usuario']) || !($_SESSION['usuario'] instanceof Aluno)){
             header('Location: ' . BASE_URL . 'login');
             exit;
         }
@@ -117,25 +116,24 @@ final class RenderViews
 
     public function minhasCandidaturas(): void 
     {
-        if(!($_SESSION['usuario'] instanceof Aluno)){
+        if(!isset($_SESSION['usuario']) || !($_SESSION['usuario'] instanceof Aluno)){
             header('Location: ' . BASE_URL . 'login');
             exit;
         }
 
-        $dados = ApiClient::get('/candidaturas');
-
         $alunoId = (int) $_SESSION['usuario']->getId();
-        $vagaId  = isset($_GET['id']) ? (int) $_GET['id'] : 0;
+
+        $dados = ApiClient::get('/candidaturas/aluno/' . $alunoId);
 
         $candidaturas = [];
 
         foreach($dados as $d){
             $candidaturas[] = new Candidatura(
                 (int) $d['id'],
-                $status = StatusCandidaturas::from($d['status']),
+                StatusCandidaturas::from($d['status']),
                 $d['data_candidatura'],
-                $aluno_id = $alunoId,
-                $vaga_id = $vagaId
+                $alunoId,
+                (int) $d['vaga']['id']
             );
         }
 
@@ -144,12 +142,12 @@ final class RenderViews
         $vagas = [];
 
         foreach($dados as $d){
-            $vagas[] = new Vaga(
+            $vagas[(int) $d['id']] = new Vaga(
                 (int) $d['id'],
                 $d['titulo'],
                 $d['descricao'],
                 $d['area'],
-                $status = StatusVaga::from($d['status']),
+                StatusVaga::from($d['status']),
                 (int) $d['empresa']['id']
             );
         }
@@ -159,7 +157,7 @@ final class RenderViews
     
     public function painelEmpresa(): void
     {
-        if (!($_SESSION['usuario'] instanceof Empresa)) {
+        if (!isset($_SESSION['usuario']) || !($_SESSION['usuario'] instanceof Empresa)) {
             header('Location: ' . BASE_URL . 'empresaLogin');
             exit;
         }
@@ -188,7 +186,7 @@ final class RenderViews
 
     public function novaVaga(): void
     {
-        if (!($_SESSION['usuario'] instanceof Empresa)) {
+        if (!isset($_SESSION['usuario']) || !($_SESSION['usuario'] instanceof Empresa)) {
             header('Location: ' . BASE_URL . 'empresaLogin');
             exit;
         }
@@ -218,7 +216,7 @@ final class RenderViews
 
     public function candidatos(): void
     {
-        if (!($_SESSION['usuario'] instanceof Empresa)) {
+        if (!isset($_SESSION['usuario']) || !($_SESSION['usuario'] instanceof Empresa)) {
             header('Location: ' . BASE_URL . 'empresaLogin');
             exit;
         }
@@ -239,6 +237,7 @@ final class RenderViews
             $dadosCandidatos = ApiClient::get('/candidaturas/vaga/' . $vagaId);
             foreach ($dadosCandidatos as $candidatura) {
                 $candidatura['vaga_titulo'] = $vagaTitulo;
+                $candidatura['vaga_id'] = $vagaId;
                 $candidatos[] = $candidatura;
             }
         }
@@ -248,7 +247,7 @@ final class RenderViews
 
     public function editarVaga(): void
     {
-        if (!($_SESSION['usuario'] instanceof Empresa)) {
+        if (!isset($_SESSION['usuario']) || !($_SESSION['usuario'] instanceof Empresa)) {
             header('Location: ' . BASE_URL . 'empresaLogin');
             exit;
         }
@@ -264,7 +263,7 @@ final class RenderViews
         }
 
         // 3. Verifica se a vaga pertence à empresa logada
-        if ((int) $dadosVaga['empresaId'] !== (int) $_SESSION['usuario']->getId()) {
+        if ((int) ($dadosVaga['empresa']['id'] ?? 0) !== (int) $_SESSION['usuario']->getId()) {
             header('Location: ' . BASE_URL . 'painelEmpresa');
             exit;
         }
@@ -297,12 +296,12 @@ final class RenderViews
 
     public function excluirVaga(): void
     {
-        if(!($_SESSION['usuario'] instanceof Empresa)){
+        if(!isset($_SESSION['usuario']) || !($_SESSION['usuario'] instanceof Empresa)){
             header('Location: ' . BASE_URL . 'empresaLogin');
             exit;
         }
 
-        $id = (int) $_GET['id'] ?? '';
+        $id = (int) ($_GET['id'] ?? 0);
 
         try {
             ApiClient::delete("/vagas/{$id}");
@@ -318,7 +317,7 @@ final class RenderViews
     public function candidatar(): void
     {
 
-        if(!($_SESSION['usuario'] instanceof Aluno)){
+        if(!isset($_SESSION['usuario']) || !($_SESSION['usuario'] instanceof Aluno)){
             header('Location: ' . BASE_URL . 'login');
             exit;
         }
@@ -337,6 +336,42 @@ final class RenderViews
         header('Location: ' . BASE_URL . 'minhasCandidaturas');
         exit;
 
+    }
+
+        public function atualizarCandidatura(): void
+    {
+        if (!isset($_SESSION['usuario']) || !($_SESSION['usuario'] instanceof Empresa)) {
+            header('Location: ' . BASE_URL . 'empresaLogin');
+            exit;
+        }
+
+        $id     = (int) ($_GET['id'] ?? 0);
+        $vagaId = (int) ($_GET['vagaId'] ?? 0);
+        $status = $_GET['status'] ?? '';
+
+        // Só aceita os status que a API permite para essa ação
+        if (!in_array($status, ['aprovado', 'reprovado'], true)) {
+            header('Location: ' . BASE_URL . 'candidatos');
+            exit;
+        }
+
+        // Garante que a vaga informada realmente pertence à empresa logada,
+        // pra empresa não conseguir alterar candidaturas de vagas de outra empresa
+        $dadosVaga = ApiClient::get("/vagas/{$vagaId}");
+
+        if (empty($dadosVaga) || (int) ($dadosVaga['empresa']['id'] ?? 0) !== (int) $_SESSION['usuario']->getId()) {
+            header('Location: ' . BASE_URL . 'candidatos');
+            exit;
+        }
+
+        try {
+            ApiClient::patch("/candidaturas/{$id}/status", ['status' => $status]);
+        } catch (Exception $e) {
+            throw new Exception("Erro ao atualizar candidatura " . $e->getMessage());
+        }
+
+        header('Location: ' . BASE_URL . 'candidatos');
+        exit;
     }
 
 }
