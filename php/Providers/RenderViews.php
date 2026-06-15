@@ -232,7 +232,47 @@ final class RenderViews
             header('Location: ' . BASE_URL . 'empresaLogin');
             exit;
         }
-        $this->render('empresa/editarVaga', 'Edite as informações da vaga de estágio');
+
+        $mensagem = '';
+        $id = (int) ($_GET['id'] ?? 0);
+
+        // Busca a vaga atual (necessário tanto pro GET quanto pra validar no POST)
+        $dadosVaga = ApiClient::get("/vagas/{$id}");
+
+        if (empty($dadosVaga)) {
+            throw new Exception("Vaga não encontrada");
+        }
+
+        // 3. Verifica se a vaga pertence à empresa logada
+        if ((int) $dadosVaga['empresaId'] !== (int) $_SESSION['usuario']->getId()) {
+            header('Location: ' . BASE_URL . 'painelEmpresa');
+            exit;
+        }
+
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+
+            $post = [
+                'titulo'    => $_POST['titulo'] ?? '',
+                'descricao' => $_POST['descricao'] ?? '',
+                'area'      => $_POST['area'] ?? '',
+                'status'    => $_POST['status'] ?? '',
+                'empresaId' => (int) $_SESSION['usuario']->getId()
+            ];
+
+            try {
+                ApiClient::put("/vagas/{$id}", $post);
+                $mensagem = "Vaga editada com sucesso!";
+                $dadosVaga = array_merge($dadosVaga, $post); // atualiza pra exibir os novos valores
+            } catch (Exception $e) {
+                throw new Exception("Erro ao editar vaga " . $e->getMessage());
+            }
+        }
+
+        $this->render('empresa/editarVaga', 'Edite as informações da vaga de estágio', [
+            'mensagem' => $mensagem,
+            'vaga' => $dadosVaga,
+            'id' => $id
+        ]);
     }
 
     public function excluirVaga(): void
@@ -245,9 +285,9 @@ final class RenderViews
         $id = (int) $_GET['id'] ?? '';
 
         try {
-            ApiClient::delete("/vagas{$id}");
+            ApiClient::delete("/vagas/{$id}");
         } catch(Exception $e){
-            throw new Exception("Erro ao excluir vaga");
+            throw new Exception("Erro ao excluir vaga " . $e->getMessage());
         }
          
         header('Location: ' . BASE_URL . 'painelEmpresa');

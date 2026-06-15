@@ -3,6 +3,10 @@
         header('Location: ' . BASE_URL . 'empresaLogin');
         exit;
     }
+    
+    if (!empty($mensagem)) {
+        echo '<div class="alert alert-danger" role="alert">' . $mensagem . '</div>';
+    }
 
     $empresa = $_SESSION['usuario'];
 ?>

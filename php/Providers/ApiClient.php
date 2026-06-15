@@ -24,10 +24,15 @@ class ApiClient
         $status   = curl_getinfo($ch, CURLINFO_HTTP_CODE);
         curl_close($ch);
 
-        //Caso o sistema der algum erro de Api
-        if (!$response || $status >= 400) {
-            throw new Exception("Erro na API. Status: {$status} | Resposta: " . /*Mostra os dados validos da variavel*/var_export($response, true));
-        }  
+        // Erro status de erro HTTP
+        if ($status >= 400) {
+            throw new Exception("Erro na API. Status: {$status} | Resposta: {$response}");
+        }
+
+        // Sucesso sem corpo (ex: 204 No Content) — não tenta decodificar
+        if ($response === '' || $response === false) {
+            return [];
+        } 
 
         return json_decode($response, true) ?? [];
     }
