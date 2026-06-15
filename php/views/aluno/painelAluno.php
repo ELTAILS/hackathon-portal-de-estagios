@@ -13,48 +13,58 @@
 
         <div class="text-center w-100 mb-5">
             <a href="<?=BASE_URL?>minhasCanditaturas" class="btn btn-home-primary px-4 py-2">
-                Ver minhas canditaduras
+                Ver minhas candidaturas
             </a>
         </div>
 
-        <div class="table-responsive">
-            <table class="table table-striped rounded-4 table-vagas">
-                <thead>
-                    <tr>
-                        <th scope="col">Titulo</th>
-                        <th scope="col">Descricao</th>
-                        <th scope="col">Area</th>
-                        <th scope="col">Status</th>
-                        <th scope="col">#</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <?php if (isset($vagas) && !empty($vagas)): ?>
-                        <?php foreach ($vagas as $vaga): ?>
-                            <tr>
-                                <td><?= htmlspecialchars($vaga->getTitulo()) ?></td>
-                                <td><?= htmlspecialchars($vaga->getDescricao()) ?></td>
-                                <td><?= htmlspecialchars($vaga->getArea()) ?></td>
-                                <td><?= htmlspecialchars($vaga->getStatus()->value) ?></td>
-                                <td>
+        <?php if (isset($vagas) && !empty($vagas)): ?>
+            <?php foreach ($vagas as $vaga): ?>
+                <article class="job-card mb-4">
+                    <div class="d-flex gap-3">
+                        <div class="d-flex flex-column align-items-center">
+                            <div class="company-logo">V</div>
+                            <span class="company-name">Vaga da Aluninhos</span>
+                        </div>
+
+                        <div class="flex-grow-1">
+                            <div class="d-flex flex-column flex-md-row gap-3">
+                                <div class="flex-grow-1">
+                                    <p class="job-title"><?= htmlspecialchars($vaga->getTitulo()) ?></p>
+
+                                    <div class="d-flex flex-wrap gap-3 mb-2">
+                                        <span class="meta-item">◇ <?= htmlspecialchars($vaga->getArea()) ?></span>
+                                        <span class="meta-item">⊙ Status: <?= htmlspecialchars((string) $vaga->getStatus()->value) ?></span>
+                                    </div>
+
+                                    <p class="job-desc"><?= htmlspecialchars($vaga->getDescricao()) ?></p>
+
+                                    <div class="d-flex flex-wrap gap-2">
+                                        <span class="badge-tag">Área: <?= htmlspecialchars($vaga->getArea()) ?></span>
+                                        <span class="badge-tag">Situação: <?= htmlspecialchars((string) $vaga->getStatus()->value) ?></span>
+                                    </div>
+                                </div>
+
+                                <div class="d-flex flex-column align-items-md-end align-items-start">
+                                    <span class="published mb-2">Vaga disponível para candidatura</span>
                                     <?php if ($vaga->getStatus() === StatusVaga::ABERTA): ?>
-                                        <a href="<?= BASE_URL . 'candidatar/' . $vaga->getId(); ?>" class="btn btn-sm btn-primary">
+                                        <a href="<?= BASE_URL . 'candidatar/' . $vaga->getId(); ?>" class="btn-candidatar text-decoration-none text-center">
                                             Candidatar-se
                                         </a>
                                     <?php else: ?>
-                                        <span class="text-muted">Fechada</span>
+                                        <button class="btn-candidatar" type="button" disabled>Fechada</button>
                                     <?php endif; ?>
-                                </td>
-                            </tr>
-                        <?php endforeach; ?>
-                    <?php else: ?>
-                        <div class="text-center mt-5 mb-5">
-                            <h1>Nenhuma vaga disponível atualmente</h1>
-                            <p>Veja essa página novamente mais tarde.</p>
+                                    <a href="<?= BASE_URL ?>vagas" class="btn-detalhes text-center" type="button">Ver detalhes</a>
+                                </div>
+                            </div>
                         </div>
-                    <?php endif; ?>
-                </tbody>
-            </table>
-        </div>
+                    </div>
+                </article>
+            <?php endforeach; ?>
+        <?php else: ?>
+            <div class="text-center mt-5 mb-5">
+                <h1>Nenhuma vaga disponível atualmente</h1>
+                <p>Veja essa página novamente mais tarde.</p>
+            </div>
+        <?php endif; ?>
     </div>
 </section>

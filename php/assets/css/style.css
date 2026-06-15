@@ -492,6 +492,104 @@ form div input {
 
 /*painel Aluno*/
 
+#painel-aluno .job-card {
+    border: 1px solid var(--fundo-icone);
+    border-radius: 1rem;
+    padding: 1.25rem 1.5rem;
+    background: var(--branco);
+    transition: ease-in-out 0.4s;
+    box-shadow: 0 8px 18px rgba(17, 24, 39, 0.08);
+}
+
+#painel-aluno .job-card:hover {
+    transform: translateY(-5px);
+}
+
+#painel-aluno .company-logo {
+    width: 52px;
+    height: 52px;
+    border-radius: 10px;
+    background: var(--button);
+    color: var(--branco);
+    font-size: 1.2rem;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#painel-aluno .company-name {
+    font-size: 0.8rem;
+    color: var(--texto-pequeno);
+    text-align: center;
+    margin-top: 6px;
+}
+
+#painel-aluno .job-title {
+    font-size: 1rem;
+    font-weight: 700;
+    color: var(--letras-sections);
+    margin-bottom: 0.35rem;
+}
+
+#painel-aluno .meta-item {
+    font-size: 0.9rem;
+    color: var(--texto-pequeno);
+}
+
+#painel-aluno .job-desc {
+    font-size: 0.95rem;
+    color: var(--texto-pequeno);
+    margin: 0.6rem 0 0.8rem;
+    line-height: 1.5;
+}
+
+#painel-aluno .badge-tag {
+    background: var(--fundo-icone);
+    border: 1px solid var(--fundo-icone);
+    border-radius: 999px;
+    font-size: 0.82rem;
+    color: var(--letras-sections);
+    padding: 0.35rem 0.7rem;
+}
+
+#painel-aluno .published {
+    font-size: 0.82rem;
+    color: var(--texto-pequeno);
+}
+
+#painel-aluno .btn-candidatar {
+    background: var(--button);
+    color: var(--branco);
+    border: none;
+    border-radius: 8px;
+    padding: 0.45rem 0.9rem;
+    font-size: 0.92rem;
+    font-weight: 600;
+    width: 100%;
+    text-align: center;
+    text-decoration: none;
+}
+
+#painel-aluno .btn-candidatar:hover {
+    background: var(--destacar);
+    color: var(--branco);
+}
+
+#painel-aluno .btn-detalhes {
+    background: none;
+    border: none;
+    color: var(--destacar);
+    font-size: 0.88rem;
+    font-weight: 600;
+    width: 100%;
+    margin-top: 0.35rem;
+}
+
+#painel-aluno .btn-detalhes:hover {
+    text-decoration: underline;
+}
+
 .job-card {
     border: 1px solid #dee2e6;
     border-radius: 12px;
