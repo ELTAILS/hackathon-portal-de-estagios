@@ -1,4 +1,4 @@
-<?php 
+<?php
     if($_SERVER['REQUEST_METHOD'] === 'POST'){
         $cnpj = $_POST['cnpj'] ?? '';
         $password = $_POST['password'] ?? '';

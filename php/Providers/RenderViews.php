@@ -93,9 +93,9 @@ final class RenderViews
         $this->render('aluno/painelAluno', 'Bem vindo aluno ao seu painel de estagios', ['vagas' => $vagas]);
     }
 
-    public function minhasCanditaturas(): void 
+    public function minhasCandidaturas(): void 
     {
-        $this->render('aluno/minhasCanditaturas', 'Minhas canditaturas');
+        $this->render('aluno/minhasCandidaturas', 'Minhas candidaturas');
     }
     
     public function painelEmpresa(): void
@@ -124,7 +124,7 @@ final class RenderViews
             exit;
         }
 
-        $erro = null;
+        $erro = '';
 
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $resposta = ApiClient::post('/vagas', [
@@ -163,7 +163,7 @@ final class RenderViews
             exit;
         }
 
-        $id = $_GET['id'] ?? null;
+        $id = (int) $_GET['id'] ?? '';
 
         try {
             if($id) ApiClient::delete("/vagas{$id}");
@@ -172,6 +172,30 @@ final class RenderViews
         }
          
         header('Location: ' . BASE_URL . 'painelEmpresa');
+        exit;
+
+    }
+
+    public function candidatar(): void
+    {
+
+        if(!($_SESSION['usuario'] instanceof Aluno)){
+            header('Location: ' . BASE_URL . 'login');
+            exit;
+        }
+
+        $post = [
+            'id_vaga' => (int) $_GET['id'] ?? '',
+            'id_aluno' => (int) $_SESSION['usuario']->getId()
+        ];
+
+        try{
+            ApiClient::post("/candidaturas", $post);
+        } catch(Exception $e){
+            throw new Exception("Erro ao se candidatar");
+        }
+
+        header('Location: ' . BASE_URL . 'painelAluno');
         exit;
 
     }

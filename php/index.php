@@ -33,8 +33,8 @@ switch($url){
     case 'painelAluno':
         $renderView->painelAluno();
         break;
-    case 'minhasCanditaturas':
-        $renderView->minhasCanditaturas();
+    case 'minhasCandidaturas':
+        $renderView->minhasCandidaturas();
         break;
     case 'painelEmpresa':
         $renderView->painelEmpresa();
@@ -44,6 +44,9 @@ switch($url){
         break;
     case 'candidatos':
         $renderView->candidatos();
+        break;
+    case 'candidatar':
+        $renderView->candidatar();
         break;
     case 'editarVaga':
         $renderView->editarVaga();

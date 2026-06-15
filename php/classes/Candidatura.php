@@ -2,21 +2,21 @@
 
 require_once __DIR__ . '/enum/StatusCandidaturas.php';
 
-class Canditatura
+class Candidatura
 {
     private int $id;
-    private int $aluno_id;
-    private int $vaga_id;
     private StatusCandidaturas $status;
     private string $data;
-
-    public function __construct( int $id, int $aluno_id, int $vaga_id, StatusCandidaturas $status = StatusCandidaturas::EM_ANALISE, string $data = '')
+    private int $aluno_id;
+    private int $vaga_id;
+    
+    public function __construct(int $id, StatusCandidaturas $status, string $data, int $aluno_id, int $vaga_id)
     {
         $this->id = $id;
-        $this->aluno_id = $aluno_id;
-        $this->vaga_id = $vaga_id;
         $this->status = $status;
         $this->data = $data;
+        $this->aluno_id = $aluno_id;
+        $this->vaga_id = $vaga_id;
     }
 
     public function getId(): int

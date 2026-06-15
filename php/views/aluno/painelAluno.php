@@ -12,7 +12,7 @@
         <h4 class="text-muted mb-4">Encontre oportunidades que combinam com seu perfil.</h4>
 
         <div class="text-center w-100 mb-5">
-            <a href="<?=BASE_URL?>minhasCanditaturas" class="btn btn-home-primary px-4 py-2">
+            <a href="<?=BASE_URL?>minhasCandidaturas" class="btn btn-home-primary px-4 py-2">
                 Ver minhas candidaturas
             </a>
         </div>
@@ -47,7 +47,7 @@
                                 <div class="d-flex flex-column align-items-md-end align-items-start">
                                     <span class="published mb-2">Vaga disponível para candidatura</span>
                                     <?php if ($vaga->getStatus() === StatusVaga::ABERTA): ?>
-                                        <a href="<?= BASE_URL . 'candidatar/' . $vaga->getId(); ?>" class="btn-candidatar text-decoration-none text-center">
+                                        <a href="<?= BASE_URL . 'candidatar?id=' . $vaga->getId(); ?>" class="btn-candidatar text-decoration-none text-center">
                                             Candidatar-se
                                         </a>
                                     <?php else: ?>
