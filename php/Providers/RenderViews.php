@@ -34,11 +34,12 @@ final class RenderViews
         $vagas = [];
         foreach($dados as $d){
             $vagas[] = new Vaga(
-                $d['id'],
+                (int) $d['id'],
                 $d['titulo'],
                 $d['descricao'],
                 $d['area'],
-                $status = StatusVaga::from($d['status'])
+                $status = StatusVaga::from($d['status']),
+                (int) $d['empresa']['id']
             );
         }
 
@@ -63,7 +64,7 @@ final class RenderViews
         $empresas = [];
         foreach($dados as $d){
             $empresas[] = new Empresa(
-                $d['id'],
+                (int)$d['id'],
                 $d['nome'],
                 '',
                 ''
@@ -104,11 +105,12 @@ final class RenderViews
         $vagas = [];
         foreach($dados as $d){
             $vagas[] = new Vaga(
-                $d['id'],
+                (int)$d['id'],
                 $d['titulo'],
                 $d['descricao'],
                 $d['area'],
-                $status = StatusVaga::from($d['status'])
+                $status = StatusVaga::from($d['status']),
+                (int) $d['empresa']['id']
             );
         }
 
