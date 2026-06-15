@@ -17,46 +17,44 @@
             </a>
         </div>
 
-        <?php for ($i = 0; $i < 6; $i++): ?>
-            <div class="job-card mb-5">
-                <div class="d-flex gap-3">
-
-                    <div class="d-flex flex-column align-items-center">
-                        <div class="company-logo">A</div>
-                        <span class="company-name">Empresa Alfa</span>
-                    </div>
-
-                    <div class="flex-grow-1">
-                        <div class="d-flex flex-column flex-md-row gap-3">
-
-                            <div class="flex-grow-1">
-                                <p class="job-title">Estágio em Marketing Digital</p>
-
-                                <div class="d-flex flex-wrap gap-3 mb-2">
-                                    <span class="meta-item">◇ Marketing</span>
-                                    <span class="meta-item">⊙ Goiânia - GO</span>
-                                    <span class="meta-item">▣ Híbrido</span>
-                                </div>
-
-                                <p class="job-desc">Apoiar nas estratégias de marketing digital, gestão de redes sociais, análise de métricas e criação de conteúdo.</p>
-                                <div class="d-flex flex-wrap gap-2">
-                                    <span class="badge-tag">Bolsa R$ 1.200,00</span>
-                                    <span class="badge-tag">Carga horária: 6h/dia</span>
-                                </div>
-                            </div>
-
-                            <div class="d-flex flex-column align-items-md-end align-items-start">
-                                <span class="published mb-2">Publicada há 1 dia</span>
-                                <button class="btn-candidatar">Candidatar-se</button>
-                                <button class="btn-detalhes">Ver detalhes</button>
-                            </div>
-
+        <div class="table-responsive">
+            <table class="table table-striped rounded-4 table-vagas">
+                <thead>
+                    <tr>
+                        <th scope="col">Titulo</th>
+                        <th scope="col">Descricao</th>
+                        <th scope="col">Area</th>
+                        <th scope="col">Status</th>
+                        <th scope="col">#</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <?php if (isset($vagas) && !empty($vagas)): ?>
+                        <?php foreach ($vagas as $vaga): ?>
+                            <tr>
+                                <td><?= htmlspecialchars($vaga->getTitulo()) ?></td>
+                                <td><?= htmlspecialchars($vaga->getDescricao()) ?></td>
+                                <td><?= htmlspecialchars($vaga->getArea()) ?></td>
+                                <td><?= htmlspecialchars($vaga->getStatus()->value) ?></td>
+                                <td>
+                                    <?php if ($vaga->getStatus() === StatusVaga::ABERTA): ?>
+                                        <a href="<?= BASE_URL . 'candidatar/' . $vaga->getId(); ?>" class="btn btn-sm btn-primary">
+                                            Candidatar-se
+                                        </a>
+                                    <?php else: ?>
+                                        <span class="text-muted">Fechada</span>
+                                    <?php endif; ?>
+                                </td>
+                            </tr>
+                        <?php endforeach; ?>
+                    <?php else: ?>
+                        <div class="text-center mt-5 mb-5">
+                            <h1>Nenhuma vaga disponível atualmente</h1>
+                            <p>Veja essa página novamente mais tarde.</p>
                         </div>
-                    </div>
-
-                </div>
-            </div>
-        <?php endfor; ?>
-
+                    <?php endif; ?>
+                </tbody>
+            </table>
+        </div>
     </div>
 </section>

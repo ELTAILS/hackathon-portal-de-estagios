@@ -75,7 +75,21 @@ final class RenderViews
 
     public function painelAluno(): void
     {
-        $this->render('aluno/painelAluno', 'Bem vindo aluno ao seu painel de estagios');
+
+        $dados = ApiClient::get('/vagas');
+            
+            $vagas = [];
+            foreach($dados as $d){
+                $vagas[] = new Vaga(
+                    (int) $d['id'],
+                    $d['titulo'],
+                    $d['descricao'],
+                    $d['area'],
+                    $status = StatusVaga::from($d['status']),
+                    (int) $d['empresa']['id']
+                );
+            }
+        $this->render('aluno/painelAluno', 'Bem vindo aluno ao seu painel de estagios', ['vagas' => $vagas]);
     }
 
     public function minhasCanditaturas(): void 

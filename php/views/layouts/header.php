@@ -11,6 +11,7 @@
     <!---Link CSS interno-->
     <link rel="stylesheet" href="<?= BASE_URL ?>assets/css/style.css">
     <link rel="stylesheet" href="<?= BASE_URL ?>assets/css/media.css">
+    <link rel="shortcut icon" href="<?= BASE_URL ?>assets/imgs/favicon.ico" type="image/x-icon">
     <title><?= $title ?></title>
 </head>
 <body>
