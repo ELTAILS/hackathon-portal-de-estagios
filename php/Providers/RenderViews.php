@@ -77,6 +77,11 @@ final class RenderViews
 
     public function painelAluno(): void
     {
+        if(!($_SESSION['usuario'] instanceof Aluno)){
+            header('Location: ' . BASE_URL . 'login');
+            exit;
+        }
+
         $dados = ApiClient::get('/vagas');
 
         $vagas = [];
@@ -96,7 +101,7 @@ final class RenderViews
 
         if (isset($_SESSION['usuario']) && $_SESSION['usuario'] instanceof Aluno) {
             $alunoId = (int) $_SESSION['usuario']->getId();
-            $candidaturas = ApiClient::get('/candidaturas/aluno/' . $alunoId);
+            $candidaturas = ApiClient::get("/candidaturas/aluno/" . $alunoId);
 
             foreach ($candidaturas as $candidatura) {
                 $vagaId = (int) ($candidatura['vaga_id'] ?? $candidatura['vaga']['id'] ?? 0);
@@ -107,14 +112,16 @@ final class RenderViews
             }
         }
 
-        $this->render('aluno/painelAluno', 'Bem vindo aluno ao seu painel de estagios', [
-            'vagas' => $vagas,
-            'candidaturasPorVaga' => $candidaturasPorVaga,
-        ]);
+        $this->render('aluno/painelAluno', 'Bem vindo aluno ao seu painel de estagios', ['vagas' => $vagas,'candidaturasPorVaga' => $candidaturasPorVaga,]);
     }
 
     public function minhasCandidaturas(): void 
     {
+        if(!($_SESSION['usuario'] instanceof Aluno)){
+            header('Location: ' . BASE_URL . 'login');
+            exit;
+        }
+
         $dados = ApiClient::get('/candidaturas');
 
         $alunoId = (int) $_SESSION['usuario']->getId();
@@ -152,6 +159,11 @@ final class RenderViews
     
     public function painelEmpresa(): void
     {
+        if (!($_SESSION['usuario'] instanceof Empresa)) {
+            header('Location: ' . BASE_URL . 'empresaLogin');
+            exit;
+        }
+
         //Buscar dados de candidaturas
         $dados = ApiClient::get('/candidaturas');
 
@@ -220,11 +232,20 @@ final class RenderViews
 
     public function candidatos(): void
     {
+        if (!($_SESSION['usuario'] instanceof Empresa)) {
+            header('Location: ' . BASE_URL . 'empresaLogin');
+            exit;
+        }
+
         $this->render('empresa/candidatos', 'Lista de candidatos para suas vagas');
     }
 
     public function editarVaga(): void
     {
+        if (!($_SESSION['usuario'] instanceof Empresa)) {
+            header('Location: ' . BASE_URL . 'empresaLogin');
+            exit;
+        }
         $this->render('empresa/editarVaga', 'Edite as informações da vaga de estágio');
     }
 

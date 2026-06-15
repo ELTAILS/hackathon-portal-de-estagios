@@ -54,11 +54,13 @@
                                     <?php if ($jaCandidatou): ?>
                                         <span class="badge-tag mb-2">Candidatura já enviada</span>
                                         <a href="<?= BASE_URL ?>minhasCandidaturas" class="btn-detalhes text-center">Ver minhas candidaturas</a>
+
                                     <?php elseif ($vaga->getStatus() === StatusVaga::ABERTA): ?>
                                         <a href="<?= BASE_URL . 'candidatar?id=' . $vaga->getId(); ?>" class="btn-candidatar text-decoration-none text-center">
                                             Candidatar-se
                                         </a>
                                         <a href="<?= BASE_URL ?>vagas" class="btn-detalhes text-center">Ver detalhes</a>
+
                                     <?php else: ?>
                                         <button class="btn-candidatar" type="button" disabled>Fechada</button>
                                         <a href="<?= BASE_URL ?>vagas" class="btn-detalhes text-center">Ver detalhes</a>
