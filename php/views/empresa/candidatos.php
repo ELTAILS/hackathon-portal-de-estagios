@@ -37,20 +37,33 @@
                         <th scope="col">Nome</th>
                         <th scope="col">E-mail</th>
                         <th scope="col">RA</th>
-                        <th scope="col">curso</th>
-                        <th scope="col">ativo</th>
+                        <th scope="col">Curso</th>
+                        <th scope="col">Vaga</th>
+                        <th scope="col">Ativo</th>
                     </tr>
                 </thead>
                 <tbody>
-                    <?php for($i = 0; $i < 6; $i++):?>
+                    <?php if (isset($candidatos) && !empty($candidatos)): ?>
+                        <?php foreach ($candidatos as $candidatura): ?>
+                            <?php $aluno = $candidatura['aluno'] ?? []; ?>
+                            <tr>
+                                <th scope="row"><?= htmlspecialchars($aluno['nome'] ?? '---') ?></th>
+                                <td><?= htmlspecialchars($aluno['email'] ?? '---') ?></td>
+                                <td><?= htmlspecialchars($aluno['ra'] ?? '---') ?></td>
+                                <td><?= htmlspecialchars($aluno['curso'] ?? '---') ?></td>
+                                <td><?= htmlspecialchars($candidatura['vaga_titulo'] ?? '---') ?></td>
+                                <td>
+                                    <span class="badge <?= (!empty($aluno['ativo']) ? 'bg-success-subtle text-success-emphasis' : 'bg-danger-subtle text-danger-emphasis') ?>">
+                                        <?= !empty($aluno['ativo']) ? 'Ativo' : 'Inativo' ?>
+                                    </span>
+                                </td>
+                            </tr>
+                        <?php endforeach; ?>
+                    <?php else: ?>
                         <tr>
-                            <th scope="row">Wagner Junior</th>
-                            <td>wagner.junior@email.com</td>
-                            <td>123456</td>
-                            <td>Engenharia de Software</td>
-                            <td><span class="badge bg-success-subtle text-success-emphasis">Ativo</span></td>
+                            <td colspan="6" class="text-center py-4">Nenhum candidato encontrado para suas vagas ainda.</td>
                         </tr>
-                    <?php endfor;?>
+                    <?php endif; ?>
                 </tbody>
             </table>
         </div>

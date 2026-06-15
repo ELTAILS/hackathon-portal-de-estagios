@@ -223,7 +223,27 @@ final class RenderViews
             exit;
         }
 
-        $this->render('empresa/candidatos', 'Lista de candidatos para suas vagas');
+        $empresaId = (int) $_SESSION['usuario']->getId();
+        $dados = ApiClient::get('/vagas');
+
+        $vagasEmpresa = [];
+        foreach ($dados as $d) {
+            if ((int) $d['empresa']['id'] !== $empresaId) {
+                continue;
+            }
+            $vagasEmpresa[(int) $d['id']] = $d['titulo'];
+        }
+
+        $candidatos = [];
+        foreach ($vagasEmpresa as $vagaId => $vagaTitulo) {
+            $dadosCandidatos = ApiClient::get('/candidaturas/vaga/' . $vagaId);
+            foreach ($dadosCandidatos as $candidatura) {
+                $candidatura['vaga_titulo'] = $vagaTitulo;
+                $candidatos[] = $candidatura;
+            }
+        }
+
+        $this->render('empresa/candidatos', 'Lista de candidatos para suas vagas', ['candidatos' => $candidatos]);
     }
 
     public function editarVaga(): void

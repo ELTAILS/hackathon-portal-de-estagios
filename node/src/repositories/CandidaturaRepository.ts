@@ -23,6 +23,7 @@ export const CandidaturaRepository = FonteDados.getRepository(Candidatura).exten
     async buscarPorVaga(vaga_id: number): Promise<Candidatura[]> {
         return this.find({
             where: { vaga: { id: vaga_id } },
+            relations: ['aluno', 'vaga'],
             order: { data_candidatura: "DESC" },
         });
     },
