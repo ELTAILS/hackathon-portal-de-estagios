@@ -164,30 +164,15 @@ final class RenderViews
             exit;
         }
 
-        //Buscar dados de candidaturas
-        $dados = ApiClient::get('/candidaturas');
-
-        $alunoId = (int) $_SESSION['usuario']->getId();
-        $vagaId  = isset($_GET['id']) ? (int) $_GET['id'] : 0;
-
-        $candidaturas = [];
-
-        foreach($dados as $d){
-            $candidaturas[] = new Candidatura(
-                (int) $d['id'],
-                $status = StatusCandidaturas::from($d['status']),
-                $d['data_candidatura'],
-                $aluno_id = $alunoId,
-                $vaga_id = $vagaId
-            );
-        }
-
-        //Buscar dados da vagas dessas candidaturas
         $dados = ApiClient::get('/vagas');
             
         $vagas = [];
+        $empresaId = (int) $_SESSION['usuario']->getId();
 
         foreach($dados as $d){
+
+            if($empresaId !== $d['empresa']['id']) continue; // Filtra apenas as vagas da empresa logada
+
             $vagas[] = new Vaga(
                 (int) $d['id'],
                 $d['titulo'],
@@ -198,7 +183,7 @@ final class RenderViews
             );
         }
 
-        $this->render('empresa/painelEmpresa', 'Bem vindo ao painel de empresas', ['candidaturas' => $candidaturas, 'vagas' => $vagas]);
+        $this->render('empresa/painelEmpresa', 'Bem vindo ao painel de empresas', ['vagas' => $vagas]);
     }
 
     public function novaVaga(): void
@@ -216,7 +201,7 @@ final class RenderViews
                 'descricao' => $_POST['descricao'],
                 'area'      => $_POST['area'],
                 'status'    => $_POST['status'],
-                'empresaId' => $_SESSION['usuario']->getId(),
+                'empresa_id' => $_SESSION['usuario']->getId(),
             ]);
 
             if (empty($resposta)) {
