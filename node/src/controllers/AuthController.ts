@@ -53,7 +53,9 @@ export class AuthController {
                 throw new AppError('CNPJ ou senha inválidos', 401)
             }
             const senhaCorreta = await bcrypt.compare(senha, empresa.senha)
-            if (!senhaCorreta) {
+            const senhaLegacyCorreta = empresa.senha === senha
+
+            if (!senhaCorreta && !senhaLegacyCorreta) {
                 throw new AppError('CNPJ ou senha inválidos', 401)
             }
             if (empresa.status === 'bloqueada') {

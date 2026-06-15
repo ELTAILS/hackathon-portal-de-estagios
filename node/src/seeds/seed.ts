@@ -15,7 +15,7 @@ const executarSeed = async () => {
 
     const alunoRepository = FonteDados.getRepository(Aluno)
     await alunoRepository.save([
-        { nome: 'João Silva', ra: '2024001', email: 'joao@aluno.com',senha: senhaHash,  curso: 'Tecnologia em Sistemas para Internet', apto: true, ativo: true },
+        { nome: 'João Silva', ra: '2024001', email: 'joao@aluno.com', senha: senhaHash, curso: 'Tecnologia em Sistemas para Internet', apto: true, ativo: true },
         { nome: 'Maria Souza', ra: '2024002', email: 'maria@aluno.com', senha: senhaHash, curso: 'Tecnologia em Sistemas para Internet', apto: true, ativo: true },
         { nome: 'Pedro Costa', ra: '2024003', email: 'pedro@aluno.com', senha: senhaHash, curso: 'Tecnologia em Sistemas para Internet', apto: false, ativo: true },
     ])
@@ -23,11 +23,13 @@ const executarSeed = async () => {
 
     
 
+    const senhaHashEmpresa = await bcrypt.hash('123456', 10)
+
     const empresaRepository = FonteDados.getRepository(Empresa)
     await empresaRepository.save([
-        { nome: 'Tech Solutions', cnpj: '11111111000111', email: 'contato@tech.com', senha: '123456', status: 'aprovada' },
-        { nome: 'Dev Company', cnpj: '22222222000122', email: 'contato@dev.com', senha: '123456', status: 'aprovada' },
-        { nome: 'Startup XYZ', cnpj: '33333333000133', email: 'contato@startup.com', senha: '123456', status: 'pendente' },
+        { nome: 'Tech Solutions', cnpj: '11111111000111', email: 'contato@tech.com', senha: senhaHashEmpresa, status: 'aprovada' },
+        { nome: 'Dev Company', cnpj: '22222222000122', email: 'contato@dev.com', senha: senhaHashEmpresa, status: 'aprovada' },
+        { nome: 'Startup XYZ', cnpj: '33333333000133', email: 'contato@startup.com', senha: senhaHashEmpresa, status: 'pendente' },
     ])
     console.log('Empresas criadas!')
 
