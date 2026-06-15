@@ -79,17 +79,18 @@ final class RenderViews
 
         $dados = ApiClient::get('/vagas');
             
-            $vagas = [];
-            foreach($dados as $d){
-                $vagas[] = new Vaga(
-                    (int) $d['id'],
-                    $d['titulo'],
-                    $d['descricao'],
-                    $d['area'],
-                    $status = StatusVaga::from($d['status']),
-                    (int) $d['empresa']['id']
-                );
-            }
+        $vagas = [];
+
+        foreach($dados as $d){
+            $vagas[] = new Vaga(
+                (int) $d['id'],
+                $d['titulo'],
+                $d['descricao'],
+                $d['area'],
+                $status = StatusVaga::from($d['status']),
+                (int) $d['empresa']['id']
+            );
+        }
         $this->render('aluno/painelAluno', 'Bem vindo aluno ao seu painel de estagios', ['vagas' => $vagas]);
     }
 
@@ -100,12 +101,29 @@ final class RenderViews
     
     public function painelEmpresa(): void
     {
+        //Buscar dados de candidaturas
+        $dados = ApiClient::get('/candidaturas');
+
+        $candidaturas = [];
+
+        foreach($dados as $d){
+            $candidaturas[] = new Candidatura(
+                (int) $d['id'],
+                $status = StatusCandidaturas::from($d['status']),
+                $d['data'],
+                (int) $d['aluno_id'],
+                (int) $d['vaga_id'] 
+            );
+        }
+
+        //Buscar dados da vagas dessas candidaturas
         $dados = ApiClient::get('/vagas');
-        
+            
         $vagas = [];
+
         foreach($dados as $d){
             $vagas[] = new Vaga(
-                (int)$d['id'],
+                (int) $d['id'],
                 $d['titulo'],
                 $d['descricao'],
                 $d['area'],
@@ -114,7 +132,7 @@ final class RenderViews
             );
         }
 
-        $this->render('empresa/painelEmpresa', 'Bem vindo ao painel de empresas', ['vagas' => $vagas]);
+        $this->render('empresa/painelEmpresa', 'Bem vindo ao painel de empresas', ['candidaturas' => $candidaturas, 'vagas' => $vagas]);
     }
 
     public function novaVaga(): void
@@ -185,17 +203,17 @@ final class RenderViews
         }
 
         $post = [
-            'id_vaga' => (int) $_GET['id'] ?? '',
-            'id_aluno' => (int) $_SESSION['usuario']->getId()
+            'alunoId' => (int) $_SESSION['usuario']->getId(),
+            'vagaId'  => isset($_GET['id']) ? (int) $_GET['id'] : 0
         ];
 
         try{
             ApiClient::post("/candidaturas", $post);
         } catch(Exception $e){
-            throw new Exception("Erro ao se candidatar");
+            throw new Exception("Erro ao se candidatar " . $e->getMessage());
         }
 
-        header('Location: ' . BASE_URL . 'painelAluno');
+        header('Location: ' . BASE_URL . 'minhasCandidaturas');
         exit;
 
     }

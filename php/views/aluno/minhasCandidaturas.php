@@ -16,50 +16,56 @@
                 Ver vagas disponíveis
             </a>
             <a href="<?=BASE_URL?>painelAluno" class="btn btn-home-primary px-4 py-2">
-                Ver candidaturas enviadas
+                Ver vagas
             </a>
         </div>
 
-        <?php for ($i = 0; $i < 6; $i++): ?>
-            <div class="job-card mb-5">
-                <div class="d-flex gap-3">
+        <?php if (isset($candidaturas) && !empty($candidaturas)): ?>
+            <?php foreach ($candidaturas as $candidatura): ?>
+                <?php $vaga = $vagas[$candidatura->getVagaId()] ?? null; ?>
 
-                    <div class="d-flex flex-column align-items-center">
-                        <div class="company-logo">A</div>
-                        <span class="company-name">Empresa Alfa</span>
-                    </div>
+                <article class="job-card mb-4">
+                    <div class="d-flex gap-3">
+                        <div class="d-flex flex-column align-items-center">
+                            <div class="company-logo">V</div>
+                            <span class="company-name">Vaga da Aluninhos</span>
+                        </div>
 
-                    <div class="flex-grow-1">
-                        <div class="d-flex flex-column flex-md-row gap-3">
+                        <div class="flex-grow-1">
+                            <div class="d-flex flex-column flex-md-row gap-3">
+                                <div class="flex-grow-1">
+                                    <?php if ($vaga): ?>
+                                        <p class="job-title"><?= htmlspecialchars($vaga->getTitulo()) ?></p>
 
-                            <div class="flex-grow-1">
-                                <p class="job-title">Estágio em Marketing Digital</p>
+                                        <div class="d-flex flex-wrap gap-3 mb-2">
+                                            <span class="meta-item">◇ <?= htmlspecialchars($vaga->getArea()) ?></span>
+                                            <span class="meta-item">⊙ Status da vaga: <?= htmlspecialchars($vaga->getStatus()->value) ?></span>
+                                        </div>
 
-                                <div class="d-flex flex-wrap gap-3 mb-2">
-                                    <span class="meta-item">◇ Marketing</span>
-                                    <span class="meta-item">⊙ Goiânia - GO</span>
-                                    <span class="meta-item">▣ Híbrido</span>
+                                        <p class="job-desc"><?= htmlspecialchars($vaga->getDescricao()) ?></p>
+                                    <?php else: ?>
+                                        <p class="job-title">Vaga não encontrada (ID: <?= htmlspecialchars((string) $candidatura->getVagaId()) ?>)</p>
+                                    <?php endif; ?>
+
+                                    <div class="d-flex flex-wrap gap-2">
+                                        <span class="badge-tag">Candidatura em: <?= htmlspecialchars($candidatura->getData()) ?></span>
+                                        <span class="badge-tag">Status da candidatura: <?= htmlspecialchars($candidatura->getStatus()->value) ?></span>
+                                    </div>
                                 </div>
 
-                                <p class="job-desc">Apoiar nas estratégias de marketing digital, gestão de redes sociais, análise de métricas e criação de conteúdo.</p>
-                                <div class="d-flex flex-wrap gap-2">
-                                    <span class="badge-tag">Bolsa R$ 1.200,00</span>
-                                    <span class="badge-tag">Carga horária: 6h/dia</span>
+                                <div class="d-flex flex-column align-items-md-end align-items-start">
+                                    <a href="<?= BASE_URL ?>vagas" class="btn-detalhes text-center" type="button">Ver detalhes</a>
                                 </div>
                             </div>
-
-                            <div class="d-flex flex-column align-items-md-end align-items-start">
-                                <span class="published mb-2">Publicada há 1 dia</span>
-                                <button class="btn-candidatar">Candidatar-se</button>
-                                <button class="btn-detalhes">Ver detalhes</button>
-                            </div>
-
                         </div>
                     </div>
-
-                </div>
+                </article>
+            <?php endforeach; ?>
+        <?php else: ?>
+            <div class="text-center mt-5 mb-5">
+                <h1>Nenhuma candidatura recebida ainda</h1>
+                <p>Quando algum aluno se candidatar, ela aparecerá aqui.</p>
             </div>
-        <?php endfor; ?>
-
+        <?php endif; ?>
     </div>
 </section>

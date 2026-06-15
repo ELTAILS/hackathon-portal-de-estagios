@@ -24,7 +24,10 @@ class ApiClient
         $status   = curl_getinfo($ch, CURLINFO_HTTP_CODE);
         curl_close($ch);
 
-        if (!$response || $status >= 400) return [];
+        //Caso o sistema der algum erro de Api
+        if (!$response || $status >= 400) {
+            throw new Exception("Erro na API. Status: {$status} | Resposta: " . /*Mostra os dados validos da variavel*/var_export($response, true));
+        }  
 
         return json_decode($response, true) ?? [];
     }
