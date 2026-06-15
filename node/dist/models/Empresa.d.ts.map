@@ -1,1 +1,0 @@
-{"version":3,"file":"Empresa.d.ts","sourceRoot":"","sources":["../../src/models/Empresa.ts"],"names":[],"mappings":"AAEA,MAAM,MAAM,aAAa,GAAG,UAAU,GAAG,UAAU,GAAG,WAAW,CAAC;AAElE,qBACiB,OAAO;IAGhB,EAAE,EAAG,MAAM,CAAA;IAGX,IAAI,EAAE,MAAM,CAAA;IAGZ,KAAK,EAAG,MAAM,CAAA;IAGd,IAAI,EAAG,MAAM,CAAA;IAGb,KAAK,EAAE,MAAM,CAAA;IAGb,MAAM,EAAE,aAAa,CAAA;CAExB"}

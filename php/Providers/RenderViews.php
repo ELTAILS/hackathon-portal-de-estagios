@@ -245,7 +245,7 @@ final class RenderViews
         $id = (int) $_GET['id'] ?? '';
 
         try {
-            if($id) ApiClient::delete("/vagas{$id}");
+            ApiClient::delete("/vagas{$id}");
         } catch(Exception $e){
             throw new Exception("Erro ao excluir vaga");
         }
