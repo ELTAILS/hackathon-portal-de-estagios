@@ -12,10 +12,10 @@ public class EmpresaGui extends PainelBase {
     private final EmpresaService service;
 
     public EmpresaGui() {
-        super("Gestão de Empresas",
-                new String[]{"ID", "Nome", "CNPJ", "E-mail", "Status"});
+        super("Gestão de Empresas", new String[]{"ID", "Nome", "CNPJ", "E-mail", "Status"});
         this.service = new EmpresaService();
         adicionarBotoes();
+        carregarDados();
     }
 
     private void adicionarBotoes() {
