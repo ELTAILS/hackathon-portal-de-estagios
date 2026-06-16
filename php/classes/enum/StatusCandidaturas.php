@@ -2,6 +2,6 @@
 
 enum StatusCandidaturas: string {
     case EM_ANALISE = 'em_analise';
-    case APROVADA = 'aprovada';
+    case APROVADA = 'aprovado';
     case REPROVADA = 'reprovado';
 }

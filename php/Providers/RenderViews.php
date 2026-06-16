@@ -349,14 +349,11 @@ final class RenderViews
         $vagaId = (int) ($_GET['vagaId'] ?? 0);
         $status = $_GET['status'] ?? '';
 
-        // Só aceita os status que a API permite para essa ação
         if (!in_array($status, ['aprovado', 'reprovado'], true)) {
             header('Location: ' . BASE_URL . 'candidatos');
             exit;
         }
 
-        // Garante que a vaga informada realmente pertence à empresa logada,
-        // pra empresa não conseguir alterar candidaturas de vagas de outra empresa
         $dadosVaga = ApiClient::get("/vagas/{$vagaId}");
 
         if (empty($dadosVaga) || (int) ($dadosVaga['empresa']['id'] ?? 0) !== (int) $_SESSION['usuario']->getId()) {

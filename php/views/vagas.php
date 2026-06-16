@@ -7,7 +7,6 @@
                 <table class="table table-striped rounded-4 table-vagas">
                     <thead>
                         <tr>
-                            <th scope="col">#</th>
                             <th scope="col">Titulo</th>
                             <th scope="col">Descricao</th>
                             <th scope="col">Area</th>
@@ -18,7 +17,6 @@
                         <?php if (isset($vagas) && !empty($vagas)): ?>
                             <?php foreach ($vagas as $vaga): ?>
                                 <tr>
-                                    <th><?= htmlspecialchars($vaga->getEmpresaId()) ?></th>
                                     <td><?= htmlspecialchars($vaga->getTitulo()) ?></td>
                                     <td><?= htmlspecialchars($vaga->getDescricao()) ?></td>
                                     <td><?= htmlspecialchars($vaga->getArea()) ?></td>
