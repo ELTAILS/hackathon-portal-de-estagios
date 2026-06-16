@@ -1,7 +1,7 @@
 package gui;
 
-import java.model.Vaga;
-import java.service.VagaService;
+import model.Vaga;
+import service.VagaService;
 
 import javax.swing.*;
 import java.awt.*;

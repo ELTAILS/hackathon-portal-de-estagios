@@ -9,26 +9,85 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class AlunoService {
-    //listar Alunos
-    public List<Aluno> listar()
-    {
+
+    private final AlunoDao dao;
+
+    public AlunoService() {
+        this.dao = new AlunoDao();
+    }
+
+    public List<Aluno> listar() {
         try {
-            var dao = new AlunoDao();
             return dao.listar();
-        } catch (Exception e){
+        } catch (Exception e) {
             System.out.println(e.getMessage());
             return new ArrayList<>();
         }
     }
 
+    public List<Aluno> buscarTodos() {
+        return listar();
+    }
+
+    public Aluno buscarPorId(Integer id) {
+        return dao.buscarPorId(id);
+    }
+
+    public void salvar(Aluno aluno) {
+        if (aluno.getNome() == null || aluno.getNome().isBlank())
+            throw new IllegalArgumentException("Nome é obrigatório.");
+        if (aluno.getEmail() == null || aluno.getEmail().isBlank())
+            throw new IllegalArgumentException("E-mail é obrigatório.");
+        dao.salvar(aluno);
+    }
+
+    public void atualizar(Aluno aluno) {
+        dao.atualizar(aluno);
+    }
+
+    public void marcarComoApto(Integer id, boolean apto) {
+        Aluno aluno = dao.buscarPorId(id);
+        if (aluno == null)
+            throw new RuntimeException("Aluno não encontrado.");
+        aluno.setApto(apto);
+        dao.atualizar(aluno);
+    }
+
+    public List<String> importarDeTxt(String caminho) {
+        List<String> relatorio = new ArrayList<>();
+        List<String> linhas = Arquivo.readerFile(caminho);
+
+        for (String linha : linhas) {
+            if (linha == null || linha.isBlank()) continue;
+            String[] campos = linha.split(";");
+            if (campos.length < 4) {
+                relatorio.add("Linha inválida (ignorada): " + linha);
+                continue;
+            }
+            try {
+                Aluno aluno = new Aluno();
+                aluno.setNome(campos[0].trim());
+                aluno.setEmail(campos[1].trim());
+                aluno.setRa(campos[2].trim());
+                aluno.setCurso(campos[3].trim());
+                aluno.setAtivo(true);
+                dao.salvar(aluno);
+                relatorio.add("Importado: " + aluno.getNome());
+            } catch (Exception e) {
+                relatorio.add("Erro ao importar linha \"" + linha + "\": " + e.getMessage());
+            }
+        }
+        return relatorio;
+    }
+
     public void incluir(Aluno aluno) {
         try {
-            var arquivo = new File(System.getProperty("user.dir"), "\\produtos.txt");
+            var arquivo = new File(System.getProperty("user.dir"), "produtos.txt");
             Arquivo.writerFile(aluno.toString(), arquivo.toString());
             Arquivo.readerFile(arquivo.toString()).forEach(System.out::println);
-            var dao = new AlunoDao();
-            if (aluno.getId() == 0) {
-                dao.inserir(aluno);
+
+            if (aluno.getId() == null) {
+                dao.salvar(aluno);
             } else {
                 dao.atualizar(aluno);
             }
@@ -37,14 +96,11 @@ public class AlunoService {
         }
     }
 
-    public void deletar(long id) {
+    public void deletar(Integer id) {
         try {
-            var dao = new AlunoDao();
             dao.deletar(id);
         } catch (Exception e) {
             System.out.println(e.getMessage());
         }
     }
-
-
 }

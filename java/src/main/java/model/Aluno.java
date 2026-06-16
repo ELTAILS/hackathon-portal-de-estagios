@@ -1,21 +1,28 @@
 package model;
 
-public class Aluno
-{
-    private long id;
+public class Aluno extends EntidadeBase {
+
     private String nome;
     private String email;
-    private String senha;
+    private String senhaHash;
     private String ra;
     private String curso;
+    private Boolean apto;
     private Boolean ativo;
 
-    public long getId() {
-        return id;
+    public Aluno() {
+        super();
     }
 
-    public void setId(long id) {
-        this.id = id;
+    public Aluno(Integer id, String nome, String email, String ra,
+                 String curso, Boolean apto, Boolean ativo) {
+        super(id);
+        this.nome  = nome;
+        this.email = email;
+        this.ra    = ra;
+        this.curso = curso;
+        this.apto  = apto;
+        this.ativo = ativo;
     }
 
     public String getNome() {
@@ -34,12 +41,12 @@ public class Aluno
         this.email = email;
     }
 
-    public String getSenha() {
-        return senha;
+    public String getSenhaHash() {
+        return senhaHash;
     }
 
-    public void setSenha(String senha) {
-        this.senha = senha;
+    public void setSenhaHash(String senhaHash) {
+        this.senhaHash = senhaHash;
     }
 
     public String getRa() {
@@ -58,8 +65,16 @@ public class Aluno
         this.curso = curso;
     }
 
-    public Boolean getAtivo() {
-        return ativo;
+    public boolean isApto() {
+        return apto != null && apto;
+    }
+
+    public void setApto(Boolean apto) {
+        this.apto = apto;
+    }
+
+    public boolean isAtivo() {
+        return ativo != null && ativo;
     }
 
     public void setAtivo(Boolean ativo) {
@@ -69,12 +84,12 @@ public class Aluno
     @Override
     public String toString() {
         return "Aluno{" +
-                "id=" + id +
+                "id=" + getId() +
                 ", nome='" + nome + '\'' +
                 ", email='" + email + '\'' +
-                ", senha='" + senha + '\'' +
                 ", ra='" + ra + '\'' +
                 ", curso='" + curso + '\'' +
+                ", apto=" + apto +
                 ", ativo=" + ativo +
                 '}';
     }

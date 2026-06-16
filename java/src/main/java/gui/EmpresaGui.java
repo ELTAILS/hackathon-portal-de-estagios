@@ -1,7 +1,7 @@
 package gui;
 
-import java.model.Empresa;
-import java.service.EmpresaService;
+import model.Empresa;
+import service.EmpresaService;
 
 import javax.swing.*;
 import java.awt.*;

@@ -15,6 +15,14 @@ public class Arquivo
         }
     }
 
+    public static void writerFile(String conteudo, String nomeArquivo, boolean apenasAdicionar) {
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter(nomeArquivo, apenasAdicionar))) {
+            writer.write(conteudo);
+        } catch (IOException e) {
+            System.out.println(e.getMessage());
+        }
+    }
+
     public static List<String> readerFile(String nomeArquivo) {
         List<String> result = new ArrayList<>();
 

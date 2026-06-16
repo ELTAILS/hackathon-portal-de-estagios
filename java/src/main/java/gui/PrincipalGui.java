@@ -1,6 +1,6 @@
 package gui;
 
-import java.model.UsuarioAdmin;
+import model.UsuarioAdmin;
 
 import javax.swing.*;
 import java.awt.*;

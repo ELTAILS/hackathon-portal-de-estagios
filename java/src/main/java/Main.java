@@ -1,13 +1,9 @@
-import utils.ConexaoDao;
+import gui.LoginGui;
+
+import javax.swing.SwingUtilities;
 
 public class Main {
     public static void main(String[] args) {
-        ConexaoDao conexao = new ConexaoDao();
-        try{
-            conexao.getConnection();
-            System.out.printf("Banco conectado");
-        } catch (Exception e) {
-            System.out.printf("Banco não conectado" + e.getMessage());
-        }
+        SwingUtilities.invokeLater(() -> new LoginGui().setVisible(true));
     }
 }

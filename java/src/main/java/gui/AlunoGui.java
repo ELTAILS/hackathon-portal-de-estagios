@@ -1,7 +1,7 @@
 package gui;
 
-import java.model.Aluno;
-import java.service.AlunoService;
+import model.Aluno;
+import service.AlunoService;
 
 import javax.swing.*;
 import javax.swing.filechooser.FileNameExtensionFilter;

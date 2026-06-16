@@ -1,7 +1,7 @@
 package gui;
 
-import java.service.*;
-import java.util.RelatorioUtil;
+import service.*;
+import utils.RelatorioUtil;
 
 import javax.swing.*;
 import java.awt.*;

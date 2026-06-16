@@ -5,21 +5,23 @@ import java.sql.DriverManager;
 
 public class ConexaoDao {
 
-    private Connection connection;
+    private static Connection connection;
 
-    public ConexaoDao(){
-        try {
-            Class.forName("com.mysql.cj.jdbc.Driver");
-            this.connection = DriverManager.getConnection(
-                    "jdbc:mysql://localhost:3306/portal_estagio?useTimezone=true&serverTimezone=UTC",
-                    "root",
-                    "");
-        } catch (Exception e) {
-            System.out.println(e.getMessage());
-        }
+    private ConexaoDao() {
     }
 
-    public Connection getConnection() {
+    public static Connection getConnection() {
+        try {
+            if (connection == null || connection.isClosed()) {
+                Class.forName("com.mysql.cj.jdbc.Driver");
+                connection = DriverManager.getConnection(
+                        "jdbc:mysql://localhost:3306/portal_estagio?useTimezone=true&serverTimezone=UTC",
+                        "root",
+                        "");
+            }
+        } catch (Exception e) {
+            System.out.println("Erro ao conectar ao banco: " + e.getMessage());
+        }
         return connection;
     }
 }

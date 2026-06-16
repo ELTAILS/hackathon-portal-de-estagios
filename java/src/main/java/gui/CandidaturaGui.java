@@ -1,7 +1,7 @@
 package gui;
 
-import java.model.Candidatura;
-import java.service.CandidaturaService;
+import model.Candidatura;
+import service.CandidaturaService;
 
 import javax.swing.*;
 import java.awt.*;

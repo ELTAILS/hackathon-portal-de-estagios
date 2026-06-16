@@ -1,7 +1,7 @@
 package gui;
 
-import java.model.UsuarioAdmin;
-import java.service.UsuarioAdminService;
+import model.UsuarioAdmin;
+import service.UsuarioAdminService;
 
 import javax.swing.*;
 import java.awt.*;
