@@ -43,7 +43,7 @@
                 <?php if (isset($_SESSION['usuario'])): ?>
                     <div class="d-flex align-items-center gap-3">
                         <!--Mostra o nome do usuario-->
-                        <span class="user-name"><strong><?= substr(htmlspecialchars($_SESSION['usuario']->getNome()), 0, 10) ?></strong></span>
+                        <span class="user-name"><strong><?= substr(htmlspecialchars($_SESSION['usuario']->getNome()), 0, 9) ?></strong></span>
                         <!--Valida se o usuario tem o objeto aluno, provando que é aluno-->
                         <?php if($_SESSION['usuario'] instanceof Aluno):?>
                             <a href="<?= BASE_URL ?>painelAluno" class="btn btn-outline-light">Painel Aluno</a>

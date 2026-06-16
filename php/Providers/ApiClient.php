@@ -4,7 +4,6 @@ class ApiClient
 {
     private static string $baseUrl = 'http://localhost:3000';
 
-    // Método central — todos os outros chamam ele
     private static function request(string $method, string $endpoint, array $body = []): array
     {
         $ch = curl_init(self::$baseUrl . $endpoint);
