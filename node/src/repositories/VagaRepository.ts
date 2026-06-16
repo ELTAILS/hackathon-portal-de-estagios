@@ -1,6 +1,6 @@
 import { FonteDados } from "../config/database";
 import { Vaga } from "../models/Vaga";
-import { Candidatura } from "../models/Canditadura";
+import { Candidatura } from "../models/Candidatura";
 
 export const VagaRepository = FonteDados.getRepository(Vaga).extend({
 

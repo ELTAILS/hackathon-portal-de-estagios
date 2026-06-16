@@ -3,6 +3,7 @@ import { FonteDados } from '../config/database'
 import { Aluno } from '../models/Aluno'
 import { Empresa } from '../models/Empresa'
 import { Vaga } from '../models/Vaga'
+import { UsuarioAdmin } from '../models/UsuarioAdmin'
 import bcrypt from 'bcrypt'
 
 const executarSeed = async () => {
@@ -12,6 +13,12 @@ const executarSeed = async () => {
     console.log('Banco conectado!')
 
     const senhaHash = await bcrypt.hash('123456', 10)
+
+    const adminRepository = FonteDados.getRepository(UsuarioAdmin)
+
+    await adminRepository.save([
+        { nome: 'Administrador UniAlfa', email: 'rafaelUnialfa@gmail.com', senha_hash: await bcrypt.hash('admin123', 10), perfil: 'administrador' },
+    ])
 
     const alunoRepository = FonteDados.getRepository(Aluno)
     await alunoRepository.save([

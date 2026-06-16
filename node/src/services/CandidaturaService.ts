@@ -1,4 +1,4 @@
-import { Candidatura, StatusCandidatura } from "../models/Canditadura";
+import { Candidatura, StatusCandidatura } from "../models/Candidatura";
 import { AlunoRepository } from "../repositories/AlunoRepository";
 import { CandidaturaRepository } from "../repositories/CandidaturaRepository";
 import { NotificacaoRepository } from "../repositories/NotificacaoRepository";

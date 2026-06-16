@@ -1,4 +1,4 @@
-import {Router} from 'express';
+import {NextFunction, Router} from 'express';
 import { AuthController } from '../controllers/AuthController';
 import { validarSchema } from '../middlewares/validarSchema';
 import {loginAlunoSchema, loginEmpresaSchema} from '../validations/authValidation';
@@ -11,3 +11,5 @@ rotas.post('/auth/aluno/login', validarSchema(loginAlunoSchema), (req, res, next
 rotas.post('/auth/empresa/login', validarSchema(loginEmpresaSchema), (req, res, next) => authController.loginEmpresa(req, res, next));
 
 export default rotas;
+
+

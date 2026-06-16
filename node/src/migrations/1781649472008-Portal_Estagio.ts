@@ -1,7 +1,7 @@
 import { MigrationInterface, QueryRunner } from "typeorm";
 
-export class PortalEstagio1781547692673 implements MigrationInterface {
-    name = 'PortalEstagio1781547692673'
+export class PortalEstagio1781649472008 implements MigrationInterface {
+    name = 'PortalEstagio1781649472008'
 
     public async up(queryRunner: QueryRunner): Promise<void> {
         await queryRunner.query(`CREATE TABLE \`alunos\` (\`id\` int NOT NULL AUTO_INCREMENT, \`nome\` varchar(150) NOT NULL, \`senha\` varchar(250) NOT NULL, \`ra\` varchar(20) NOT NULL, \`email\` varchar(150) NOT NULL, \`curso\` varchar(100) NOT NULL, \`apto\` tinyint NOT NULL DEFAULT 0, \`ativo\` tinyint NOT NULL DEFAULT 1, UNIQUE INDEX \`IDX_10966272854c55f95c9f941828\` (\`ra\`), UNIQUE INDEX \`IDX_1f9a8f3f4e5a314a2d7f828a60\` (\`email\`), PRIMARY KEY (\`id\`)) ENGINE=InnoDB`);
@@ -9,6 +9,7 @@ export class PortalEstagio1781547692673 implements MigrationInterface {
         await queryRunner.query(`CREATE TABLE \`vagas\` (\`id\` int NOT NULL AUTO_INCREMENT, \`titulo\` varchar(150) NOT NULL, \`descricao\` text NOT NULL, \`area\` varchar(150) NOT NULL, \`status\` enum ('aberta', 'encerrada') NOT NULL DEFAULT 'aberta', \`criada_em\` datetime(6) NOT NULL DEFAULT CURRENT_TIMESTAMP(6), \`empresaId\` int NULL, PRIMARY KEY (\`id\`)) ENGINE=InnoDB`);
         await queryRunner.query(`CREATE TABLE \`candidaturas\` (\`id\` int NOT NULL AUTO_INCREMENT, \`status\` enum ('em_analise', 'aprovado', 'reprovado') NOT NULL DEFAULT 'em_analise', \`data_candidatura\` datetime(6) NOT NULL DEFAULT CURRENT_TIMESTAMP(6), \`aluno_id\` int NULL, \`vaga_id\` int NULL, PRIMARY KEY (\`id\`)) ENGINE=InnoDB`);
         await queryRunner.query(`CREATE TABLE \`notificacoes\` (\`id\` int NOT NULL AUTO_INCREMENT, \`mensagem\` text NOT NULL, \`lida\` tinyint NOT NULL DEFAULT 0, \`criada_em\` datetime(6) NOT NULL DEFAULT CURRENT_TIMESTAMP(6), \`aluno_id\` int NULL, PRIMARY KEY (\`id\`)) ENGINE=InnoDB`);
+        await queryRunner.query(`CREATE TABLE \`usuarios_admin\` (\`id\` int NOT NULL AUTO_INCREMENT, \`nome\` varchar(150) NOT NULL, \`email\` varchar(150) NOT NULL, \`senha_hash\` varchar(255) NOT NULL, \`perfil\` enum ('administrador', 'coordenador', 'operador') NOT NULL DEFAULT 'operador', UNIQUE INDEX \`IDX_f990ad9929e8022f951ce8b1d9\` (\`email\`), PRIMARY KEY (\`id\`)) ENGINE=InnoDB`);
         await queryRunner.query(`ALTER TABLE \`vagas\` ADD CONSTRAINT \`FK_61e2c2c348c984194644c17d5ab\` FOREIGN KEY (\`empresaId\`) REFERENCES \`empresas\`(\`id\`) ON DELETE NO ACTION ON UPDATE NO ACTION`);
         await queryRunner.query(`ALTER TABLE \`candidaturas\` ADD CONSTRAINT \`FK_25495b23c498b7fada81b549f6d\` FOREIGN KEY (\`aluno_id\`) REFERENCES \`alunos\`(\`id\`) ON DELETE NO ACTION ON UPDATE NO ACTION`);
         await queryRunner.query(`ALTER TABLE \`candidaturas\` ADD CONSTRAINT \`FK_97e1cfa7a2c7c81a1e4c7d1676c\` FOREIGN KEY (\`vaga_id\`) REFERENCES \`vagas\`(\`id\`) ON DELETE NO ACTION ON UPDATE NO ACTION`);
@@ -20,6 +21,8 @@ export class PortalEstagio1781547692673 implements MigrationInterface {
         await queryRunner.query(`ALTER TABLE \`candidaturas\` DROP FOREIGN KEY \`FK_97e1cfa7a2c7c81a1e4c7d1676c\``);
         await queryRunner.query(`ALTER TABLE \`candidaturas\` DROP FOREIGN KEY \`FK_25495b23c498b7fada81b549f6d\``);
         await queryRunner.query(`ALTER TABLE \`vagas\` DROP FOREIGN KEY \`FK_61e2c2c348c984194644c17d5ab\``);
+        await queryRunner.query(`DROP INDEX \`IDX_f990ad9929e8022f951ce8b1d9\` ON \`usuarios_admin\``);
+        await queryRunner.query(`DROP TABLE \`usuarios_admin\``);
         await queryRunner.query(`DROP TABLE \`notificacoes\``);
         await queryRunner.query(`DROP TABLE \`candidaturas\``);
         await queryRunner.query(`DROP TABLE \`vagas\``);

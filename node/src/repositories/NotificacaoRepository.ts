@@ -1,5 +1,5 @@
 import { FonteDados } from "../config/database";
-import { Notificacao } from "../models/Notificacoes";
+import { Notificacao } from "../models/Notificacao";
 
 export const NotificacaoRepository = FonteDados.getRepository(Notificacao).extend({
         

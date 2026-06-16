@@ -3,8 +3,9 @@ import 'reflect-metadata';
 import { Aluno } from "../models/Aluno";
 import { Empresa } from "../models/Empresa";
 import { Vaga } from "../models/Vaga";
-import { Candidatura } from "../models/Canditadura";
-import { Notificacao } from "../models/Notificacoes";
+import { Candidatura } from "../models/Candidatura";
+import { Notificacao } from "../models/Notificacao";
+import {UsuarioAdmin} from "../models/UsuarioAdmin";
 
 
 export const FonteDados = new DataSource({
@@ -16,7 +17,7 @@ export const FonteDados = new DataSource({
     database:'portal_estagio',
     synchronize:false,
     logging:true,
-    entities:[Aluno, Empresa, Vaga, Candidatura, Notificacao],
+    entities:[Aluno, Empresa, Vaga, Candidatura, Notificacao, UsuarioAdmin],
     migrations:['src/migrations/**/*.ts'],
 
 })
