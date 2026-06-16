@@ -3,6 +3,7 @@ import { FonteDados } from '../config/database'
 import { Aluno } from '../models/Aluno'
 import { Empresa } from '../models/Empresa'
 import { Vaga } from '../models/Vaga'
+import { UsuarioAdmin } from '../models/UsuarioAdmin'
 import bcrypt from 'bcrypt'
 
 const executarSeed = async () => {
@@ -13,6 +14,12 @@ const executarSeed = async () => {
 
     const senhaHash = await bcrypt.hash('123456', 10)
 
+    const adminRepository = FonteDados.getRepository(UsuarioAdmin)
+
+    await adminRepository.save([
+        { nome: 'Administrador UniAlfa', email: 'rafaelUnialfa@gmail.com', senha_hash: await bcrypt.hash('admin123', 10), perfil: 'administrador' },
+    ])
+
     const alunoRepository = FonteDados.getRepository(Aluno)
     await alunoRepository.save([
         { nome: 'João Silva', ra: '2024001', email: 'joao@aluno.com', senha: senhaHash, curso: 'Tecnologia em Sistemas para Internet', apto: true, ativo: true },
@@ -21,7 +28,7 @@ const executarSeed = async () => {
     ])
     console.log('Alunos criados!')
 
-    
+
 
     const senhaHashEmpresa = await bcrypt.hash('123456', 10)
 
