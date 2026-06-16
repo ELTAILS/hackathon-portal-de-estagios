@@ -1,13 +1,13 @@
-package dao;
+package utils;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
 
-public class Dao {
+public class ConexaoDao {
 
     private Connection connection;
 
-    public Dao(){
+    public ConexaoDao(){
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
             this.connection = DriverManager.getConnection(

@@ -1,8 +1,8 @@
-import dao.Dao;
+import utils.ConexaoDao;
 
 public class Main {
     public static void main(String[] args) {
-        Dao conexao = new Dao();
+        ConexaoDao conexao = new ConexaoDao();
         try{
             conexao.getConnection();
             System.out.printf("Banco conectado");

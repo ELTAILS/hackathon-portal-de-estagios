@@ -1,12 +1,13 @@
 package dao;
 
 import model.Aluno;
+import utils.ConexaoDao;
 
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class AlunoDao extends Dao
+public class AlunoDao extends ConexaoDao
 {
     public List<Aluno> listar() throws SQLException
     {
