@@ -19,14 +19,17 @@ public class EmpresaGui extends PainelBase {
     }
 
     private void adicionarBotoes() {
+        JButton btnAdicionar = criarBotao("Adicionar", new Color(40, 160, 80));
         JButton btnAprovar  = criarBotao("Aprovar",    new Color(40, 160, 80));
         JButton btnBloquear = criarBotao("Bloquear",   new Color(200, 60, 60));
         JButton btnAtualizar = criarBotao("Atualizar", new Color(30, 80, 160));
 
+        painelBotoes.add(btnAdicionar);
         painelBotoes.add(btnAprovar);
         painelBotoes.add(btnBloquear);
         painelBotoes.add(btnAtualizar);
 
+        btnAdicionar.addActionListener(e -> adicionarEmpresa());
         btnAprovar.addActionListener(e -> aprovarEmpresa());
         btnBloquear.addActionListener(e -> bloquearEmpresa());
         btnAtualizar.addActionListener(e -> carregarDados());
@@ -52,6 +55,26 @@ public class EmpresaGui extends PainelBase {
                     e.getId(), e.getNome(), e.getCnpj(), e.getEmail(), e.getStatus()
             });
         }
+    }
+    private void adicionarEmpresa() {
+        JDialog dialog = new JDialog(
+                SwingUtilities.getWindowAncestor(this),
+                "Nova Empresa",
+                java.awt.Dialog.ModalityType.APPLICATION_MODAL
+        );
+        dialog.setSize(720, 480);
+        dialog.setLocationRelativeTo(this);
+        JPanel form = new JPanel(new GridLayout(5, 2, 10, 12));
+        form.setBorder(BorderFactory.createEmptyBorder(20, 20, 10, 20));
+        JTextField fNome = new JTextField();
+        JTextField fCnpj = new JTextField();
+        JTextField fEmail = new JTextField();
+        JPasswordField fSenha = new JPasswordField();
+
+        form.add(new JLabel("Nome:")); form.add(fNome);
+        form.add(new JLabel("CNPJ:")); form.add(fCnpj);
+        form.add(new JLabel("E-mail:")); form.add(fEmail);
+        form.add(new JLabel("Senha:")); form.add(fSenha);
     }
 
     private void aprovarEmpresa() {
