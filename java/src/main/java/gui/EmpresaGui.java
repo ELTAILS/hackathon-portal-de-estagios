@@ -12,10 +12,10 @@ public class EmpresaGui extends PainelBase {
     private final EmpresaService service;
 
     public EmpresaGui() {
-        super("Gestão de Empresas",
-                new String[]{"ID", "Nome", "CNPJ", "E-mail", "Status"});
+        super("Gestão de Empresas", new String[]{"ID", "Nome", "CNPJ", "E-mail", "Status"});
         this.service = new EmpresaService();
         adicionarBotoes();
+        carregarDados();
     }
 
     private void adicionarBotoes() {
@@ -62,19 +62,49 @@ public class EmpresaGui extends PainelBase {
                 "Nova Empresa",
                 java.awt.Dialog.ModalityType.APPLICATION_MODAL
         );
-        dialog.setSize(720, 480);
+        dialog.setSize(420, 360);
         dialog.setLocationRelativeTo(this);
-        JPanel form = new JPanel(new GridLayout(5, 2, 10, 12));
+        dialog.setLayout(new BorderLayout());
+
+        JPanel form = new JPanel(new GridLayout(4, 2, 10, 12));
         form.setBorder(BorderFactory.createEmptyBorder(20, 20, 10, 20));
-        JTextField fNome = new JTextField();
-        JTextField fCnpj = new JTextField();
+        JTextField fNome  = new JTextField();
+        JTextField fCnpj  = new JTextField();
         JTextField fEmail = new JTextField();
         JPasswordField fSenha = new JPasswordField();
 
-        form.add(new JLabel("Nome:")); form.add(fNome);
-        form.add(new JLabel("CNPJ:")); form.add(fCnpj);
+        form.add(new JLabel("Nome:"));   form.add(fNome);
+        form.add(new JLabel("CNPJ:"));   form.add(fCnpj);
         form.add(new JLabel("E-mail:")); form.add(fEmail);
-        form.add(new JLabel("Senha:")); form.add(fSenha);
+        form.add(new JLabel("Senha:"));  form.add(fSenha);
+
+        JPanel rodape = new JPanel(new FlowLayout(FlowLayout.RIGHT));
+        JButton btnSalvar   = new JButton("Salvar");
+        JButton btnCancelar = new JButton("Cancelar");
+        rodape.add(btnCancelar);
+        rodape.add(btnSalvar);
+
+        btnCancelar.addActionListener(e -> dialog.dispose());
+        btnSalvar.addActionListener(e -> {
+            try {
+                Empresa empresa = new Empresa();
+                empresa.setNome(fNome.getText().trim());
+                empresa.setCnpj(fCnpj.getText().trim());
+                empresa.setEmail(fEmail.getText().trim());
+                empresa.setSenhaHash(new String(fSenha.getPassword()).trim());
+
+                service.salvar(empresa);
+                mostrarSucesso("Empresa cadastrada com sucesso!");
+                dialog.dispose();
+                carregarDados();
+            } catch (Exception ex) {
+                JOptionPane.showMessageDialog(dialog, ex.getMessage(), "Erro", JOptionPane.ERROR_MESSAGE);
+            }
+        });
+
+        dialog.add(form, BorderLayout.CENTER);
+        dialog.add(rodape, BorderLayout.SOUTH);
+        dialog.setVisible(true);
     }
 
     private void aprovarEmpresa() {

@@ -17,7 +17,7 @@ public class VagaDao implements DaoGenerico<Vaga> {
 
     @Override
     public void salvar(Vaga vaga) {
-        String sql = "INSERT INTO vagas (empresa_id, titulo, descricao, area, status) " +
+        String sql = "INSERT INTO vagas (empresaId, titulo, descricao, area, status) " +
                 "VALUES (?, ?, ?, ?, 'aberta')";
         try (PreparedStatement stmt = connection.prepareStatement(sql)) {
             stmt.setInt(1, vaga.getEmpresaId());
@@ -85,7 +85,7 @@ public class VagaDao implements DaoGenerico<Vaga> {
     private Vaga mapearVaga(ResultSet rs) throws SQLException {
         return new Vaga(
                 rs.getInt("id"),
-                rs.getInt("empresa_id"),
+                rs.getInt("empresaId"),
                 rs.getString("titulo"),
                 rs.getString("descricao"),
                 rs.getString("area"),

@@ -21,8 +21,6 @@ public abstract class PainelBase extends JPanel {
         painelBotoes = new JPanel(new FlowLayout(FlowLayout.LEFT, 10, 10));
         painelBotoes.setBackground(new Color(240, 242, 248));
         add(painelBotoes, BorderLayout.SOUTH);
-
-        carregarDados();
     }
 
     private JPanel criarCabecalho(String titulo) {

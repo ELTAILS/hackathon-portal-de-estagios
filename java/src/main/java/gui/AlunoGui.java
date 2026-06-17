@@ -13,10 +13,10 @@ public class AlunoGui extends PainelBase {
     private final AlunoService service;
 
     public AlunoGui() {
-        super("Gestão de Alunos",
-                new String[]{"ID", "Nome", "RA", "Curso", "E-mail", "Apto", "Ativo"});
+        super("🎓 Gestão de Alunos", new String[]{"ID", "Nome", "RA", "Curso", "E-mail", "Apto", "Ativo"});
         this.service = new AlunoService();
         adicionarBotoes();
+        carregarDados();
     }
 
     private void adicionarBotoes() {
@@ -109,7 +109,7 @@ public class AlunoGui extends PainelBase {
                 aluno.setAtivo(true);
 
                 String senha = new String(fSenha.getPassword()).trim();
-                if (!senha.isBlank()) aluno.setSenhaHash(senha);
+                if (!senha.isBlank()) aluno.setSenha(senha);
 
                 if (editando) service.atualizar(aluno);
                 else          service.salvar(aluno);

@@ -11,10 +11,10 @@ public class CandidaturaGui extends PainelBase {
     private final CandidaturaService service;
 
     public CandidaturaGui() {
-        super("Candidaturas",
-                new String[]{"ID", "Aluno ID", "Vaga ID", "Status", "Data"});
+        super("Candidaturas", new String[]{"ID", "Aluno ID", "Vaga ID", "Status", "Data"});
         this.service = new CandidaturaService();
         adicionarBotoes();
+        carregarDados();
     }
 
     private void adicionarBotoes() {

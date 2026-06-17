@@ -11,10 +11,10 @@ public class VagaGui extends PainelBase {
     private final VagaService service;
 
     public VagaGui() {
-        super("Vagas Cadastradas",
-                new String[]{"ID", "Empresa ID", "Título", "Área", "Status", "Criada em"});
+        super("Vagas Cadastradas", new String[]{"ID", "Empresa ID", "Título", "Área", "Status", "Criada em"});
         this.service = new VagaService();
         adicionarBotoes();
+        carregarDados();
     }
 
     private void adicionarBotoes() {
