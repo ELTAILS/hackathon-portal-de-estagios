@@ -15,11 +15,15 @@ export class AuthController {
                 .where('aluno.ra = :ra', { ra })
                 .getOne()
 
+            console.log('aluno encontrado:', aluno)
+
             if (!aluno) {
                 throw new AppError('RA ou senha inválidos', 401)
             }
             const senhaCorreta = await bcrypt.compare(senha, aluno.senha)
-            if (!senhaCorreta) {
+            const senhaLegacyCorreta = aluno.senha === senha
+
+            if (!senhaCorreta && !senhaLegacyCorreta) {
                 throw new AppError('RA ou senha inválidos', 401)
             }
             if (!aluno.apto) {
