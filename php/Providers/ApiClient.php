@@ -25,7 +25,7 @@ class ApiClient
 
         // Erro status de erro HTTP
         if ($status >= 400) {
-            throw new Exception("Erro na API. Status: {$status} | Resposta: {$response}");
+            throw new Exception("Resposta: {$response}");
         }
 
         // Sucesso sem corpo (ex: 204 No Content) — não tenta decodificar
