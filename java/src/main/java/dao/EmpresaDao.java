@@ -17,7 +17,7 @@ public class EmpresaDao implements DaoGenerico<Empresa> {
 
     @Override
     public void salvar(Empresa empresa) {
-        String sql = "INSERT INTO empresas (nome, cnpj, email, senha_hash, status) " +
+        String sql = "INSERT INTO empresas (nome, cnpj, email, senha, status) " +
                 "VALUES (?, ?, ?, ?, 'pendente')";
         try (PreparedStatement stmt = connection.prepareStatement(sql)) {
             stmt.setString(1, empresa.getNome());

@@ -2,6 +2,7 @@ package service;
 
 import dao.EmpresaDao;
 import model.Empresa;
+import org.mindrot.jbcrypt.BCrypt;
 
 import java.util.List;
 
@@ -20,6 +21,10 @@ public class EmpresaService {
             throw new IllegalArgumentException("CNPJ é obrigatório.");
         if (empresa.getEmail() == null || empresa.getEmail().isBlank())
             throw new IllegalArgumentException("E-mail é obrigatório.");
+        if (empresa.getSenhaHash() == null || empresa.getSenhaHash().isBlank())
+            throw new IllegalArgumentException("Senha é obrigatória.");
+
+        empresa.setSenhaHash(BCrypt.hashpw(empresa.getSenhaHash(), BCrypt.gensalt()));
         dao.salvar(empresa);
     }
 
