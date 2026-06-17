@@ -13,7 +13,7 @@ public class AlunoGui extends PainelBase {
     private final AlunoService service;
 
     public AlunoGui() {
-        super("🎓 Gestão de Alunos",
+        super("Gestão de Alunos",
                 new String[]{"ID", "Nome", "RA", "Curso", "E-mail", "Apto", "Ativo"});
         this.service = new AlunoService();
         adicionarBotoes();
