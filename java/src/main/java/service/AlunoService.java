@@ -38,6 +38,9 @@ public class AlunoService {
             throw new IllegalArgumentException("Nome é obrigatório.");
         if (aluno.getEmail() == null || aluno.getEmail().isBlank())
             throw new IllegalArgumentException("E-mail é obrigatório.");
+        if (aluno.getSenhaHash() != null && !aluno.getSenhaHash().isBlank()) {
+            aluno.setSenhaHash(BCrypt.hashpw(aluno.getSenhaHash(), BCrypt.gensalt()));
+        }
         dao.salvar(aluno);
     }
 
@@ -71,6 +74,9 @@ public class AlunoService {
                 aluno.setRa(campos[2].trim());
                 aluno.setCurso(campos[3].trim());
                 aluno.setAtivo(true);
+                if (aluno.getSenhaHash() != null && !aluno.getSenhaHash().isBlank()) {
+                    aluno.setSenhaHash(BCrypt.hashpw(aluno.getSenhaHash(), BCrypt.gensalt()));
+                }
                 dao.salvar(aluno);
                 relatorio.add("Importado: " + aluno.getNome());
             } catch (Exception e) {
@@ -87,6 +93,9 @@ public class AlunoService {
             Arquivo.readerFile(arquivo.toString()).forEach(System.out::println);
 
             if (aluno.getId() == null) {
+                if (aluno.getSenhaHash() != null && !aluno.getSenhaHash().isBlank()) {
+                    aluno.setSenhaHash(BCrypt.hashpw(aluno.getSenhaHash(), BCrypt.gensalt()));
+                }
                 dao.salvar(aluno);
             } else {
                 dao.atualizar(aluno);
