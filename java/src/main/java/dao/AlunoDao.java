@@ -20,12 +20,12 @@ public class AlunoDao implements DaoGenerico<Aluno> {
 
     @Override
     public void salvar(Aluno aluno) {
-        String sql = "INSERT INTO alunos (nome, email, senha_hash, ra, curso, apto, ativo) " +
+        String sql = "INSERT INTO alunos (nome, email, senha, ra, curso, apto, ativo) " +
                 "VALUES (?, ?, ?, ?, ?, ?, ?)";
         try (PreparedStatement ps = connection.prepareStatement(sql)) {
             ps.setString(1, aluno.getNome());
             ps.setString(2, aluno.getEmail());
-            ps.setString(3, aluno.getSenhaHash());
+            ps.setString(3, aluno.getSenha());
             ps.setString(4, aluno.getRa());
             ps.setString(5, aluno.getCurso());
             ps.setBoolean(6, aluno.isApto());
@@ -100,7 +100,7 @@ public class AlunoDao implements DaoGenerico<Aluno> {
         a.setId(rs.getInt("id"));
         a.setNome(rs.getString("nome"));
         a.setEmail(rs.getString("email"));
-        a.setSenhaHash(rs.getString("senha_hash"));
+        a.setSenha(rs.getString("senha"));
         a.setRa(rs.getString("ra"));
         a.setCurso(rs.getString("curso"));
         a.setApto(rs.getBoolean("apto"));

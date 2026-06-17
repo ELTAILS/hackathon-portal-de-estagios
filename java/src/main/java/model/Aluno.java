@@ -4,7 +4,7 @@ public class Aluno extends EntidadeBase {
 
     private String nome;
     private String email;
-    private String senhaHash;
+    private String senha;
     private String ra;
     private String curso;
     private Boolean apto;
@@ -14,11 +14,12 @@ public class Aluno extends EntidadeBase {
         super();
     }
 
-    public Aluno(Integer id, String nome, String email, String ra,
+    public Aluno(Integer id, String nome, String senha,String email, String ra,
                  String curso, Boolean apto, Boolean ativo) {
         super(id);
         this.nome  = nome;
         this.email = email;
+        this.senha = senha;
         this.ra    = ra;
         this.curso = curso;
         this.apto  = apto;
@@ -41,12 +42,12 @@ public class Aluno extends EntidadeBase {
         this.email = email;
     }
 
-    public String getSenhaHash() {
-        return senhaHash;
+    public String getSenha() {
+        return senha;
     }
 
-    public void setSenhaHash(String senhaHash) {
-        this.senhaHash = senhaHash;
+    public void setSenha(String senhaHash) {
+        this.senha = senhaHash;
     }
 
     public String getRa() {
